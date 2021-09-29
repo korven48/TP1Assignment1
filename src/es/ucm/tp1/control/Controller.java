@@ -2,7 +2,7 @@ package es.ucm.tp1.control;
 
 import java.util.Scanner;
 
-import es.ucm.tp1.logic.Game;
+import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GamePrinter;
 
 public class Controller {
@@ -48,7 +48,11 @@ public class Controller {
 
 	public void run() {
 		// TODO fill your code
-		printGame();
+		while (! game.isFinished()) {
+			String command;
+			command = scanner.next();
+			game.update(command);
+			printGame();
 	}
 
 }
