@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import es.ucm.tp1.control.Controller;
 import es.ucm.tp1.control.Level;
-import es.ucm.tp1.logic.Game;
+import es.ucm.tp1.model.Game;
 
 public class SuperCars {
 

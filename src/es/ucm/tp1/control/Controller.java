@@ -53,6 +53,7 @@ public class Controller {
 			command = scanner.next();
 			game.update(command);
 			printGame();
+
 	}
 
 }
