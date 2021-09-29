@@ -2,7 +2,8 @@ package es.ucm.tp1.control;
 
 import java.util.Scanner;
 
-import es.ucm.tp1.logic.Game;
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.view.GamePrinter;
 
 public class Controller {
 
@@ -14,7 +15,7 @@ public class Controller {
 	private static final String[] HELP = new String[] {
 		"Available commands:",
 		"[h]elp: show this help",
-		"[i]nfo: prints game element info",
+		"[i]nfo: prints gameobjet info",
 		"[n]one | []: update",
 		"[q]: go up",
 		"[a]: go down",
@@ -27,18 +28,27 @@ public class Controller {
 	private Game game;
 
 	private Scanner scanner;
+	
+	private GamePrinter printer;
 
 	public Controller(Game game, Scanner scanner) {
 		this.game = game;
 		this.scanner = scanner;
+		this.printer = new GamePrinter(game);
 	}
 
 	public void printGame() {
-		System.out.println(game);
+		System.out.println(printer);
+	}
+	
+
+	public void printEndMessage() {
+		System.out.println(printer.endMessage());
 	}
 
 	public void run() {
 		// TODO fill your code
+		printGame();
 	}
 
 }
