@@ -1,6 +1,6 @@
 package es.ucm.tp1.view;
 
-import es.ucm.tp1.logic.Game;
+import es.ucm.tp1.model.Game;
 import es.ucm.tp1.utils.*;
 
 
@@ -10,9 +10,9 @@ public class GamePrinter {
 
 	private static final String VERTICAL_DELIMITER = "|";
 
-	private static final String ROAD_BORDER_PATTERN = "═";
+	private static final String ROAD_BORDER_PATTERN = "â•�";
 
-	private static final String LANE_DELIMITER_PATTERN = "─";
+	private static final String LANE_DELIMITER_PATTERN = "â”€";
 
 	private static final int CELL_SIZE = 7;
 
