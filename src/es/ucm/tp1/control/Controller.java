@@ -48,7 +48,12 @@ public class Controller {
 
 	public void run() {
 		// TODO fill your code
-		printGame();
+		while (! game.isFinished()) {
+			String command;
+			command = scanner.next();
+			game.update(command);
+			printGame();
+
 	}
 
 }
