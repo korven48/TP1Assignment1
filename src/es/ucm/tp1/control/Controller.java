@@ -48,13 +48,13 @@ public class Controller {
 
 	public void run() {
 		// TODO fill your code
-		while (! game.isFinished()) {
-			String command;
-			command = scanner.next();
-			game.update(command);
-			printGame();
-
-	}
+		printGame();
+//		while (! game.isFinished()) {
+//			String command;
+//			command = scanner.next();
+//			game.update(command);
+//			printGame();
+//	}
   }
 }
 
