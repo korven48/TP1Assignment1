@@ -9,8 +9,36 @@ public class Obstacle {
 	// Obstacle specific
 	private int resistance;
 	
-	public Obstacle () {
-		this.resistance = 1;
+
+	public Obstacle (Game game, int x, int y) {
 		// todo
+		this.game = game; 
+		this.resistance = 1;
+		this.x = x;
+		this.y = y; 
 	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+		
+	public boolean checkHit(Player player) {
+		boolean result = false;
+		if (player.getPostionY() == this.y && x == 1) {
+			result = true; 
+		}
+		return result;
+	}	
 }

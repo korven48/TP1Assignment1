@@ -12,7 +12,7 @@ public class GamePrinter {
 
 	private static final String ROAD_BORDER_PATTERN = "═";
 
-	private static final String LANE_DELIMITER_PATTERN = "â”€";
+	private static final String LANE_DELIMITER_PATTERN = "─";
 
 	private static final int CELL_SIZE = 7;
 
@@ -98,7 +98,19 @@ public class GamePrinter {
 		String s = GAME_OVER_MSG;
 		
 		// TODO your code here
-		
+		StringBuilder sb = new StringBuilder();
+		//Insert the right condition for victory
+		if (true) {
+			sb.append(s); //replace the free space with the correct line
+			sb.append("Player wins!");
+			sb.append("\r\n");
+			sb.append("New record!: ");
+			//sb.append() insert here with the corret commands the time
+		} else {
+			sb.append(s); //replace the free space with the correct line
+			sb.append("Player crashed!");
+		}
+		s = sb.toString();
 		return s;
 	}
 }
