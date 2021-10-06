@@ -98,8 +98,7 @@ public class Game {
 	}
 	
 	public boolean isFinished() {
-		boolean result; 
-		result = checkCoinSelected();
+		boolean result = false; 
 		result = checkCollistion();
 		return result; 
 	}
