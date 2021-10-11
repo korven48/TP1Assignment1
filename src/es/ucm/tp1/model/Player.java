@@ -2,26 +2,34 @@ package es.ucm.tp1.model;
 
 public class Player {
 	private static Player player = null;
-	//Shall representiv the vertical postion of the car
+	//Shall represent the vertical position of the car
 	private final static int speed = 1; 
-	//Insert the right postion depanding on the level mode
-	private int postionY;
-	private static final int postionX = 0; 
-
-	private long coinsCount = 0;
+	//Insert the right position depending on the level mode
+	private int positionY;
+//	private static final int positionX = 0; 
+	private int positionX; 
+	
+	private int coinsCount = 0;
 	//Not sure... have to talk about it
-	private boolean collision = false;
+	private boolean crashed;
 	//if the car hits an object it is destroyed 
 	private int resistance = 1; 
+	private static boolean isTimeStarted; 
+	
+	public static final byte UP = 1;
+	public static final byte DOWN = -1;
 	
 	private Player(int startingPostion) {
-		this.postionY = startingPostion;
+		positionX = 0;
+		this.positionY = startingPostion;
+		isTimeStarted = false;
+		crashed = false;
 	}
 	
 	public static Player getPlayer(final boolean reset, int startingPostion) {
 		if (player == null || reset) {
 			player = new Player(startingPostion); 
-		}			
+		}
 		return player; 
 	}
 	
@@ -29,27 +37,39 @@ public class Player {
 		this.coinsCount++;
 	}	
 	
-	public void setPostion(final byte direction) {
-		if (direction == 1 && !(this.postionY == 1)) {
-			this.postionY++;
-		} else if (direction == -1 && !(this.postionY == -1)) {
-			this.postionY--;
-		}
+	public int getCoins () {
+		return coinsCount;
+	}
+	
+	public void move(Direction direction) {
+		// UP, DOWN, FOREWARD, NONE
+		if (direction.equals(Direction.UP)) 
+			this.positionY--;
+		else if (direction.equals(Direction.DOWN))
+			this.positionY++;
+		
+		if (! direction.equals(Direction.NONE))
+			this.positionX++;
 	}
 	
 	//Need?
-	public void setCollision(final boolean collision) {
-		if (collision) {
-			this.resistance--;
-			this.collision = collision;
+	public void setCollision() {
+		this.resistance--;
+		if (resistance == 0) {
+			this.crashed = true;			
 		}
 	}
 	
 	public int getPostionX() {
-		return postionX;
+		return positionX;
 	}
 
 	public int getPostionY() {
-		return postionY;
+		return positionY;
+	}
+
+	public boolean isCrashed() {
+		// TODO Auto-generated method stub
+		return crashed;
 	}
 }

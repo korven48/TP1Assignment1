@@ -11,7 +11,7 @@ public class Obstacle {
 	
 
 	public Obstacle (Game game, int x, int y) {
-		// todo
+		// TODO
 		this.game = game; 
 		this.resistance = 1;
 		this.x = x;
@@ -36,7 +36,7 @@ public class Obstacle {
 		
 	public boolean checkHit(Player player) {
 		boolean result = false;
-		if (player.getPostionY() == this.y && x == 1) {
+		if (player.getPostionY() == this.y && player.getPostionX() == this.x) {
 			result = true; 
 		}
 		return result;

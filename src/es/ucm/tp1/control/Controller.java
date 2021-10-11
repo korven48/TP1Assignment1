@@ -41,20 +41,39 @@ public class Controller {
 		System.out.println(printer);
 	}
 	
-
-	public void printEndMessage() {
-		System.out.println(printer.endMessage());
+	public static void printHelp() {
+		System.out.println();
+		for (String line : HELP) {
+			System.out.println(line);
+		}
+		System.out.println();
 	}
+	
+	public static void printUnknown() {
+		System.out.println("\n" + UNKNOWN_COMMAND_MSG + "\n");
+	}
+
+	
+	public void printEndMessage() {
+		System.out.println("\n" + printer.endMessage() + "\n");
+	}
+	
+
 
 	public void run() {
 		// TODO fill your code
+		String command;
+		game.draw();
 		printGame();
-//		while (! game.isFinished()) {
-//			String command;
-//			command = scanner.next();
-//			game.update(command);
-//			printGame();
-//	}
+		while (! game.isFinished()) {
+			System.out.print(PROMPT);
+			command = scanner.nextLine();
+			game.update(command);
+			game.removeDeadObjects();
+			game.draw();
+			printGame();
+		}
+		printEndMessage();
   }
 }
 

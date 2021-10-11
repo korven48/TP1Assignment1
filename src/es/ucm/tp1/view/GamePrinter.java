@@ -76,10 +76,10 @@ public class GamePrinter {
 		str.append(indentedRoadBorder);
 
 		String verticalDelimiter = SPACE;
-
+		int camera = game.getCameraPosition();
 		for (int y = 0; y < game.getRoadWidth(); y++) {
 			str.append(this.margin).append(verticalDelimiter);
-			for (int x = 0; x < game.getVisibility(); x++) {
+			for (int x = camera; x < (camera + game.getVisibility()); x++) {
 				str.append(StringUtils.centre(game.positionToString(x, y), CELL_SIZE))
 						.append(verticalDelimiter);
 			}
@@ -100,12 +100,13 @@ public class GamePrinter {
 		// TODO your code here
 		StringBuilder sb = new StringBuilder();
 		//Insert the right condition for victory
-		if (true) {
+		if (game.getVictory()) {
 			sb.append(s); //replace the free space with the correct line
 			sb.append("Player wins!");
 			sb.append("\r\n");
 			sb.append("New record!: ");
-			//sb.append() insert here with the corret commands the time
+			sb.append(game.getTime());
+			//sb.append() insert here with the correct commands the time
 		} else {
 			sb.append(s); //replace the free space with the correct line
 			sb.append("Player crashed!");
