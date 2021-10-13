@@ -17,14 +17,13 @@ public class Game {
 	private boolean victory;
 	
 	private boolean exit;
-
-	
 	
 	private static final String COIN = "¢";
 	private static final String ALIVE_PLAYER = ">";
 	private static final String CRASHED_PLAYER = "@";
 	private static final String OBSTACLE = "░";
 	private static final String FINISH_LINE = "¦";
+	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
 	//Added because of the SuperCar.java
 	Long seed;
@@ -34,7 +33,7 @@ public class Game {
 	private void setUniquePlayer(boolean reset) {
 		int startingline = (int) this.getRoadWidth() / 2; 
 		this.player = Player.getPlayer(reset, startingline);
-		ellapsedtime = System.currentTimeMillis();
+		//ellapsedtime = System.currentTimeMillis();
 	}
 	
 	private void reset() {
@@ -51,6 +50,7 @@ public class Game {
 		this.level = level;
 		this.isTestMode = isTestMode;
 		this.cycle = 0; 
+		this.ellapsedtime = 0;
 		initObjects();
 		boolean reset = false;
 		setUniquePlayer(reset);
@@ -92,9 +92,14 @@ public class Game {
 		ellapsedtime = System.currentTimeMillis();
 	}
 	
+	public boolean isTimeOn() {
+		return this.ellapsedtime != 0;
+	}
+	
 	public String getTime() {
 		// time: The time in seconds with 2 decimals of precision
-		double seconds = (System.currentTimeMillis() - ellapsedtime) / 1000.;
+		double seconds = 0;
+		if (this.ellapsedtime != 0) seconds = (System.currentTimeMillis() - ellapsedtime) / 1000.;
 		String time = String.format("%.2f", seconds) + " s";
 		return time;
 	}
@@ -121,13 +126,15 @@ public class Game {
 	
 	public void getGameStatus() {
 		int distanceToFinish = level.getLength() - player.getPostionX();
+
 		System.out.println("Distance: " + distanceToFinish);
 		System.out.println("Coins: " + player.getCoins());
 		System.out.println("Cicle: " + this.cycle);
 		System.out.println("Total obstacles: " + obstacleList.size());
 		System.out.println("Total coins: " + coinList.size());
-		if (! isTest())
+		if (!isTest()) {
 			System.out.println("Ellapsed time: " + getTime());
+		}
 	}
 
 	
@@ -196,10 +203,19 @@ public class Game {
 		return level.getVisibility();
 	}
 	
+	private void ShowLastCommand(final String command) {
+		String debugInfo = this.DEBUG_MSG;
+		if (command != "") {
+			debugInfo += command;			
+		}
+		System.out.println("\n" + debugInfo);
+	}
+	
 	public boolean update(final String command) {
 		boolean shouldDisplay = false;
 		String currentCommand = command.toLowerCase();
 
+		this.ShowLastCommand(currentCommand);
 		Direction direction = Direction.NONE;
 		switch (currentCommand) {
 			case "info":
@@ -231,7 +247,7 @@ public class Game {
 				//test: Changes the game mode to test, in which the elapsed time is not printed; this
 				//mode is explained in more detail below.
 				setTest(true);
-				System.out.println("Changed game mode to test!");
+				//System.out.println("Changed game mode to test!");
 				break;
 			case "exit":
 			case "e":
@@ -239,6 +255,7 @@ public class Game {
 				// At the moment shows crashed player if you want to change it goto GamePrinter.endMessage()
 				setExit(true);
 				break;
+			case "help":
 			case "h":
 				//help: Displays information about each of the existing commands, each on a new line
 				Controller.printHelp();
@@ -264,7 +281,11 @@ public class Game {
 	
 	private String getInfo() {
 		// TODO Should create an informative message
-		String s = "Informative message..."; 
+		String s = "Available objects:\n"
+				+ "[Car] the racing car\n"
+				+ "[Coin] gives 1 coin to the player\n"
+				+ "[Obstacle] hits car"
+				+ "\n"; 
 		return s;
 	}
 

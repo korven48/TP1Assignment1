@@ -65,16 +65,17 @@ public class Controller {
 		boolean shouldDisplay;
 		String command;
 		printGame();
-		while (! game.isFinished()) {
+		while (!game.isFinished()) {
 			System.out.print(PROMPT);
 			command = scanner.nextLine();
+			if (!game.isTimeOn()) game.startTime();
 			shouldDisplay = game.update(command);
 			game.removeDeadObjects();
-			if (shouldDisplay) {
+			//Please check if really needed!
+			//if (shouldDisplay) {
 				printGame();
 				game.incrementCyle();
-			}
-				
+			//}		
 		}
 		printEndMessage();
   }
