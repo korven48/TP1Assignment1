@@ -1,0 +1,10 @@
+Super cars 1.0
+
+Level: HARD
+Random generator initialized with seed: 100
+Exception in thread "main" java.lang.Error: Unresolved compilation problem: 
+	createObstacle cannot be resolved to a variable
+
+	at es.ucm.tp1.model.Game.initObjects(Game.java:72)
+	at es.ucm.tp1.model.Game.<init>(Game.java:54)
+	at es.ucm.tp1.SuperCars.main(SuperCars.java:53)

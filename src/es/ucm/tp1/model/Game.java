@@ -65,19 +65,27 @@ public class Game {
 		Obstacle currentObstacle = null;
 		LinkedList<Obstacle> linkedListObstacle = new LinkedList<Obstacle>();
 		Random rand = new Random(seed);
+		boolean createdObstacle;
 		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
-			double random = Math.random();
-			int randRow = rand.nextInt(this.getRoadWidth());
+			double random = rand.nextDouble();
+			int randRow =  (int) rand.nextDouble() * (this.getRoadWidth() - 1);
+			createObstacle = false; 
+			if (random < level.getObstacleFrequency()) {
+				new Obstacle(this, column, randRow);
+				createdObstacle = true;
+			}
+			if (random < level.getCoinFrequency()) 
+			
+			
 			if (random < level.getCoinFrequency()) {
 				currentCoin = new Coin(this, column, randRow);
 				linkedListCoins.add(currentCoin);
 				if (random < level.getObstacleFrequency()) {
-					int randRow2; 
-					do {
-						randRow2 = rand.nextInt(this.getRoadWidth() - 1);
-					} while(randRow2 == randRow);
-					currentObstacle = new Obstacle(this, column, randRow2);
-					linkedListObstacle.add(currentObstacle);	
+					int randRow2 = (int) rand.nextDouble() * (this.getRoadWidth() - 1); 
+					if (randRow != randRow2) {
+						currentObstacle = new Obstacle(this, column, randRow2);
+						linkedListObstacle.add(currentObstacle);		
+					}					
 				}
 			} else if (random < level.getObstacleFrequency()) {
 				currentObstacle = new Obstacle(this, column, randRow);
