@@ -41,4 +41,11 @@ public class Obstacle {
 		}
 		return result;
 	}	
+	
+	boolean isObjectDead() {
+		if (resistance == 0) {
+			return true;
+		}
+		return false;		
+	}
 }

@@ -8,11 +8,12 @@ import es.ucm.tp1.model.Direction;
 import es.ucm.tp1.control.Level;
 
 public class Game {
-	private int cycleCounter = 0;
 	private Player player = null;
 	private Coin[] coinList;
 	private Obstacle[] obstacleList; 
 	private long ellapsedtime;
+	private int cycle;
+
 	private boolean victory;
 	
 	private boolean exit;
@@ -49,6 +50,7 @@ public class Game {
 		this.seed = seed;
 		this.level = level;
 		this.isTestMode = isTestMode;
+		this.cycle = 0; 
 		initObjects();
 		boolean reset = false;
 		setUniquePlayer(reset);
@@ -83,9 +85,7 @@ public class Game {
 			}
 		}
 		this.coinList = linkedListCoins.toArray(new Coin[linkedListCoins.size()]);
-//		System.out.println(this.coinList.length);
 		this.obstacleList = linkedListObstacle.toArray(new Obstacle[linkedListObstacle.size()]); 
-//		System.out.println(this.obstacleList.length);
 	}
 	
 	public void startTime() {
@@ -114,12 +114,16 @@ public class Game {
 	public boolean isTest() {
 		return isTestMode;
 	}
+
+	public void incrementCyle() {
+		this.cycle++;
+	}
 	
 	public void getGameStatus() {
 		int distanceToFinish = level.getLength() - player.getPostionX();
 		System.out.println("Distance: " + distanceToFinish);
 		System.out.println("Coins: " + player.getCoins());
-		System.out.println("Cicle: " + cycleCounter);
+		System.out.println("Cicle: " + this.cycle);
 		System.out.println("Total obstacles: " + obstacleList.length);
 		System.out.println("Total coins: " + coinList.length);
 		if (! isTest())
@@ -292,6 +296,11 @@ public class Game {
 
 	public void removeDeadObjects() {
 		// TODO Auto-generated method stub
+		/* - Needed
+		for (int i = 0; i < this.obstacleList.length; i++) {
+			if (this.obstacleList[i].isObjectDead()) this.obstacleList[i] = null;
+		}
+		*/
 	}
 	
 }

@@ -70,8 +70,11 @@ public class Controller {
 			command = scanner.nextLine();
 			shouldDisplay = game.update(command);
 			game.removeDeadObjects();
-			if (shouldDisplay)
-				printGame();				
+			if (shouldDisplay) {
+				printGame();
+				game.incrementCyle();
+			}
+				
 		}
 		printEndMessage();
   }
