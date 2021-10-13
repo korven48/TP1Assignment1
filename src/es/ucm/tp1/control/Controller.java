@@ -62,16 +62,16 @@ public class Controller {
 
 	public void run() {
 		// TODO fill your code
+		boolean shouldDisplay;
 		String command;
-		game.draw();
 		printGame();
 		while (! game.isFinished()) {
 			System.out.print(PROMPT);
 			command = scanner.nextLine();
-			game.update(command);
+			shouldDisplay = game.update(command);
 			game.removeDeadObjects();
-			game.draw();
-			printGame();
+			if (shouldDisplay)
+				printGame();				
 		}
 		printEndMessage();
   }

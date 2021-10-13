@@ -14,6 +14,8 @@ public class Game {
 	private Obstacle[] obstacleList; 
 	private long ellapsedtime;
 	private boolean victory;
+	
+	private boolean exit;
 
 	
 	
@@ -51,6 +53,7 @@ public class Game {
 		boolean reset = false;
 		setUniquePlayer(reset);
 		victory = false;
+		exit = false;
 	}
 	
 	//Make it beautiful if everything is working! 
@@ -62,7 +65,7 @@ public class Game {
 		Random rand = new Random(seed);
 		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
 			double random = Math.random();
-			int randRow = rand.nextInt(this.getRoadWidth() - 1);
+			int randRow = rand.nextInt(this.getRoadWidth());
 			if (random < level.getCoinFrequency()) {
 				currentCoin = new Coin(this, column, randRow);
 				linkedListCoins.add(currentCoin);
@@ -70,7 +73,7 @@ public class Game {
 					int randRow2; 
 					do {
 						randRow2 = rand.nextInt(this.getRoadWidth() - 1);
-					} while(randRow2 == random);
+					} while(randRow2 == randRow);
 					currentObstacle = new Obstacle(this, column, randRow2);
 					linkedListObstacle.add(currentObstacle);	
 				}
@@ -96,22 +99,42 @@ public class Game {
 		return time;
 	}
 	
-	public void draw() {
+	public void setExit(boolean exit) {
+		this.exit = exit;
+	}
+	
+	public boolean getExit() {
+		return exit;
+	}
+	
+	public void setTest(boolean isTestMode) {
+		this.isTestMode = isTestMode;
+	}
+	
+	public boolean isTest() {
+		return isTestMode;
+	}
+	
+	public void getGameStatus() {
 		int distanceToFinish = level.getLength() - player.getPostionX();
 		System.out.println("Distance: " + distanceToFinish);
 		System.out.println("Coins: " + player.getCoins());
 		System.out.println("Cicle: " + cycleCounter);
 		System.out.println("Total obstacles: " + obstacleList.length);
 		System.out.println("Total coins: " + coinList.length);
-		System.out.println("Ellapsed time: " + getTime());
+		if (! isTest())
+			System.out.println("Ellapsed time: " + getTime());
 	}
 
 	
 	public boolean isFinished() {
-		// Game finishes if player crashes or wins
-		boolean result;
+		// Game finishes if player crashes, wins or exits
+		boolean crashed, result;
 		victory = checkFinishLine();
-		result = checkCollistion() || victory;
+		crashed = checkCollistion();
+		
+		result = crashed || victory || exit;
+		
 		return result; 
 	}
 	
@@ -136,7 +159,8 @@ public class Game {
 	private boolean checkCoinSelected() {
 		boolean result = false;
 		for (Coin coin : this.coinList) {
-			if (coin.getCollected(this.player)) {
+			if (coin.canCollect(player)) {
+				coin.setCollected();
 				this.player.setCoinCounterUp();
 				result = true; 
 			}
@@ -146,11 +170,10 @@ public class Game {
 	
 	private boolean canMove(Direction direction) {
 		boolean result = true;
-		if (direction.equals(Direction.DOWN) && player.getPostionY() >= level.getWidth() - 1) {
+		if (direction.equals(Direction.DOWN) && player.getPostionY() >= level.getWidth() - 1)
 			result = false;
-		} else if (direction.equals(Direction.UP) && player.getPostionY() <= 0) {
+		else if (direction.equals(Direction.UP) && player.getPostionY() <= 0)
 			result = false;
-		}
 		return result;
 	}
 	
@@ -165,67 +188,78 @@ public class Game {
 		return level.getVisibility();
 	}
 	
-	public void update(final String command) {
-		int index = 0;
+	public boolean update(final String command) {
+		boolean shouldDisplay = false;
 		String currentCommand = command.toLowerCase();
-		if (currentCommand.length() != 0) {
-			char letter = currentCommand.charAt(index);
-			currentCommand = String.valueOf(letter); 
-		}
-		Direction direction;
+
+		Direction direction = Direction.NONE;
 		switch (currentCommand) {
+			case "info":
 			case "i":
 				// Displays information about each of the elements of the game.
-				direction = Direction.NONE;
+				System.out.println(getInfo());
 				break;
 			case "q":
 				//q: Moves the car upwards on the board (diagonally upwards on the road).
 				direction = Direction.UP;
-				break; 
+				break;
 			case "a":
 				//a: Moves the car downwards on the board (diagonally downwards on the road).
 				direction = Direction.DOWN;
 				break;
+			case "none":
 			case "n":
 			case "":
 				//none: Moves the car horizontally on the road. (Same as "")
 				direction = Direction.FORWARD;
 				break;
+			case "reset":
 			case "r":
 				//reset: Restarts the game in the initial configuration.
 				reset();
-				direction = Direction.NONE;
 				break;
+			case "test":
 			case "t":
 				//test: Changes the game mode to test, in which the elapsed time is not printed; this
 				//mode is explained in more detail below.
-				direction = Direction.NONE;
+				setTest(true);
+				System.out.println("Changed game mode to test!");
 				break;
+			case "exit":
 			case "e":
-				//exit: Exists the game after displaying the message “Game Over”.
-				direction = Direction.NONE;
+				//exit: Exists the game after displaying the Game Over message
+				// At the moment shows crashed player if you want to change it goto GamePrinter.endMessage()
+				setExit(true);
 				break;
 			case "h":
 				//help: Displays information about each of the existing commands, each on a new line
-				//using the following format: <command_name> <command_parameters>: <command_description>new Player 
 				Controller.printHelp();
-				direction = Direction.NONE;
 				break;
 			default:
 				Controller.printUnknown();
-				direction = Direction.NONE;
 				break; 
 		}
 		if (canMove(direction)) {
-			player.move(direction);
+			if (! direction.equals(Direction.NONE)) {
+				player.move(direction);
+				shouldDisplay = true;				
+			}
 		} else {
 			System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
 		}
 		if (checkCollistion()) {
 			player.setCollision();
 		}
+		checkCoinSelected();
+		return shouldDisplay;
 	}
 	
+	private String getInfo() {
+		// TODO Should create an informative message
+		String s = "Informative message..."; 
+		return s;
+	}
+
 	public String positionToString(int x, int y) {
 		String obj = "";
 		if (this.coinList != null) {
@@ -258,6 +292,6 @@ public class Game {
 
 	public void removeDeadObjects() {
 		// TODO Auto-generated method stub
-		
 	}
+	
 }

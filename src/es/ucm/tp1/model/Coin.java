@@ -10,14 +10,13 @@ public class Coin {			// Should be the last thing to implement
 	// Coin specific
 	
 	public Coin (Game game, int x, int y) {
-		// todo
 		this.game = game; 
 		this.x = x;
 		this.y = y;
 	}
 			
 	public void setCollected() {
-		this.collected = true;
+		collected = true;
 	}
 	
 	public int getX() {
@@ -36,11 +35,8 @@ public class Coin {			// Should be the last thing to implement
 		this.y = y;
 	}
 
-	public boolean getCollected(Player player) {
-		if (player.getPostionY() == this.y && x == 1) {
-			collected = true; 
-		}
-		return this.collected;
+	public boolean canCollect(Player player) {
+		return player.getPostionY() == y && player.getPostionX() == x;
 	}	
 
 }
