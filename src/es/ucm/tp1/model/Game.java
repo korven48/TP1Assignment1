@@ -9,8 +9,8 @@ import es.ucm.tp1.control.Level;
 
 public class Game {
 	private Player player = null;
-	private Coin[] coinList;
-	private Obstacle[] obstacleList; 
+	private CoinList coinList;
+	private ObstacleList obstacleList; 
 	private long ellapsedtime;
 	private int cycle;
 
@@ -61,39 +61,31 @@ public class Game {
 	//Make it beautiful if everything is working! 
 	private void initObjects() {
 		Coin currentCoin = null;
-		LinkedList <Coin> linkedListCoins = new LinkedList<Coin>();
 		Obstacle currentObstacle = null;
-		LinkedList<Obstacle> linkedListObstacle = new LinkedList<Obstacle>();
+		this.coinList = new CoinList();
+		this.obstacleList = new ObstacleList();
+		
 		Random rand = new Random(seed);
-		boolean createdObstacle;
+		int objectLane;
+		double createObstacle;
+		int coinLane;
+		double createCoin;
 		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
-			double random = rand.nextDouble();
-			int randRow =  (int) rand.nextDouble() * (this.getRoadWidth() - 1);
-			createObstacle = false; 
-			if (random < level.getObstacleFrequency()) {
-				new Obstacle(this, column, randRow);
-				createdObstacle = true;
+			objectLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createObstacle = rand.nextDouble();
+			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createCoin = rand.nextDouble();
+			if (createObstacle < level.getObstacleFrequency()) {
+				currentObstacle = new Obstacle(this, column, objectLane);
+				this.obstacleList.add(currentObstacle);
 			}
-			if (random < level.getCoinFrequency()) 
-			
-			
-			if (random < level.getCoinFrequency()) {
-				currentCoin = new Coin(this, column, randRow);
-				linkedListCoins.add(currentCoin);
-				if (random < level.getObstacleFrequency()) {
-					int randRow2 = (int) rand.nextDouble() * (this.getRoadWidth() - 1); 
-					if (randRow != randRow2) {
-						currentObstacle = new Obstacle(this, column, randRow2);
-						linkedListObstacle.add(currentObstacle);		
-					}					
+			if (objectLane != coinLane) {
+				if (createCoin < level.getCoinFrequency()) {
+					currentCoin = new Coin(this, column, coinLane);
+					this.coinList.add(currentCoin);
 				}
-			} else if (random < level.getObstacleFrequency()) {
-				currentObstacle = new Obstacle(this, column, randRow);
-				linkedListObstacle.add(currentObstacle);
 			}
 		}
-		this.coinList = linkedListCoins.toArray(new Coin[linkedListCoins.size()]);
-		this.obstacleList = linkedListObstacle.toArray(new Obstacle[linkedListObstacle.size()]); 
 	}
 	
 	public void startTime() {
@@ -132,8 +124,8 @@ public class Game {
 		System.out.println("Distance: " + distanceToFinish);
 		System.out.println("Coins: " + player.getCoins());
 		System.out.println("Cicle: " + this.cycle);
-		System.out.println("Total obstacles: " + obstacleList.length);
-		System.out.println("Total coins: " + coinList.length);
+		System.out.println("Total obstacles: " + obstacleList.size());
+		System.out.println("Total coins: " + coinList.size());
 		if (! isTest())
 			System.out.println("Ellapsed time: " + getTime());
 	}
@@ -162,7 +154,9 @@ public class Game {
 
 	private boolean checkCollistion() {
 		boolean result = false;
-		for (Obstacle obstacle : this.obstacleList) {
+		Obstacle obstacle;
+		for (int i = 0; i < this.obstacleList.size(); i++) {
+			obstacle = this.obstacleList.get(i);			
 			result |= obstacle.checkHit(this.player);
 		}
 		return result;
@@ -170,7 +164,9 @@ public class Game {
 	
 	private boolean checkCoinSelected() {
 		boolean result = false;
-		for (Coin coin : this.coinList) {
+		Coin coin;
+		for (int i = 0; i < this.coinList.size(); i++) {
+			coin = this.coinList.get(i);
 			if (coin.canCollect(player)) {
 				coin.setCollected();
 				this.player.setCoinCounterUp();
@@ -275,14 +271,18 @@ public class Game {
 	public String positionToString(int x, int y) {
 		String obj = "";
 		if (this.coinList != null) {
-			for (Coin coin : this.coinList) {
+			Coin coin;
+			for (int i = 0; i < this.coinList.size(); i++) {
+				coin = this.coinList.get(i);
 				if (coin.getX() == x && coin.getY() == y) {
 					obj = COIN;
 				}
-			}		
+			}
 		}	
 		if (this.obstacleList != null) {
-			for (Obstacle obstacle : this.obstacleList) {
+			Obstacle obstacle;
+			for (int i = 0; i < this.obstacleList.size(); i++) {
+				obstacle = this.obstacleList.get(i);		
 				if (obstacle.getX() == x && obstacle.getY() == y) {
 					obj = OBSTACLE;
 				}

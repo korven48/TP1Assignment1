@@ -4,7 +4,7 @@ class ObstacleList extends List {
 	private Obstacle[] obstacleArray;
 	
 	public ObstacleList() {
-		this.obstacleArray = new Obstacle[this.CAPACITY];
+		this.obstacleArray = new Obstacle[List.CAPACITY];
 		this.counter = 0;
 	}
 	
@@ -30,12 +30,15 @@ class ObstacleList extends List {
 	}
 	
 	public Obstacle get(int index) {
-		return obstacleArray[index];
+		if (index < counter && index >= 0 && index < List.CAPACITY) {
+			return obstacleArray[index];
+		}
+		return null; 
 	}
 	
 	@Override
 	public boolean isFull() {
-		if (this.counter == this.CAPACITY) return true;
+		if (this.counter == List.CAPACITY) return true;
 		return false;
 	}
 	

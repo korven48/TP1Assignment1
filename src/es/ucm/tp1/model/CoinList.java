@@ -4,7 +4,7 @@ final class CoinList extends List {
 	private Coin[] coinArray;
 	
 	public CoinList() {
-		this.coinArray = new Coin[this.CAPACITY];
+		this.coinArray = new Coin[List.CAPACITY];
 		this.counter = 0;
 	}
 	
@@ -30,12 +30,15 @@ final class CoinList extends List {
 	}
 	
 	public Coin get(int index) {
-		return coinArray[index];
+		if (index < counter && index >= 0 && index < List.CAPACITY) {
+			return coinArray[index];
+		}
+		return null; 
 	}
 	
 	@Override
 	public boolean isFull() {
-		if (this.counter == this.CAPACITY) return true;
+		if (this.counter == List.CAPACITY) return true;
 		return false;
 	}
 	
