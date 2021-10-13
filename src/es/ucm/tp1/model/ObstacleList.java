@@ -1,16 +1,16 @@
 package es.ucm.tp1.model;
 
 class ObstacleList extends List {
-	private Obstacle[] obstacle;
+	private Obstacle[] obstacleArray;
 	
 	public ObstacleList() {
-		this.obstacle = new Obstacle[this.CAPACITY];
+		this.obstacleArray = new Obstacle[this.CAPACITY];
 		this.counter = 0;
 	}
 	
 	public boolean add(Obstacle obs) {
 		if (!this.isFull()) {
-			this.obstacle[counter++] = obs;
+			this.obstacleArray[counter++] = obs;
 			return true;
 		}
 		return false;
@@ -19,8 +19,8 @@ class ObstacleList extends List {
 	boolean remove(int pos) {
 		if (this.counter - 1 == pos || this.counter - 1 > pos) {
 			for (int i = pos; i <= this.counter - 1; i++) {
-				if (obstacle[i+1] != null) {
-					obstacle[i] = obstacle[i+1];
+				if (obstacleArray[i+1] != null) {
+					obstacleArray[i] = obstacleArray[i+1];
 				}
 			}				
 			counter--;
@@ -30,7 +30,7 @@ class ObstacleList extends List {
 	}
 	
 	public Obstacle get(int index) {
-		return obstacle[index];
+		return obstacleArray[index];
 	}
 	
 	@Override
@@ -52,8 +52,10 @@ class ObstacleList extends List {
 	
 	@Override
 	public String toString() {
-		StringBuilder s = new StringBuilder();
-		
-		return s.toString();
+		String stringOut = String.format("Elements of the list:%n%n");
+		for(int i = 0; i < this.counter; i++) {
+			stringOut += String.format("%s%n", obstacleArray[i]);
+		}
+		return stringOut;
 	}
 }

@@ -52,9 +52,10 @@ final class CoinList extends List {
 	
 	@Override
 	public String toString() {
-		StringBuilder s = new StringBuilder();
-		
-		return s.toString();
+		String stringOut = String.format("Elements of the list:%n%n");
+		for(int i = 0; i < this.counter; i++) {
+			stringOut += String.format("%s%n", coinArray[i]);
+		}
+		return stringOut;
 	}
-
 }
