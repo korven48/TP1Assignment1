@@ -1,4 +1,5 @@
 package es.ucm.tp1.model;
+import es.ucm.tp1.model.List;
 
 final class CoinList extends List {
 	private Coin[] coinArray;

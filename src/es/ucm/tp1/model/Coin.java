@@ -5,7 +5,7 @@ public class Coin {			// Should be the last thing to implement
 	private int x, y;
 	private Game game;
 	static int counter;
-	boolean collected = false; 
+	private boolean collected = false; 
 	
 	// Coin specific
 	
@@ -17,6 +17,10 @@ public class Coin {			// Should be the last thing to implement
 			
 	public void setCollected() {
 		collected = true;
+	}
+	
+	public boolean isCollected() {
+		return collected;
 	}
 	
 	public int getX() {

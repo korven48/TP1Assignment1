@@ -9,7 +9,7 @@ public class Controller {
 
 	private static final String PROMPT = "Command > ";
 
-	private static final String UNKNOWN_COMMAND_MSG = "Unknown command";
+	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
 
 	/* @formatter:off */
 	private static final String[] HELP = new String[] {
@@ -42,15 +42,13 @@ public class Controller {
 	}
 	
 	public static void printHelp() {
-		System.out.println();
 		for (String line : HELP) {
 			System.out.println(line);
 		}
-		System.out.println();
 	}
 	
 	public static void printUnknown() {
-		System.out.println("\n" + UNKNOWN_COMMAND_MSG + "\n");
+		System.out.println(UNKNOWN_COMMAND_MSG);
 	}
 
 	
@@ -72,10 +70,10 @@ public class Controller {
 			shouldDisplay = game.update(command);
 			game.removeDeadObjects();
 			//Please check if really needed!
-			//if (shouldDisplay) {
-				printGame();
+			if (shouldDisplay) {
 				game.incrementCyle();
-			//}		
+				printGame();
+			}		
 		}
 		printEndMessage();
   }

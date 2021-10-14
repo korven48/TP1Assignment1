@@ -1,5 +1,2 @@
-Implement:
-	Commands
-		info
-		test
-		exit
+Time delay
+Initial coins

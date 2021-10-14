@@ -1,7 +1,7 @@
 package es.ucm.tp1.view;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.utils.*;
+import es.ucm.tp1.utils.StringUtils;
 
 
 public class GamePrinter {
@@ -53,14 +53,6 @@ public class GamePrinter {
 		indentedLlanesSeparator = String.format("%n%s%s%n", margin, lanesSeparator);
 		newLine =  System.getProperty("line.separator");
 	}
-	
-
-
-	private String getInfo() {
-		// TODO add your code
-		game.getGameStatus();
-		return "";
-	}
 
 	
 	@Override
@@ -69,7 +61,7 @@ public class GamePrinter {
 
 		// Game Status
 		
-		str.append(getInfo());
+		str.append(game.getGameStatus());
 		
 		// Paint game
 
@@ -102,9 +94,9 @@ public class GamePrinter {
 		
 		sb.append(GAME_OVER_MSG);
 		if (game.getVictory()) {
+			sb.append(WIN_MSG);
+			sb.append("\r\n");
 			if (!game.isTest()) {
-				sb.append(WIN_MSG);
-				sb.append("\r\n");
 				sb.append("New record!: ");
 				sb.append(game.getTime());				
 			}

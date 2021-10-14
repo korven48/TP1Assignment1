@@ -64,13 +64,14 @@ public class Game {
 		Obstacle currentObstacle = null;
 		this.coinList = new CoinList();
 		this.obstacleList = new ObstacleList();
-		
+		boolean obstacleWasCreated;
 		Random rand = new Random(seed);
 		int objectLane;
 		double createObstacle;
 		int coinLane;
 		double createCoin;
 		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
+			obstacleWasCreated = false;
 			objectLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
 			createObstacle = rand.nextDouble();
 			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
@@ -78,8 +79,9 @@ public class Game {
 			if (createObstacle < level.getObstacleFrequency()) {
 				currentObstacle = new Obstacle(this, column, objectLane);
 				this.obstacleList.add(currentObstacle);
+				obstacleWasCreated = true;
 			}
-			if (objectLane != coinLane) {
+			if (!obstacleWasCreated || objectLane != coinLane) {
 				if (createCoin < level.getCoinFrequency()) {
 					currentCoin = new Coin(this, column, coinLane);
 					this.coinList.add(currentCoin);
@@ -124,17 +126,19 @@ public class Game {
 		this.cycle++;
 	}
 	
-	public void getGameStatus() {
+	public String getGameStatus() {
+		StringBuilder str = new StringBuilder(); 
 		int distanceToFinish = level.getLength() - player.getPostionX();
-
-		System.out.println("Distance: " + distanceToFinish);
-		System.out.println("Coins: " + player.getCoins());
-		System.out.println("Cicle: " + this.cycle);
-		System.out.println("Total obstacles: " + obstacleList.size());
-		System.out.println("Total coins: " + coinList.size());
+		
+		str.append(String.format("Distance: " + distanceToFinish + "%n"));
+		str.append(String.format("Coins: " + player.getCoins() + "%n"));
+		str.append(String.format("Cicle: " + this.cycle + "%n"));
+		str.append(String.format("Total obstacles: " + obstacleList.size() + "%n"));
+		str.append(String.format("Total coins: " + coinList.size() + "%n")); 
 		if (!isTest()) {
-			System.out.println("Ellapsed time: " + getTime());
+			str.append(String.format("Ellapsed Time: " + getTime() + "%n"));
 		}
+		return str.toString().stripTrailing();
 	}
 
 	
@@ -155,7 +159,7 @@ public class Game {
 	
 	public boolean checkFinishLine() {
 		boolean finnished;
-		finnished = player.getPostionX() == level.getLength();
+		finnished = player.getPostionX() == level.getLength() + 1; // It actually goes through the finish line, not the best imo
 		return finnished;
 	}
 
@@ -204,7 +208,7 @@ public class Game {
 	}
 	
 	private void ShowLastCommand(final String command) {
-		String debugInfo = this.DEBUG_MSG;
+		String debugInfo = Game.DEBUG_MSG;
 		if (command != "") {
 			debugInfo += command;			
 		}
@@ -309,6 +313,8 @@ public class Game {
 				}
 			}
 		}
+		if (x == level.getLength())
+			obj = FINISH_LINE;
 		if (this.player != null && this.obstacleList != null) {
 			if (this.player.getPostionX() == x && this.player.getPostionY() == y) {
 				if (this.player.isCrashed()) {
@@ -318,13 +324,18 @@ public class Game {
 				}
 			}
 		}
-		if (x == level.getLength())
-			obj = FINISH_LINE;
 		return obj;
 	}
 
 	public void removeDeadObjects() {
 		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < this.coinList.size(); i++) {
+			if (coinList.get(i).isCollected()) {
+				coinList.remove(i);
+			}
+		}
+		
 		/* - Needed
 		for (int i = 0; i < this.obstacleList.length; i++) {
 			if (this.obstacleList[i].isObjectDead()) this.obstacleList[i] = null;
