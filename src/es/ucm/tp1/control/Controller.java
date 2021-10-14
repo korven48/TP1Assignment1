@@ -53,7 +53,7 @@ public class Controller {
 
 	
 	public void printEndMessage() {
-		System.out.println("\n" + printer.endMessage() + "\n");
+		System.out.println(printer.endMessage());
 	}
 	
 

@@ -217,9 +217,9 @@ public class Game {
 	
 	public boolean update(final String command) {
 		boolean shouldDisplay = false;
-		String currentCommand = command.toLowerCase();
+		this.ShowLastCommand(command);
 
-		this.ShowLastCommand(currentCommand);
+		String currentCommand = command.toLowerCase();
 		Direction direction = Direction.NONE;
 		switch (currentCommand) {
 			case "info":
@@ -285,11 +285,11 @@ public class Game {
 	
 	private String getInfo() {
 		// TODO Should create an informative message
-		String s = "Available objects:\n"
-				+ "[Car] the racing car\n"
-				+ "[Coin] gives 1 coin to the player\n"
+		String s = String.format("Available objects:%n"
+				+ "[Car] the racing car%n"
+				+ "[Coin] gives 1 coin to the player%n"
 				+ "[Obstacle] hits car"
-				+ "\n"; 
+				+ "%n"); 
 		return s;
 	}
 
