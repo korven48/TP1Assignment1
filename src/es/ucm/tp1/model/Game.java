@@ -269,11 +269,7 @@ public class Game {
 				break; 
 		}
 		if (canMove(direction)) {
-<<<<<<< HEAD
 			if (! (direction.equals(Direction.NONE)) || currentCommand.equals("test") || currentCommand.equals("t")) {
-=======
-			if (! direction.equals(Direction.NONE)) {
->>>>>>> 79c0556fc88b168c50b7aa72924a0463d79d3482
 				player.move(direction);
 				shouldDisplay = true;				
 			}
