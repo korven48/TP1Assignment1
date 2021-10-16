@@ -5,19 +5,22 @@ public class Coin {			// Should be the last thing to implement
 	private int x, y;
 	private Game game;
 	static int counter;
-	boolean collected = false; 
+	private boolean collected = false; 
 	
 	// Coin specific
 	
 	public Coin (Game game, int x, int y) {
-		// todo
 		this.game = game; 
 		this.x = x;
 		this.y = y;
 	}
 			
 	public void setCollected() {
-		this.collected = true;
+		collected = true;
+	}
+	
+	public boolean isCollected() {
+		return collected;
 	}
 	
 	public int getX() {
@@ -36,11 +39,8 @@ public class Coin {			// Should be the last thing to implement
 		this.y = y;
 	}
 
-	public boolean getCollected(Player player) {
-		if (player.getPostionY() == this.y && x == 1) {
-			collected = true; 
-		}
-		return this.collected;
+	public boolean canCollect(Player player) {
+		return player.getPostionY() == y && player.getPostionX() == x;
 	}	
 
 }

@@ -1,14 +1,14 @@
 package es.ucm.tp1.view;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.utils.*;
+import es.ucm.tp1.utils.StringUtils;
 
 
 public class GamePrinter {
 
 	private static final String SPACE = " ";
 
-	private static final String VERTICAL_DELIMITER = "|";
+	private static final String VERTICAL_DELIMITER = "|";	// What is this??
 
 	private static final String ROAD_BORDER_PATTERN = "═";
 
@@ -53,14 +53,6 @@ public class GamePrinter {
 		indentedLlanesSeparator = String.format("%n%s%s%n", margin, lanesSeparator);
 		newLine =  System.getProperty("line.separator");
 	}
-	
-
-
-	private String getInfo() {
-
-		// TODO add your code
-		return "";
-	}
 
 	
 	@Override
@@ -69,7 +61,7 @@ public class GamePrinter {
 
 		// Game Status
 		
-		str.append(getInfo());
+		str.append(game.getGameStatus());
 		
 		// Paint game
 
@@ -95,21 +87,24 @@ public class GamePrinter {
 	
 	public String endMessage(){
 		
-		String s = GAME_OVER_MSG;
+		String s;
 		
 		// TODO your code here
 		StringBuilder sb = new StringBuilder();
-		//Insert the right condition for victory
+		
+		sb.append(GAME_OVER_MSG);
 		if (game.getVictory()) {
-			sb.append(s); //replace the free space with the correct line
-			sb.append("Player wins!");
+			sb.append(WIN_MSG);
 			sb.append("\r\n");
-			sb.append("New record!: ");
-			sb.append(game.getTime());
+			if (!game.isTest()) {
+				sb.append("New record!: ");
+				sb.append(game.getTime());				
+			}
 			//sb.append() insert here with the correct commands the time
+		} else if (game.getExit()){
+			sb.append(DO_EXIT_MSG);
 		} else {
-			sb.append(s); //replace the free space with the correct line
-			sb.append("Player crashed!");
+			sb.append(CRASH_MSG);
 		}
 		s = sb.toString();
 		return s;

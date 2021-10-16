@@ -9,19 +9,21 @@ public class Player {
 //	private static final int positionX = 0; 
 	private int positionX; 
 	
-	private int coinsCount = 0;
+	private int coinsCount;
 	//Not sure... have to talk about it
 	private boolean crashed;
 	//if the car hits an object it is destroyed 
-	private int resistance = 1; 
+	private int resistance; 
 	private static boolean isTimeStarted; 
 	
 	public static final byte UP = 1;
 	public static final byte DOWN = -1;
 	
 	private Player(int startingPostion) {
-		positionX = 0;
+		this.positionX = 0;
 		this.positionY = startingPostion;
+		this.coinsCount = 5;
+		this.resistance = 1;
 		isTimeStarted = false;
 		crashed = false;
 	}
@@ -52,7 +54,6 @@ public class Player {
 			this.positionX++;
 	}
 	
-	//Need?
 	public void setCollision() {
 		this.resistance--;
 		if (resistance == 0) {
