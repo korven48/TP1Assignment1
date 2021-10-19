@@ -1,51 +1,29 @@
 package es.ucm.tp1.model;
 
-public class Obstacle {
-	// Common to all Objects
-	private int x, y;
-	private Game game;
-	static int counter;
-	
-	// Obstacle specific
+public class Obstacle extends GameObject{
 	private int resistance;
-	
+	static int counter;
 
-	public Obstacle (Game game, int x, int y) {
-		// TODO
-		this.game = game; 
+	public Obstacle (int x, int y) {
+		super(x, y);
 		this.resistance = 1;
-		this.x = x;
-		this.y = y; 
+		Obstacle.counter++;
 	}
 	
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-		
-	public boolean checkHit(Player player) {
-		boolean result = false;
-		if (player.getPostionY() == this.y && player.getPostionX() == this.x) {
-			result = true; 
-		}
-		return result;
-	}	
-	
-	boolean isObjectDead() {
-		if (resistance == 0) {
+	@Override
+	public boolean isAlive() {
+		if (resistance > 0) {
 			return true;
 		}
 		return false;		
 	}
+	
+		
+	public boolean checkHit(Player player) {
+		boolean result = false;
+		if (player.getY() == this.y && player.getX() == this.x) {
+			result = true; 
+		}
+		return result;
+	}	
 }

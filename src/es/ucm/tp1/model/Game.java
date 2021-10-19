@@ -1,16 +1,14 @@
 package es.ucm.tp1.model;
-import java.util.LinkedList;
 import java.util.Random;
 
 import es.ucm.tp1.control.Controller;
-import es.ucm.tp1.model.Direction;
 //For the constructor
 import es.ucm.tp1.control.Level;
 
 public class Game {
 	private Player player = null;
-	private CoinList coinList;
-	private ObstacleList obstacleList; 
+	private ObjectList coinList;
+	private ObjectList obstacleList; 
 	private long ellapsedtime;
 	private int cycle;
 
@@ -25,26 +23,19 @@ public class Game {
 	private static final String FINISH_LINE = "¦";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
+	private static final String INFO = String.format(
+			"Available objects:%n"
+			+ "[Car] the racing car%n"
+			+ "[Coin] gives 1 coin to the player%n"
+			+ "[Obstacle] hits car"
+			+ "%n"); 
+
+	
 	//Added because of the SuperCar.java
 	Long seed;
 	Level level;
 	boolean isTestMode;
 	
-	private void setUniquePlayer(boolean reset) {
-		int startingline = (int) this.getRoadWidth() / 2; 
-		this.player = Player.getPlayer(reset, startingline);
-		//ellapsedtime = System.currentTimeMillis();
-	}
-	
-	private void reset() {
-		boolean reset = true;
-		setUniquePlayer(reset);
-		initObjects();
-		victory = false;
-	}
-	
-	//SuperCar.java calls this constructor
-	//Do we need changes or just assignments are enough?
 	public Game(Long seed, Level level, boolean isTestMode) {
 		this.seed = seed;
 		this.level = level;
@@ -58,53 +49,19 @@ public class Game {
 		exit = false;
 	}
 	
-	//Make it beautiful if everything is working! 
-	private void initObjects() {
-		Coin currentCoin = null;
-		Obstacle currentObstacle = null;
-		this.coinList = new CoinList();
-		this.obstacleList = new ObstacleList();
-		boolean obstacleWasCreated;
-		Random rand = new Random(seed);
-		int objectLane;
-		double createObstacle;
-		int coinLane;
-		double createCoin;
-		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
-			obstacleWasCreated = false;
-			objectLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createObstacle = rand.nextDouble();
-			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createCoin = rand.nextDouble();
-			if (createObstacle < level.getObstacleFrequency()) {
-				currentObstacle = new Obstacle(this, column, objectLane);
-				this.obstacleList.add(currentObstacle);
-				obstacleWasCreated = true;
-			}
-			if (!obstacleWasCreated || objectLane != coinLane) {
-				if (createCoin < level.getCoinFrequency()) {
-					currentCoin = new Coin(this, column, coinLane);
-					this.coinList.add(currentCoin);
-				}
-			}
-		}
+	private void setUniquePlayer(boolean reset) {
+		int startingline = (int) this.getRoadWidth() / 2; 
+		this.player = Player.getPlayer(reset, startingline);
 	}
 	
-	public void startTime() {
-		ellapsedtime = System.currentTimeMillis();
+	private void reset() {
+		boolean reset = true;
+		setUniquePlayer(reset);
+		initObjects();
+		victory = false;
 	}
 	
-	public boolean isTimeOn() {
-		return this.ellapsedtime != 0;
-	}
-	
-	public String getTime() {
-		// time: The time in seconds with 2 decimals of precision
-		double seconds = 0;
-		if (this.ellapsedtime != 0) seconds = (System.currentTimeMillis() - ellapsedtime) / 1000.;
-		String time = String.format("%.2f", seconds) + " s";
-		return time;
-	}
+	// ---------------------------  Setters and Getters kinda ---------------------------
 	
 	public void setExit(boolean exit) {
 		this.exit = exit;
@@ -121,14 +78,84 @@ public class Game {
 	public boolean isTest() {
 		return isTestMode;
 	}
-
+	
 	public void incrementCyle() {
 		this.cycle++;
 	}
 	
+	public int getCameraPosition() {
+		return player.getX();
+	}
+	
+	public int getRoadWidth() {
+		return level.getWidth();
+	}
+	public int getVisibility() {
+		return level.getVisibility();
+	}
+
+	public boolean getVictory() {
+		return victory;
+	}
+	
+	private String getInfo() {
+		return INFO;
+	}
+	
+	// ---------------------------  End ---------------------------
+	
+	//Make it beautiful if everything is working! 
+	private void initObjects() {
+		Coin currentCoin = null;
+		Obstacle currentObstacle = null;
+		this.coinList = new ObjectList();
+		this.obstacleList = new ObjectList();
+		boolean obstacleWasCreated;
+		Random rand = new Random(seed);
+		int obstacleLane, coinLane;
+		double createObstacle, createCoin;
+		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
+			obstacleWasCreated = false;
+			obstacleLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createObstacle = rand.nextDouble();
+			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createCoin = rand.nextDouble();
+			if (createObstacle < level.getObstacleFrequency()) {
+				currentObstacle = new Obstacle(column, obstacleLane);
+				this.obstacleList.add(currentObstacle);
+				obstacleWasCreated = true;
+			}
+			if (!obstacleWasCreated || obstacleLane != coinLane) {
+				if (createCoin < level.getCoinFrequency()) {
+					currentCoin = new Coin(column, coinLane);
+					this.coinList.add(currentCoin);
+				}
+			}
+		}
+	}
+	
+	// // ---------------------------  Time methods ---------------------------
+	
+	public void startTime() {
+		ellapsedtime = System.currentTimeMillis();
+	}
+	
+	public boolean isTimeOn() {
+		return this.ellapsedtime != 0;
+	}
+	
+	public String getTime() {
+		// time: The time in seconds with 2 decimals of precision
+		double seconds = 0;
+		if (this.ellapsedtime != 0) seconds = (System.currentTimeMillis() - ellapsedtime) / 1000.;
+		String time = String.format("%.2f", seconds) + " s";
+		return time;
+	}
+	// ---------------------------  End ---------------------------
+	
 	public String getGameStatus() {
 		StringBuilder str = new StringBuilder(); 
-		int distanceToFinish = level.getLength() - player.getPostionX();
+		int distanceToFinish = level.getLength() - player.getX();
 		
 		str.append(String.format("Distance: " + distanceToFinish + "%n"));
 		str.append(String.format("Coins: " + player.getCoins() + "%n"));
@@ -141,7 +168,6 @@ public class Game {
 		return str.toString().stripTrailing();
 	}
 
-	
 	public boolean isFinished() {
 		// Game finishes if player crashes, wins or exits
 		boolean crashed, result;
@@ -152,14 +178,10 @@ public class Game {
 		
 		return result; 
 	}
-	
-	public boolean getVictory() {
-		return victory;
-	}
-	
+
 	public boolean checkFinishLine() {
 		boolean finnished;
-		finnished = player.getPostionX() == level.getLength() + 1; // It actually goes through the finish line, not the best imo
+		finnished = player.getX() == level.getLength() + 1; // It actually goes through the finish line, not the best imo
 		return finnished;
 	}
 
@@ -167,7 +189,7 @@ public class Game {
 		boolean result = false;
 		Obstacle obstacle;
 		for (int i = 0; i < this.obstacleList.size(); i++) {
-			obstacle = this.obstacleList.get(i);			
+			obstacle = (Obstacle) obstacleList.get(i);			
 			result |= obstacle.checkHit(this.player);
 		}
 		return result;
@@ -176,12 +198,12 @@ public class Game {
 	private boolean checkCoinSelected() {
 		boolean result = false;
 		Coin coin;
-		for (int i = 0; i < this.coinList.size(); i++) {
-			coin = this.coinList.get(i);
+		for (int i = 0; i < coinList.size(); i++) {
+			coin = (Coin) coinList.get(i);
 			if (coin.canCollect(player)) {
 				coin.setCollected();
 				this.player.setCoinCounterUp();
-				result = true; 
+				result = true;
 			}
 		}		
 		return result;
@@ -189,23 +211,14 @@ public class Game {
 	
 	private boolean canMove(Direction direction) {
 		boolean result = true;
-		if (direction.equals(Direction.DOWN) && player.getPostionY() >= level.getWidth() - 1)
+		if (direction.equals(Direction.DOWN) && player.getY() >= level.getWidth() - 1)
 			result = false;
-		else if (direction.equals(Direction.UP) && player.getPostionY() <= 0)
+		else if (direction.equals(Direction.UP) && player.getY() <= 0)
 			result = false;
 		return result;
 	}
 	
-	public int getCameraPosition() {
-		return player.getPostionX();
-	}
-	
-	public int getRoadWidth() {
-		return level.getWidth();
-	}
-	public int getVisibility() {
-		return level.getVisibility();
-	}
+
 	
 	private void ShowLastCommand(final String command) {
 		String debugInfo = Game.DEBUG_MSG;
@@ -224,44 +237,40 @@ public class Game {
 		switch (currentCommand) {
 			case "info":
 			case "i":
-				// Displays information about each of the elements of the game.
 				System.out.println(getInfo());
 				break;
 			case "q":
-				//q: Moves the car upwards on the board (diagonally upwards on the road).
+				// Move upwards
 				direction = Direction.UP;
 				break;
 			case "a":
-				//a: Moves the car downwards on the board (diagonally downwards on the road).
+				// Move downwards
 				direction = Direction.DOWN;
 				break;
 			case "none":
 			case "n":
 			case "":
-				//none: Moves the car horizontally on the road. (Same as "")
+				// Move foreward
 				direction = Direction.FORWARD;
 				break;
 			case "reset":
 			case "r":
-				//reset: Restarts the game in the initial configuration.
+				// Restarts the game in the initial configuration.
 				reset();
 				break;
 			case "test":
 			case "t":
-				//test: Changes the game mode to test, in which the elapsed time is not printed; this
-				//mode is explained in more detail below.
+				// Changes the game mode to test, in which the elapsed time is not printed
 				setTest(true);
-				//System.out.println("Changed game mode to test!");
 				break;
 			case "exit":
 			case "e":
-				//exit: Exists the game after displaying the Game Over message
-				// At the moment shows crashed player if you want to change it goto GamePrinter.endMessage()
+				// Exists the game after displaying the Game Over message
 				setExit(true);
 				break;
 			case "help":
 			case "h":
-				//help: Displays information about each of the existing commands, each on a new line
+				// Displays information about each of the existing commands, each on a new line
 				Controller.printHelp();
 				break;
 			default:
@@ -282,65 +291,29 @@ public class Game {
 		checkCoinSelected();
 		return shouldDisplay;
 	}
-	
-	private String getInfo() {
-		// TODO Should create an informative message
-		String s = String.format("Available objects:%n"
-				+ "[Car] the racing car%n"
-				+ "[Coin] gives 1 coin to the player%n"
-				+ "[Obstacle] hits car"
-				+ "%n"); 
-		return s;
-	}
 
 	public String positionToString(int x, int y) {
 		String obj = "";
-		if (this.coinList != null) {
-			Coin coin;
-			for (int i = 0; i < this.coinList.size(); i++) {
-				coin = this.coinList.get(i);
-				if (coin.getX() == x && coin.getY() == y) {
-					obj = COIN;
-				}
-			}
-		}	
-		if (this.obstacleList != null) {
-			Obstacle obstacle;
-			for (int i = 0; i < this.obstacleList.size(); i++) {
-				obstacle = this.obstacleList.get(i);		
-				if (obstacle.getX() == x && obstacle.getY() == y) {
-					obj = OBSTACLE;
-				}
-			}
+		if (coinList.isObjectInPos(x, y)) {
+			obj = COIN;
+		} else if (obstacleList.isObjectInPos(x, y)) {
+			obj = OBSTACLE;
 		}
 		if (x == level.getLength())
 			obj = FINISH_LINE;
-		if (this.player != null && this.obstacleList != null) {
-			if (this.player.getPostionX() == x && this.player.getPostionY() == y) {
-				if (this.player.isCrashed()) {
-					obj = CRASHED_PLAYER;
-				} else {
-					obj = ALIVE_PLAYER;
-				}
+		if (player.isInPos(x, y)) {
+			if (player.isCrashed()) {
+				obj = CRASHED_PLAYER;
+			} else {
+				obj = ALIVE_PLAYER;
 			}
 		}
 		return obj;
 	}
 
 	public void removeDeadObjects() {
-		// TODO Auto-generated method stub
-		
-		for (int i = 0; i < this.coinList.size(); i++) {
-			if (coinList.get(i).isCollected()) {
-				coinList.remove(i);
-			}
-		}
-		
-		/* - Needed
-		for (int i = 0; i < this.obstacleList.length; i++) {
-			if (this.obstacleList[i].isObjectDead()) this.obstacleList[i] = null;
-		}
-		*/
+		coinList.removeDead();
+		obstacleList.removeDead();
 	}
 	
 }
