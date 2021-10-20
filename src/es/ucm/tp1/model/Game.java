@@ -30,8 +30,6 @@ public class Game {
 			+ "[Obstacle] hits car"
 			+ "%n"); 
 
-	
-	//Added because of the SuperCar.java
 	Long seed;
 	Level level;
 	boolean isTestMode;
@@ -61,7 +59,7 @@ public class Game {
 		victory = false;
 	}
 	
-	// ---------------------------  Setters and Getters kinda ---------------------------
+	// ---------------------------  Beginning of Setters and Getters ---------------------------
 	
 	public void setExit(boolean exit) {
 		this.exit = exit;
@@ -102,9 +100,8 @@ public class Game {
 		return INFO;
 	}
 	
-	// ---------------------------  End ---------------------------
+	// ---------------------------  End of Setters and Getters  ---------------------------
 	
-	//Make it beautiful if everything is working! 
 	private void initObjects() {
 		Coin currentCoin = null;
 		Obstacle currentObstacle = null;
@@ -134,7 +131,7 @@ public class Game {
 		}
 	}
 	
-	// // ---------------------------  Time methods ---------------------------
+	// // ---------------------------  Begins - Time methods ---------------------------
 	
 	public void startTime() {
 		ellapsedtime = System.currentTimeMillis();
@@ -151,7 +148,7 @@ public class Game {
 		String time = String.format("%.2f", seconds) + " s";
 		return time;
 	}
-	// ---------------------------  End ---------------------------
+	// ---------------------------  Ends - Time methods ---------------------------
 	
 	public String getGameStatus() {
 		StringBuilder str = new StringBuilder(); 
@@ -315,5 +312,4 @@ public class Game {
 		coinList.removeDead();
 		obstacleList.removeDead();
 	}
-	
 }

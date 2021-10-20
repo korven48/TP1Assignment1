@@ -15,7 +15,6 @@ public class SuperCars {
 	private static final String SEED_IS_NUMBER_MSNG = "the seed must be a number";
 	private static final String SEED_INFO_MSG = "Random generator initialized with seed: ";
 
-	
 	private static void usage() {
 		System.out.println(USAGE_MSG);
 		System.out.println("\t<level>: " + Level.all(", "));

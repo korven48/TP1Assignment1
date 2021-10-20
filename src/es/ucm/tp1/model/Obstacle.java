@@ -15,7 +15,7 @@ public class Obstacle extends GameObject{
 		if (resistance > 0) {
 			return true;
 		}
-		return false;		
+		return false;
 	}
 	
 		

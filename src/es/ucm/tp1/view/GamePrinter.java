@@ -3,26 +3,24 @@ package es.ucm.tp1.view;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.utils.StringUtils;
 
-
 public class GamePrinter {
 
 	private static final String SPACE = " ";
-	private static final String VERTICAL_DELIMITER = "|";	// What is this?
+	private static final String VERTICAL_DELIMITER = "|";
 	private static final String ROAD_BORDER_PATTERN = "═";
 	private static final String LANE_DELIMITER_PATTERN = "─";
-
-	private static final int CELL_SIZE = 7;
-	private static final int MARGIN_SIZE = 2;
-
-	private String indentedRoadBorder;
-	private String indentedLlanesSeparator;
-	private String margin;
 
 	private static final String CRASH_MSG = String.format("Player crashed!%n");
 	private static final String WIN_MSG = String.format("Player wins!%n");
 	private static final String DO_EXIT_MSG = "Player leaves the game";
 	private static final String GAME_OVER_MSG = "[GAME OVER] "; 
 	
+	private static final int CELL_SIZE = 7;
+	private static final int MARGIN_SIZE = 2;
+	
+	private String indentedRoadBorder;
+	private String indentedLlanesSeparator;
+	private String margin;
 	public String newLine; 
 
 	protected Game game;
@@ -50,11 +48,9 @@ public class GamePrinter {
 		StringBuilder str = new StringBuilder();
 
 		// Game Status
-		
 		str.append(game.getGameStatus());
 		
 		// Paint game
-
 		str.append(indentedRoadBorder);
 
 		String verticalDelimiter = SPACE;
@@ -90,7 +86,6 @@ public class GamePrinter {
 				sb.append("New record!: ");
 				sb.append(game.getTime());				
 			}
-			//sb.append() insert here with the correct commands the time
 		} else if (game.getExit()){
 			sb.append(DO_EXIT_MSG);
 		} else {

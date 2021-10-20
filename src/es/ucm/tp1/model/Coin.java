@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Coin extends GameObject{			// Should be the last thing to implement
+public class Coin extends GameObject {
 	private boolean collected = false; 
 	static int counter;
 	
@@ -26,5 +26,4 @@ public class Coin extends GameObject{			// Should be the last thing to implement
 	public boolean canCollect(Player player) {
 		return player.isInPos(this.x, this.y);
 	}	
-
 }

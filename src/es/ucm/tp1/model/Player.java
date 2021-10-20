@@ -5,9 +5,7 @@ public class Player extends GameObject{
 	private final static int speed = 1; 
 	
 	private int coinsCount;
-	//Not sure... have to talk about it
 	private boolean crashed;
-	//if the car hits an object it is destroyed 
 	private int resistance; 
 
 	
@@ -34,7 +32,7 @@ public class Player extends GameObject{
 	}
 	
 	public void move(Direction direction) {
-		// UP, DOWN, FOREWARD, NONE
+		// UP, DOWN, FOREWARD, NONE uses the Enum-Direction
 		if (direction.equals(Direction.UP)) 
 			this.y--;
 		else if (direction.equals(Direction.DOWN))
