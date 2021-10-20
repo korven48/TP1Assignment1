@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Coin extends GameObject {
+public class Coin extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	

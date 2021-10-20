@@ -1,10 +1,10 @@
 package es.ucm.tp1.model;
 
-public abstract class GameObject {
+public abstract class GameElement {
 	protected int x;
 	protected int y;
 	
-	public GameObject(int x, int y) {
+	public GameElement(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;		

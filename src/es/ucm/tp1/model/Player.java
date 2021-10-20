@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Player extends GameObject{
+public class Player extends GameElement{
 	private static Player player = null;
 	private final static int speed = 1; 
 	

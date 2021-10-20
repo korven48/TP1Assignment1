@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Obstacle extends GameObject{
+public class Obstacle extends GameElement{
 	private int resistance;
 	static int counter;
 

@@ -1,14 +1,14 @@
 package es.ucm.tp1.model;
 
 final class ObjectList extends List {
-	private GameObject[] objectArray;
+	private GameElement[] objectArray;
 	
 	public ObjectList() {
-		this.objectArray = new GameObject[List.CAPACITY];
+		this.objectArray = new GameElement[List.CAPACITY];
 		this.counter = 0;
 	}
 	
-	public boolean add(GameObject gameObject) {
+	public boolean add(GameElement gameObject) {
 		if (!this.isFull()) {
 			this.objectArray[counter++] = gameObject;
 			return true;
@@ -30,7 +30,7 @@ final class ObjectList extends List {
 	}
 	
 	public void removeDead() {
-		GameObject gameObject;
+		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
 			gameObject = this.get(i);
 			if (! gameObject.isAlive()) {
@@ -39,7 +39,7 @@ final class ObjectList extends List {
 		}
 	}
 	
-	public GameObject get(int index) {
+	public GameElement get(int index) {
 		if (index < counter && index >= 0 && index < List.CAPACITY) {
 			return objectArray[index];
 		}
@@ -48,7 +48,7 @@ final class ObjectList extends List {
 	
 	public boolean isObjectInPos(int x, int y) {
 		boolean out = false;
-		GameObject gameObject;
+		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
 			gameObject = this.get(i);
 			if (gameObject.isInPos(x, y) ) {

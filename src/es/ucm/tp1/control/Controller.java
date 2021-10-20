@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GamePrinter;
+import es.ucm.tp1.control.*;
+import es.ucm.tp1.control.commands.Command;
 
 public class Controller {
 
@@ -60,6 +62,29 @@ public class Controller {
 
 	public void run() {
 		// TODO fill your code
+		
+		boolean refreshDisplay;
+		String commandString; 
+		Command command; 
+		printGame();
+		
+		while (!game.isFinished()) {
+			if ( refreshDisplay ) printGame();
+			refreshDisplay = false;
+			System.out.println(Controller.PROMPT);
+			String s = scanner.nextLine();
+			String [] parameters = s.toLowerCase().trim().split ( " ");
+			System.out.println( "[DEBUG] Executing: " + s);
+			command = Command.getCommand(parameters);
+			if ( command != null) {
+				refreshDisplay = command.execute(game);
+			} else {
+				System.out.println( "[ERROR]: "+ UNKNOWN_COMMAND_MSG);
+			}
+		}
+		printEndMessage();
+		
+		/*		
 		boolean shouldDisplay;
 		String command;
 		printGame();
@@ -75,7 +100,7 @@ public class Controller {
 				printGame();
 			}		
 		}
-		printEndMessage();
+		*/
   }
 }
 
