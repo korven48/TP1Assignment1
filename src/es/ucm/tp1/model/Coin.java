@@ -1,20 +1,20 @@
 package es.ucm.tp1.model;
 
-public class Coin {			// Should be the last thing to implement
-	// Common to all Objects
-	private int x, y;
-	private Game game;
-	static int counter;
+public class Coin extends GameObject {
 	private boolean collected = false; 
+	static int counter;
 	
-	// Coin specific
+	public Coin(int x, int y) {
+		super(x, y);
+		Coin.counter++;
+	}
 	
-	public Coin (Game game, int x, int y) {
-		this.game = game; 
-		this.x = x;
-		this.y = y;
+	@Override
+	public boolean isAlive() {
+		return ! isCollected();
 	}
 			
+
 	public void setCollected() {
 		collected = true;
 	}
@@ -22,25 +22,8 @@ public class Coin {			// Should be the last thing to implement
 	public boolean isCollected() {
 		return collected;
 	}
-	
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
 
 	public boolean canCollect(Player player) {
-		return player.getPostionY() == y && player.getPostionX() == x;
+		return player.isInPos(this.x, this.y);
 	}	
-
 }

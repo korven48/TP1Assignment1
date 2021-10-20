@@ -1,30 +1,18 @@
 package es.ucm.tp1.model;
 
-public class Player {
+public class Player extends GameObject{
 	private static Player player = null;
-	//Shall represent the vertical position of the car
 	private final static int speed = 1; 
-	//Insert the right position depending on the level mode
-	private int positionY;
-//	private static final int positionX = 0; 
-	private int positionX; 
 	
 	private int coinsCount;
-	//Not sure... have to talk about it
 	private boolean crashed;
-	//if the car hits an object it is destroyed 
 	private int resistance; 
-	private static boolean isTimeStarted; 
-	
-	public static final byte UP = 1;
-	public static final byte DOWN = -1;
+
 	
 	private Player(int startingPostion) {
-		this.positionX = 0;
-		this.positionY = startingPostion;
+		super(0, startingPostion);
 		this.coinsCount = 5;
 		this.resistance = 1;
-		isTimeStarted = false;
 		crashed = false;
 	}
 	
@@ -44,14 +32,14 @@ public class Player {
 	}
 	
 	public void move(Direction direction) {
-		// UP, DOWN, FOREWARD, NONE
+		// UP, DOWN, FOREWARD, NONE uses the Enum-Direction
 		if (direction.equals(Direction.UP)) 
-			this.positionY--;
+			this.y--;
 		else if (direction.equals(Direction.DOWN))
-			this.positionY++;
+			this.y++;
 		
 		if (! direction.equals(Direction.NONE))
-			this.positionX++;
+			this.x++;
 	}
 	
 	public void setCollision() {
@@ -61,16 +49,12 @@ public class Player {
 		}
 	}
 	
-	public int getPostionX() {
-		return positionX;
-	}
-
-	public int getPostionY() {
-		return positionY;
-	}
-
 	public boolean isCrashed() {
-		// TODO Auto-generated method stub
 		return crashed;
+	}
+
+	@Override
+	public boolean isAlive() {
+		return ! isCrashed();
 	}
 }
