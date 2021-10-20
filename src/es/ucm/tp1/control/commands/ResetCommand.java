@@ -10,15 +10,17 @@ final class ResetCommand extends Command {
 	}
 
 	@Override
-	protected void commandParser() {
+	protected void commandParser(String[] params) {
 		// TODO Auto-generated method stub
 
 	}
 	
 	@Override
-	protected void execute(Game game) {
+	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
-
+		boolean result = false;
+		
+		return result;
 	}
 
 }

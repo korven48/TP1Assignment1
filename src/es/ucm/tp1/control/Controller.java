@@ -63,13 +63,12 @@ public class Controller {
 	public void run() {
 		// TODO fill your code
 		
-		boolean refreshDisplay;
-		String commandString; 
-		Command command; 
-		printGame();
+		boolean refreshDisplay = true;
+		String commandString = ""; 
+		Command command = null; 
 		
 		while (!game.isFinished()) {
-			if ( refreshDisplay ) printGame();
+			if (refreshDisplay) printGame();
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
