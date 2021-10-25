@@ -13,6 +13,7 @@ public class Controller {
 
 	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
 
+	//has to be removed later maybe
 	/* @formatter:off */
 	private static final String[] HELP = new String[] {
 		"Available commands:",
@@ -53,16 +54,12 @@ public class Controller {
 		System.out.println(UNKNOWN_COMMAND_MSG);
 	}
 
-	
 	public void printEndMessage() {
 		System.out.println(printer.endMessage());
 	}
-	
-
 
 	public void run() {
 		// TODO fill your code
-		
 		boolean refreshDisplay = true;
 		String commandString = ""; 
 		Command command = null; 
@@ -73,12 +70,12 @@ public class Controller {
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
 			String [] parameters = s.toLowerCase().trim().split ( " ");
-			System.out.println( "[DEBUG] Executing: " + s);
+			System.out.println("[DEBUG] Executing: " + s);
 			command = Command.getCommand(parameters);
 			if ( command != null) {
 				refreshDisplay = command.execute(game);
 			} else {
-				System.out.println( "[ERROR]: "+ UNKNOWN_COMMAND_MSG);
+				System.out.println("[ERROR]: "+ UNKNOWN_COMMAND_MSG);
 			}
 		}
 		printEndMessage();

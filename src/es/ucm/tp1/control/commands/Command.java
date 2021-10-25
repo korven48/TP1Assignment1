@@ -4,61 +4,58 @@ import es.ucm.tp1.model.Direction;
 import es.ucm.tp1.model.Game;
 
 public abstract class Command {
-	private static final String UNKNOWN_COMMAND_MSG = "Unknown command";
-	protected static final Command[] AVAILABLE_COMMANDS = {
+	private static final String UNKNOWN_COMMAND_MSG = "Unknown command";
+	private static final String INCORRECT_NUMBER_OF_ARGS_MSG = "Incorrect number of Arguments";
+	protected static final Command[] AVAILABLE_COMMANDS = {
 			new HelpCommand(),
 			new InfoCommand(),
-			//...
+			new MoveDownCommand(),
+			new NoneCommand(),
+			new ResetCommand(),
+			new TestModeCommand()
 	};
 	
+	private final String name;
+	private final String shortcut;
+	private final String details ;
+	private final String help;
 	
 	String commandString;
 	
-	public Command() {
+	public Command(String name, String details, String shortcut, String help) {
 		super();
+		this.name = name;
+		this.shortcut = shortcut;
+		this.details = details;
+		this.help = help;
 	}
 	
-	protected abstract void commandParser(String[] params);
+	protected boolean matchCommandName(String name) {
+		return this.shortcut.equalsIgnoreCase(name) || this.name.equalsIgnoreCase(name);
+	}
+
+	protected Command parse(String[] words) {
+		if (matchCommandName(words[0]))
+			if (words.length != 1) {
+				System.out.format("[ERROR]: Command %s: %s%n%n", name,
+								INCORRECT_NUMBER_OF_ARGS_MSG);
+				return null;
+			} else {
+				return this;
+			}
+		return null;
+	}
 	
 	public abstract boolean execute(Game game);
 	
 	public final static Command getCommand(final String[] commandWords) {
-		String currentCommandString = "";
 		Command currentCommand = null;
-		
+		for (Command com : Command.AVAILABLE_COMMANDS) {
+			currentCommand = com.parse(commandWords);
+		}
+		if (currentCommand == null) {
+			System.out.println(Command.UNKNOWN_COMMAND_MSG);
+		}
 		return currentCommand;
 	}
-	
-	/*
-	switch (currentCommandString) {
-	case "i":
-		currentCommand = new InfoCommand(); 
-		break;
-	case "q":
-		currentCommand = new MoveUpCommand();
-		break;
-	case "a":
-		currentCommand = new MoveDownCommand();
-		break;
-	case "n":
-		currentCommand = new NoneCommand();
-		break;
-	case "r":
-		currentCommand = new ResetCommand();
-		break;
-	case "t":
-		currentCommand = new TestModeCommand();
-		break;
-	case "e":
-		currentCommand = new ExitCommand();
-		break;
-	case "h":
-		currentCommand = new HelpCommand();
-		break;
-	default:
-		currentCommand = null;
-		break; 
-	}
-	*/
-	
 }
