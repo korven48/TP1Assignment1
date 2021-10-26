@@ -23,6 +23,7 @@ public class Game {
 	private static final String FINISH_LINE = "¦";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
+	//Maybe should be removed
 	private static final String INFO = String.format(
 			"Available objects:%n"
 			+ "[Car] the racing car%n"
@@ -52,7 +53,7 @@ public class Game {
 		this.player = Player.getPlayer(reset, startingline);
 	}
 	
-	private void reset() {
+	public void reset() {
 		boolean reset = true;
 		setUniquePlayer(reset);
 		initObjects();
@@ -96,6 +97,7 @@ public class Game {
 		return victory;
 	}
 	
+	//Maybe should be removed
 	private String getInfo() {
 		return INFO;
 	}
@@ -215,8 +217,6 @@ public class Game {
 		return result;
 	}
 	
-
-	
 	private void ShowLastCommand(final String command) {
 		String debugInfo = Game.DEBUG_MSG;
 		if (command != "") {
@@ -225,7 +225,50 @@ public class Game {
 		System.out.println("\n" + debugInfo);
 	}
 	
-	public boolean update(final String command) {
+	public boolean movePlayer(boolean shouldDisplay, Direction direction) {
+		if (canMove(direction)) {
+			if (!(direction.equals(Direction.NONE))) {
+				player.move(direction);
+				shouldDisplay = true;				
+			}
+		} else {
+			System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
+		}
+		if (checkCollistion()) {
+			player.setCollision();
+		}
+		checkCoinSelected();
+		return shouldDisplay;
+	}
+
+	public String positionToString(int x, int y) {
+		String obj = "";
+		if (coinList.isObjectInPos(x, y)) {
+			obj = COIN;
+		} else if (obstacleList.isObjectInPos(x, y)) {
+			obj = OBSTACLE;
+		}
+		if (x == level.getLength())
+			obj = FINISH_LINE;
+		if (player.isInPos(x, y)) {
+			if (player.isCrashed()) {
+				obj = CRASHED_PLAYER;
+			} else {
+				obj = ALIVE_PLAYER;
+			}
+		}
+		return obj;
+	}
+
+	public void removeDeadObjects() {
+		coinList.removeDead();
+		obstacleList.removeDead();
+	}
+}
+
+
+/*
+ 	public boolean update(final String command) {
 		boolean shouldDisplay = false;
 		this.ShowLastCommand(command);
 
@@ -288,28 +331,4 @@ public class Game {
 		checkCoinSelected();
 		return shouldDisplay;
 	}
-
-	public String positionToString(int x, int y) {
-		String obj = "";
-		if (coinList.isObjectInPos(x, y)) {
-			obj = COIN;
-		} else if (obstacleList.isObjectInPos(x, y)) {
-			obj = OBSTACLE;
-		}
-		if (x == level.getLength())
-			obj = FINISH_LINE;
-		if (player.isInPos(x, y)) {
-			if (player.isCrashed()) {
-				obj = CRASHED_PLAYER;
-			} else {
-				obj = ALIVE_PLAYER;
-			}
-		}
-		return obj;
-	}
-
-	public void removeDeadObjects() {
-		coinList.removeDead();
-		obstacleList.removeDead();
-	}
-}
+*/

@@ -61,7 +61,7 @@ public class Controller {
 	public void run() {
 		// TODO fill your code
 		boolean refreshDisplay = true;
-		String commandString = ""; 
+		//String commandString = ""; 
 		Command command = null; 
 		
 		while (!game.isFinished()) {
@@ -69,35 +69,15 @@ public class Controller {
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			String [] parameters = s.toLowerCase().trim().split ( " ");
+			String [] parameters = s.toLowerCase().trim().split (" ");
 			System.out.println("[DEBUG] Executing: " + s);
 			command = Command.getCommand(parameters);
-			if ( command != null) {
+			if (command != null) {
 				refreshDisplay = command.execute(game);
 			} else {
 				System.out.println("[ERROR]: "+ UNKNOWN_COMMAND_MSG);
 			}
 		}
 		printEndMessage();
-		
-		/*		
-		boolean shouldDisplay;
-		String command;
-		printGame();
-		while (!game.isFinished()) {
-			System.out.print(PROMPT);
-			command = scanner.nextLine();
-			if (!game.isTimeOn()) game.startTime();
-			shouldDisplay = game.update(command);
-			game.removeDeadObjects();
-			//Please check if really needed!
-			if (shouldDisplay) {
-				game.incrementCyle();
-				printGame();
-			}		
-		}
-		*/
   }
 }
-
-	

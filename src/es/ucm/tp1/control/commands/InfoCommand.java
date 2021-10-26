@@ -8,6 +8,13 @@ final class InfoCommand extends Command {
 	private static final String SHORTCUT = "i";
 	private static final String HELP = "prints gameobjet info";
 	
+	private static final String INFO = String.format(
+			"Available objects:%n"
+			+ "[Car] the racing car%n"
+			+ "[Coin] gives 1 coin to the player%n"
+			+ "[Obstacle] hits car"
+			+ "%n"); 
+	
 	public InfoCommand() {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
@@ -17,22 +24,14 @@ final class InfoCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		
+		//How to parallize this task?
+		try {
+			System.out.println(InfoCommand.INFO);
+			result = false;
+		} catch (Exception ex) {
+			System.out.println(ex);
+			//maybe here an reset to the last state of the game?
+		}
 		return result;
 	}
 }
-
-/*
-@Override
-protected Command commandParser(String[] params) {
-	// TODO Auto-generated method stub
-	char c = ' ';
-	for (String param : params) {
-		c = param.toLowerCase().charAt(1);
-		if (c == SHORTCUT.charAt(1)) {
-			return (Command) this;
-		}
-	}
-	return (Command) null;
-}
-*/

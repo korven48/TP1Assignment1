@@ -17,26 +17,13 @@ final class ExitCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		
+		//How to implement the best way transaction safty?
+		try {
+			game.setExit(true);
+			result = true;
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
 		return result;
 	}
 }
-
-
-
-
-
-/*
-@Override
-protected Command commandParser(String[] params) {
-	// TODO Auto-generated method stub
-	char c = ' ';
-	for (String param : params) {
-		c = param.toLowerCase().charAt(1);
-		if (c == SHORTCUT.charAt(1) ) {
-			return (Command) this;
-		}
-	}
-	return (Command) null;
-}
-*/

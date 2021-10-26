@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.model.Direction;
 import es.ucm.tp1.model.Game;
 
 final class NoneCommand extends Command {
@@ -23,7 +24,12 @@ final class NoneCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		
+		Direction direction = Direction.FORWARD;
+		try {
+			result = game.movePlayer(result, direction);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}		
 		return result;
 	}
 }

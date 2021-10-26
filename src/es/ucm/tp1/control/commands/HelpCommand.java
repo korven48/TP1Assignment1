@@ -8,37 +8,38 @@ final class HelpCommand extends Command {
 	private static final String SHORTCUT = "h";
 	private static final String HELP = "show this help";
 	
+	/* @formatter:off */
+	private static final String[] HELP_OUT = new String[] {
+		"Available commands:",
+		"[h]elp: show this help",
+		"[i]nfo: prints gameobjet info",
+		"[n]one | []: update",
+		"[q]: go up",
+		"[a]: go down",
+		"[e]xit: exit game",
+		"[r]eset: reset game",
+		"[t]est: enables test mode",	
+	};
+	/* @formatter:off */
+	
 	public HelpCommand() {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 	
+	//Here we have to return false because anyway the game should not be refreshed
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		
-		return result;
+		//How to parralize the task? --> It is not beautiful
+		try {
+			System.out.println(HelpCommand.HELP_OUT);
+			result = false;
+		} catch (Exception ex) {
+			System.out.println(ex);
+		} 
+		return result;			
 	}
 }
-
-
-
-
-
-
-
-/*
-@Override
-protected Command commandParser(String[] params) {
-	// TODO Auto-generated method stub
-	char c = ' ';
-	for (String param : params) {
-		c = param.toLowerCase().charAt(1);
-		if (c == SHORTCUT.charAt(1) ) {
-			return (Command) this;
-		}
-	}
-	return (Command) null;
-}
-*/

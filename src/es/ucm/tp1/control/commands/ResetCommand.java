@@ -17,31 +17,13 @@ final class ResetCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		
+		try {
+			//Modify this to reset the seed and the random generator
+			game.reset();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
 		return result;
 	}
 
 }
-
-
-
-
-
-
-
-
-
-/*
-@Override
-protected Command commandParser(String[] params) {
-	// TODO Auto-generated method stub
-	char c = ' ';
-	for (String param : params) {
-		c = param.toLowerCase().charAt(1);
-		if (c == SHORTCUT.charAt(1) ) {
-			return (Command) this;
-		}
-	}
-	return (Command) null;
-}
-*/
