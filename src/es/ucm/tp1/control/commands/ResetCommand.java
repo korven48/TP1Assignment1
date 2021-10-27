@@ -13,8 +13,7 @@ final class ResetCommand extends Command {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
-	
-	
+		
 	//Has to be modifyed
 	@Override
 	public boolean execute(Game game) {
