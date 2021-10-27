@@ -24,6 +24,7 @@ final class NoneCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
+		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.FORWARD;
 		try {
 			result = game.movePlayer(result, direction);

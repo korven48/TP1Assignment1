@@ -18,6 +18,7 @@ final class MoveDownCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
+		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.DOWN;
 		try {
 			result = game.movePlayer(result, direction);

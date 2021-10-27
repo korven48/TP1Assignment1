@@ -8,6 +8,10 @@ final class ExitCommand extends Command {
 	private static final String SHORTCUT = "e";
 	private static final String HELP = "exit game";
 	
+    static {
+    	
+    }
+	
 	public ExitCommand() {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
@@ -20,7 +24,7 @@ final class ExitCommand extends Command {
 		//How to implement the best way transaction safty?
 		try {
 			game.setExit(true);
-			result = true;
+			result = false;
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

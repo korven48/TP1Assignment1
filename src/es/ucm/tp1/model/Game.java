@@ -216,15 +216,7 @@ public class Game {
 			result = false;
 		return result;
 	}
-	
-	private void ShowLastCommand(final String command) {
-		String debugInfo = Game.DEBUG_MSG;
-		if (command != "") {
-			debugInfo += command;			
-		}
-		System.out.println("\n" + debugInfo);
-	}
-	
+		
 	public boolean movePlayer(boolean shouldDisplay, Direction direction) {
 		if (canMove(direction)) {
 			if (!(direction.equals(Direction.NONE))) {

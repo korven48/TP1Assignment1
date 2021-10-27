@@ -44,12 +44,6 @@ public class Controller {
 		System.out.println(printer);
 	}
 	
-	public static void printHelp() {
-		for (String line : HELP) {
-			System.out.println(line);
-		}
-	}
-	
 	public static void printUnknown() {
 		System.out.println(UNKNOWN_COMMAND_MSG);
 	}
