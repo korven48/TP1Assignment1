@@ -53,11 +53,18 @@ public class Game {
 		this.player = Player.getPlayer(reset, startingline);
 	}
 	
-	public void reset() {
+	public void reset(long seed, Level level) {
 		boolean reset = true;
 		setUniquePlayer(reset);
 		initObjects();
 		victory = false;
+		// ---------------------------  Beginning - Addition to reset ---------------------------
+		this.seed = seed;
+		this.level = level;
+		//this is just setting the player to the middle without considering the previous postion!
+		//Problem!
+		this.player.setX((int)(level.getWidth() / 2));
+		// ---------------------------  End - Addition to reset ---------------------------
 	}
 	
 	// ---------------------------  Beginning of Setters and Getters ---------------------------

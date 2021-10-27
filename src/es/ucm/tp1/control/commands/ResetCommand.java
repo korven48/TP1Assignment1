@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Game;
 
 final class ResetCommand extends Command {
@@ -13,13 +14,18 @@ final class ResetCommand extends Command {
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 	
+	
+	//Has to be modifyed
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
+		long seed = 1;
+		Level level = Level.HARD;
+		
 		try {
 			//Modify this to reset the seed and the random generator
-			game.reset();
+			game.reset(seed, level);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
