@@ -23,6 +23,7 @@ final class MoveUpCommand extends Command {
 		Direction direction = Direction.UP;
 		try {
 			result = game.movePlayer(result, direction);
+			game.incrementCyle();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

@@ -29,7 +29,7 @@ final class HelpCommand extends Command {
 		for (String line : HelpCommand.HELP) {
 			sb.append(line + "\r\n");
 		}
-		return sb.toString();
+		return sb.toString().trim();
 	}
 		
 	public HelpCommand() {

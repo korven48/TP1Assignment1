@@ -28,6 +28,7 @@ final class NoneCommand extends Command {
 		Direction direction = Direction.FORWARD;
 		try {
 			result = game.movePlayer(result, direction);
+			game.incrementCyle();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

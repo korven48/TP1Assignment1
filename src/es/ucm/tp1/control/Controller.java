@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GamePrinter;
-import es.ucm.tp1.control.*;
 import es.ucm.tp1.control.commands.Command;
 
 public class Controller {
@@ -12,21 +11,6 @@ public class Controller {
 	private static final String PROMPT = "Command > ";
 
 	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
-
-	//has to be removed later maybe
-	/* @formatter:off */
-	private static final String[] HELP = new String[] {
-		"Available commands:",
-		"[h]elp: show this help",
-		"[i]nfo: prints gameobjet info",
-		"[n]one | []: update",
-		"[q]: go up",
-		"[a]: go down",
-		"[e]xit: exit game",
-		"[r]eset: reset game",
-		"[t]est: enables test mode",	
-	};
-	/* @formatter:off */
 
 	private Game game;
 
@@ -69,7 +53,7 @@ public class Controller {
 			if (command != null) {
 				refreshDisplay = command.execute(game);
 			} else {
-				System.out.println("[ERROR]: "+ UNKNOWN_COMMAND_MSG);
+				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
 		}
 		printEndMessage();
