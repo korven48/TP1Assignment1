@@ -21,6 +21,22 @@ public enum Level {
 		this.obstacleFrequency = obstacleFrequency;
 		this.coinFrequency = coinFrequency;
 	}
+	
+	public static final Level parse(final String levelName) {
+		Level level = null;
+		switch (levelName) {
+			case "Test":
+				level = Level.TEST;
+				break;
+			case "EASY":
+				level = Level.EASY;
+				break;
+			case "HARD":
+				level = Level.HARD;
+				break; 
+			}	
+		return level;
+	}
 
 	// TODO fill your code
 	public int getLength() {

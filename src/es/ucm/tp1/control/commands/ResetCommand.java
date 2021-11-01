@@ -9,22 +9,50 @@ final class ResetCommand extends Command {
 	private static final String SHORTCUT = "r";
 	private static final String HELP = "reset game";
 	
+	private static final long DEFAULT_SEED = 1;
+	private static final Level DEFAULT_LEVEL = Level.EASY; 
+	
+	private long seed; 
+	private Level level;
+	
+	private ResetCommand(long seed, Level level) {
+		this();
+		this.seed = seed;
+		this.level = level;
+	}
+	
 	public ResetCommand() {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
+	
+	protected Command parse(String[] words) {
+		//Able to store 
+		String seed;
+		String level;
+		if (matchCommandName(words[0]))
+			if (words.length != 1 && words.length != 3) {
+				System.out.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
+							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
+				return null;
+			} else if (words.length != 1) {
+				seed = words[1];
+				level = words[2];
+				return new ResetCommand(Integer.parseInt(seed), Level.parse(level));
+			} else if (words.length != 3) {
+				return new ResetCommand(ResetCommand.DEFAULT_SEED, ResetCommand.DEFAULT_LEVEL);
+			}
+		return null;
 		
+	}
+	
 	//Has to be modifyed
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
-		boolean result = false;
-		long seed = 1;
-		Level level = Level.HARD;
-		
+		boolean result = false;		
 		try {
-			//Modify this to reset the seed and the random generator
-			game.reset(seed, level);
+			game.reset(this.seed, this.level);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
