@@ -5,5 +5,7 @@
 
 ## Test failing:
 * Problems
+<<<<<<< HEAD
 ** One Command/Execute debugging is to much
+>>>>>>> BugFix_CommandPattern
 
