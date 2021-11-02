@@ -6,5 +6,4 @@
 ## Test failing:
 * Problems
 ** One Command/Execute debugging is to much
-** The minues one line is not printed
 

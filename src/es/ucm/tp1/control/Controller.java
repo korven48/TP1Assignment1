@@ -56,6 +56,7 @@ public class Controller {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
 		}
+		printGame();
 		printEndMessage();
   }
 }
