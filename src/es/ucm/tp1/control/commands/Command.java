@@ -1,6 +1,5 @@
 package es.ucm.tp1.control.commands;
 
-import es.ucm.tp1.model.Direction;
 import es.ucm.tp1.model.Game;
 
 public abstract class Command {

@@ -22,6 +22,8 @@ final class MoveDownCommand extends Command {
 		Direction direction = Direction.DOWN;
 		try {
 			result = game.movePlayer(result, direction);
+			game.incrementCyle();
+			game.removeDeadObjects();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		
