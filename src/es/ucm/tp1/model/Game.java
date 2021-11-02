@@ -1,4 +1,5 @@
 package es.ucm.tp1.model;
+import java.util.Iterator;
 import java.util.Random;
 
 import es.ucm.tp1.control.Controller;
@@ -7,8 +8,11 @@ import es.ucm.tp1.control.Level;
 
 public class Game {
 	private Player player = null;
-	private ObjectList coinList;
-	private ObjectList obstacleList; 
+	private GameElementContainer elements; 
+	
+//	private ElementList coinList;
+//	private ElementList obstacleList;
+	
 	private long ellapsedtime;
 	private int cycle;
 
@@ -16,10 +20,6 @@ public class Game {
 	
 	private boolean exit;
 	
-	private static final String COIN = "¢";
-	private static final String ALIVE_PLAYER = ">";
-	private static final String CRASHED_PLAYER = "@";
-	private static final String OBSTACLE = "░";
 	private static final String FINISH_LINE = "¦";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
@@ -50,7 +50,7 @@ public class Game {
 	
 	private void setUniquePlayer(boolean reset) {
 		int startingline = (int) this.getRoadWidth() / 2; 
-		this.player = Player.getPlayer(reset, startingline);
+		this.player = Player.getPlayer(reset, startingline, this);
 	}
 	
 	public void reset(long seed, Level level) {
@@ -114,8 +114,9 @@ public class Game {
 	private void initObjects() {
 		Coin currentCoin = null;
 		Obstacle currentObstacle = null;
-		this.coinList = new ObjectList();
-		this.obstacleList = new ObjectList();
+		elements = new GameElementContainer();
+//		this.coinList = new ElementList();
+//		this.obstacleList = new ElementList();
 		boolean obstacleWasCreated;
 		Random rand = new Random(seed);
 		int obstacleLane, coinLane;
@@ -127,14 +128,14 @@ public class Game {
 			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
 			createCoin = rand.nextDouble();
 			if (createObstacle < level.getObstacleFrequency()) {
-				currentObstacle = new Obstacle(column, obstacleLane);
-				this.obstacleList.add(currentObstacle);
+				currentObstacle = new Obstacle(column, obstacleLane, this);
+				this.elements.add(currentObstacle);
 				obstacleWasCreated = true;
 			}
 			if (!obstacleWasCreated || obstacleLane != coinLane) {
 				if (createCoin < level.getCoinFrequency()) {
-					currentCoin = new Coin(column, coinLane);
-					this.coinList.add(currentCoin);
+					currentCoin = new Coin(column, coinLane, this);
+					this.elements.add(currentCoin);
 				}
 			}
 		}
@@ -166,8 +167,8 @@ public class Game {
 		str.append(String.format("Distance: " + distanceToFinish + "%n"));
 		str.append(String.format("Coins: " + player.getCoins() + "%n"));
 		str.append(String.format("Cicle: " + this.cycle + "%n"));
-		str.append(String.format("Total obstacles: " + obstacleList.size() + "%n"));
-		str.append(String.format("Total coins: " + coinList.size() + "%n")); 
+		str.append(String.format("Total obstacles: " + Obstacle.counter + "%n"));
+		str.append(String.format("Total coins: " + Coin.counter + "%n")); 
 		if (!isTest()) {
 			str.append(String.format("Ellapsed Time: " + getTime() + "%n"));
 		}
@@ -178,7 +179,9 @@ public class Game {
 		// Game finishes if player crashes, wins or exits
 		boolean crashed, result;
 		victory = checkFinishLine();
-		crashed = checkCollistion();
+		// TODO: Delete this
+		crashed = false;
+		//crashed = checkCollistion();
 		
 		result = crashed || victory || exit;
 		
@@ -191,12 +194,14 @@ public class Game {
 		return finnished;
 	}
 
+	
+	/*
 	private boolean checkCollistion() {
 		boolean result = false;
-		Obstacle obstacle;
-		for (int i = 0; i < this.obstacleList.size(); i++) {
-			obstacle = (Obstacle) obstacleList.get(i);			
-			result |= obstacle.checkHit(this.player);
+		GameElement elem;
+		for (int i = 0; i < elements.size(); i++) {
+			elem = elements.get(i);
+			result |= elem.checkHit(player.x, player.y);
 		}
 		return result;
 	}
@@ -214,6 +219,23 @@ public class Game {
 		}		
 		return result;
 	}
+	*/
+	public GameElement getObjectInPosition(int x, int y) {
+		GameElement elem, out;
+		int index = -1;
+		for (int i = 0; i < elements.size(); i++) {
+			elem = elements.get(i);
+			if (elem.isInPos(x, y)) {
+				index = i;
+			}
+		}
+		if (index == -1) {
+			out = null;
+		} else {
+			out = elements.get(index);			
+		}
+		return out;
+	}
 	
 	private boolean canMove(Direction direction) {
 		boolean result = true;
@@ -224,6 +246,7 @@ public class Game {
 		return result;
 	}
 		
+	
 	public boolean movePlayer(boolean shouldDisplay, Direction direction) {
 		if (canMove(direction)) {
 			if (!(direction.equals(Direction.NONE))) {
@@ -233,39 +256,45 @@ public class Game {
 		} else {
 			System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
 		}
+		return shouldDisplay;
+	}
+		/*
 		if (checkCollistion()) {
 			player.setCollision();
 		}
 		checkCoinSelected();
 		return shouldDisplay;
 	}
-
+	*/
 	public String positionToString(int x, int y) {
 		String obj = "";
-		if (coinList.isObjectInPos(x, y)) {
-			obj = COIN;
-		} else if (obstacleList.isObjectInPos(x, y)) {
-			obj = OBSTACLE;
-		}
-		if (x == level.getLength())
-			obj = FINISH_LINE;
-		if (player.isInPos(x, y)) {
-			if (player.isCrashed()) {
-				obj = CRASHED_PLAYER;
-			} else {
-				obj = ALIVE_PLAYER;
-			}
-		}
+
 		return obj;
 	}
+		
+		//		if (coinList.isObjectInPos(x, y)) {
+//			obj = COIN;
+//		} else if (obstacleList.isObjectInPos(x, y)) {
+//			obj = OBSTACLE;
+//		}
+//		if (x == level.getLength())
+//			obj = FINISH_LINE;
+//		if (player.isInPos(x, y)) {
+//			if (player.isCrashed()) {
+//				obj = CRASHED_PLAYER;
+//			} else {
+//				obj = ALIVE_PLAYER;
+//			}
+//		}
 
 	public void removeDeadObjects() {
-		coinList.removeDead();
-		obstacleList.removeDead();
+		elements.removeDead();
 	}
 }
 
 
+	
+	
 /*
  	public boolean update(final String command) {
 		boolean shouldDisplay = false;
@@ -330,4 +359,6 @@ public class Game {
 		checkCoinSelected();
 		return shouldDisplay;
 	}
+<<<<<<< HEAD
 */
+

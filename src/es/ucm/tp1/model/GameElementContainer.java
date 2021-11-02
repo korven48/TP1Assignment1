@@ -1,10 +1,12 @@
 package es.ucm.tp1.model;
 
-final class ObjectList extends List {
+final class GameElementContainer {
+	protected final static int CAPACITY = 100;
+	protected int counter;
 	private GameElement[] objectArray;
 	
-	public ObjectList() {
-		this.objectArray = new GameElement[List.CAPACITY];
+	public GameElementContainer() {
+		this.objectArray = new GameElement[CAPACITY];
 		this.counter = 0;
 	}
 	
@@ -14,6 +16,14 @@ final class ObjectList extends List {
 			return true;
 		}
 		return false;
+	}
+	
+	void update() {
+		GameElement gameObject;
+		for (int i = 0; i < this.size(); i++) {
+			gameObject = this.get(i);
+			gameObject.update();
+		}
 	}
 	
 	boolean remove(int pos) {
@@ -40,7 +50,7 @@ final class ObjectList extends List {
 	}
 	
 	public GameElement get(int index) {
-		if (index < counter && index >= 0 && index < List.CAPACITY) {
+		if (index < counter && index >= 0 && index < CAPACITY) {
 			return objectArray[index];
 		}
 		return null; 
@@ -58,19 +68,16 @@ final class ObjectList extends List {
 		return out;
 	}
 	
-	@Override
 	public boolean isFull() {
-		if (this.counter == List.CAPACITY) return true;
+		if (this.counter == CAPACITY) return true;
 		return false;
 	}
 	
-	@Override
 	public boolean isEmpty() {
 		if (this.counter == 0) return true;
 		return false; 
 	}
 	
-	@Override
 	public int size() {
 		return this.counter;
 	}

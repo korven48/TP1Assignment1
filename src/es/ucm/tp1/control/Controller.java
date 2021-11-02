@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GamePrinter;
-import es.ucm.tp1.control.*;
+//import es.ucm.tp1.control.*;
 import es.ucm.tp1.control.commands.Command;
 
 public class Controller {
@@ -15,17 +15,6 @@ public class Controller {
 
 	//has to be removed later maybe
 	/* @formatter:off */
-	private static final String[] HELP = new String[] {
-		"Available commands:",
-		"[h]elp: show this help",
-		"[i]nfo: prints gameobjet info",
-		"[n]one | []: update",
-		"[q]: go up",
-		"[a]: go down",
-		"[e]xit: exit game",
-		"[r]eset: reset game",
-		"[t]est: enables test mode",	
-	};
 	/* @formatter:off */
 
 	private Game game;
