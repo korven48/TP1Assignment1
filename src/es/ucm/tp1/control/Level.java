@@ -51,11 +51,11 @@ public enum Level {
 		return visibility;
 	}
 
-	public double getCoinFrequency() {
+	public double coinFrequency() {
 		return coinFrequency;
 	}
 
-	public double getObstacleFrequency() {
+	public double obstacleFrequency() {
 		return obstacleFrequency;
 	}
 

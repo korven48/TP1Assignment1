@@ -2,7 +2,6 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.control.Controller;
-//For the constructor
 import es.ucm.tp1.control.Level;
 
 public class Game {
@@ -23,14 +22,6 @@ public class Game {
 	private static final String FINISH_LINE = "¦";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
-	//Maybe should be removed
-	private static final String INFO = String.format(
-			"Available objects:%n"
-			+ "[Car] the racing car%n"
-			+ "[Coin] gives 1 coin to the player%n"
-			+ "[Obstacle] hits car"
-			+ "%n"); 
-
 	Long seed;
 	Level level;
 	boolean isTestMode;
@@ -47,6 +38,17 @@ public class Game {
 		victory = false;
 		exit = false;
 	}
+	
+	// ---------------------------  Begin - Have to get knowledge ---------------------------
+	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
+		
+	}
+	
+	protected final int getRandomLane() {
+		return 1;
+	}
+			
+	// ---------------------------  End - Have to get knowledge ---------------------------
 	
 	private void setUniquePlayer(boolean reset) {
 		int startingline = (int) this.getRoadWidth() / 2; 
@@ -104,11 +106,6 @@ public class Game {
 		return victory;
 	}
 	
-	//Maybe should be removed
-	private String getInfo() {
-		return INFO;
-	}
-	
 	// ---------------------------  End of Setters and Getters  ---------------------------
 	
 	private void initObjects() {
@@ -120,24 +117,28 @@ public class Game {
 		Random rand = new Random(seed);
 		int obstacleLane, coinLane;
 		double createObstacle, createCoin;
-		for (int column = this.getVisibility() / 2; column <= this.level.getLength() - 1; column++) {
+		for (int column = this.getVisibility() / 2; column <= this.getRoadLength() - 1; column++) {
 			obstacleWasCreated = false;
 			obstacleLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
 			createObstacle = rand.nextDouble();
 			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
 			createCoin = rand.nextDouble();
-			if (createObstacle < level.getObstacleFrequency()) {
+			if (createObstacle < level.obstacleFrequency()) {
 				currentObstacle = new Obstacle(column, obstacleLane);
 				this.obstacleList.add(currentObstacle);
 				obstacleWasCreated = true;
 			}
 			if (!obstacleWasCreated || obstacleLane != coinLane) {
-				if (createCoin < level.getCoinFrequency()) {
+				if (createCoin < level.coinFrequency()) {
 					currentCoin = new Coin(column, coinLane);
 					this.coinList.add(currentCoin);
 				}
 			}
 		}
+	}
+
+	protected int getRoadLength() {
+		return this.level.getLength();
 	}
 	
 	// // ---------------------------  Begins - Time methods ---------------------------

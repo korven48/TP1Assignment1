@@ -1,34 +1,42 @@
 package es.ucm.tp1.model;
 
-public abstract class GameElement {
+abstract class GameElement {
 	protected int x;
 	protected int y;
+	protected Game game;
 	
-	public GameElement(int x, int y) {
+	protected GameElement(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;		
 	}
 	
-	public abstract boolean isAlive();
+	protected GameElement(Game game, int x, int y) {
+		super();
+		this.game = game; 
+		this.x = x;
+		this.y = y;		
+	}
+	
+	protected abstract boolean isAlive();
 
-	public int getX() {
+	protected int getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	protected void setX(int x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	protected int getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	void setY(int y) {
 		this.y = y;
 	}
 	
-	public boolean isInPos(int x, int y) {
+	protected boolean isInPos(int x, int y) {
 		boolean out = false;
 		if (this.getX() == x && this.getY() == y) {
 			return true;

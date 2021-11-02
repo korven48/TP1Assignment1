@@ -1,29 +1,39 @@
 package es.ucm.tp1.model;
 
-public class Coin extends GameElement {
+class Coin extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	
-	public Coin(int x, int y) {
+	protected Coin(int x, int y) {
 		super(x, y);
 		Coin.counter++;
 	}
 	
+	protected Coin(Game game, int x, int y) {
+		super(game, x, y);
+		Coin.counter++;
+	}
+	
 	@Override
-	public boolean isAlive() {
+	protected boolean isAlive() {
 		return ! isCollected();
 	}
 			
 
-	public void setCollected() {
+	protected void setCollected() {
 		collected = true;
 	}
 	
-	public boolean isCollected() {
+	protected boolean isCollected() {
 		return collected;
 	}
 
-	public boolean canCollect(Player player) {
+	protected boolean canCollect(Player player) {
 		return player.isInPos(this.x, this.y);
 	}	
+	
+	//Has to be added
+	protected static void reset() {
+		Coin.counter = 0;
+	}
 }

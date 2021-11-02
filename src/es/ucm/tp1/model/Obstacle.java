@@ -1,17 +1,22 @@
 package es.ucm.tp1.model;
 
-public class Obstacle extends GameElement{
+class Obstacle extends GameElement{
 	private int resistance;
 	static int counter;
 
-	public Obstacle (int x, int y) {
+	protected Obstacle (int x, int y) {
 		super(x, y);
 		this.resistance = 1;
 		Obstacle.counter++;
 	}
 	
+	protected Obstacle(Game game, int x, int y) {
+		super(game, x, y);
+		Coin.counter++;
+	}
+	
 	@Override
-	public boolean isAlive() {
+	protected boolean isAlive() {
 		if (resistance > 0) {
 			return true;
 		}
@@ -19,11 +24,16 @@ public class Obstacle extends GameElement{
 	}
 	
 		
-	public boolean checkHit(Player player) {
+	protected boolean checkHit(Player player) {
 		boolean result = false;
 		if (player.getY() == this.y && player.getX() == this.x) {
 			result = true; 
 		}
 		return result;
 	}	
+	
+	//Has to be changed?
+	protected static void reset() {
+		Obstacle.counter = 0;
+	}
 }

@@ -3,12 +3,12 @@ package es.ucm.tp1.model;
 final class ObjectList extends List {
 	private GameElement[] objectArray;
 	
-	public ObjectList() {
+	protected ObjectList() {
 		this.objectArray = new GameElement[List.CAPACITY];
 		this.counter = 0;
 	}
 	
-	public boolean add(GameElement gameObject) {
+	protected boolean add(GameElement gameObject) {
 		if (!this.isFull()) {
 			this.objectArray[counter++] = gameObject;
 			return true;
@@ -16,7 +16,7 @@ final class ObjectList extends List {
 		return false;
 	}
 	
-	boolean remove(int pos) {
+	protected boolean remove(int pos) {
 		if (this.counter - 1 == pos || this.counter - 1 > pos) {
 			for (int i = pos; i <= this.counter - 1; i++) {
 				if (objectArray[i+1] != null) {
@@ -29,7 +29,7 @@ final class ObjectList extends List {
 		return false;
 	}
 	
-	public void removeDead() {
+	protected void removeDead() {
 		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
 			gameObject = this.get(i);
@@ -39,14 +39,14 @@ final class ObjectList extends List {
 		}
 	}
 	
-	public GameElement get(int index) {
+	protected GameElement get(int index) {
 		if (index < counter && index >= 0 && index < List.CAPACITY) {
 			return objectArray[index];
 		}
 		return null; 
 	}
 	
-	public boolean isObjectInPos(int x, int y) {
+	protected boolean isObjectInPos(int x, int y) {
 		boolean out = false;
 		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
@@ -59,19 +59,19 @@ final class ObjectList extends List {
 	}
 	
 	@Override
-	public boolean isFull() {
+	protected boolean isFull() {
 		if (this.counter == List.CAPACITY) return true;
 		return false;
 	}
 	
 	@Override
-	public boolean isEmpty() {
+	protected boolean isEmpty() {
 		if (this.counter == 0) return true;
 		return false; 
 	}
 	
 	@Override
-	public int size() {
+	protected int size() {
 		return this.counter;
 	}
 	

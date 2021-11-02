@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Player extends GameElement{
+class Player extends GameElement{
 	private static Player player = null;
 	private final static int speed = 1; 
 	
@@ -54,7 +54,7 @@ public class Player extends GameElement{
 	}
 
 	@Override
-	public boolean isAlive() {
+	protected boolean isAlive() {
 		return ! isCrashed();
 	}
 }
