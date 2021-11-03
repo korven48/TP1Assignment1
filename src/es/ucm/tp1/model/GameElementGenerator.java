@@ -12,7 +12,6 @@ public final class GameElementGenerator {
 	}
 	
 	public static void reset(Level level) {
-		//This methods just contain a header nothing more
 		Obstacle.reset();
 		Coin.reset();
 	}

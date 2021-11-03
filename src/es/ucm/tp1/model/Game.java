@@ -8,6 +8,7 @@ public class Game {
 	private Player player = null;
 	private ObjectList coinList;
 	private ObjectList obstacleList; 
+	private ObjectList list;
 	private long ellapsedtime;
 	private int cycle;
 
@@ -41,11 +42,24 @@ public class Game {
 	
 	// ---------------------------  Begin - Have to get knowledge ---------------------------
 	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
-		
+		GameElement element = null;
+		Random rand = new Random(seed);
+		double createElement = rand.nextDouble();
+		if (createElement < elementFrequency) {
+			for (int i = 0; i < list.counter; i++) {
+				element = list.get(i);
+				if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
+					return;
+				}
+			}
+			list.add(gameElement);
+		}
 	}
 	
 	protected final int getRandomLane() {
-		return 1;
+		Random rand = new Random(seed);
+		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
+		return lane;
 	}
 			
 	// ---------------------------  End - Have to get knowledge ---------------------------
@@ -108,6 +122,7 @@ public class Game {
 	
 	// ---------------------------  End of Setters and Getters  ---------------------------
 	
+	//the inner code has to be replaced
 	private void initObjects() {
 		Coin currentCoin = null;
 		Obstacle currentObstacle = null;
@@ -167,8 +182,8 @@ public class Game {
 		str.append(String.format("Distance: " + distanceToFinish + "%n"));
 		str.append(String.format("Coins: " + player.getCoins() + "%n"));
 		str.append(String.format("Cicle: " + this.cycle + "%n"));
-		str.append(String.format("Total obstacles: " + obstacleList.size() + "%n"));
-		str.append(String.format("Total coins: " + coinList.size() + "%n")); 
+		str.append(String.format("Total obstacles: " + this.obstacleList.size() + "%n")); //Obstacle.counter
+		str.append(String.format("Total coins: " + this.coinList.size() + "%n")); // Coin.counter
 		if (!isTest()) {
 			str.append(String.format("Ellapsed Time: " + getTime() + "%n"));
 		}
@@ -263,5 +278,6 @@ public class Game {
 	public void removeDeadObjects() {
 		coinList.removeDead();
 		obstacleList.removeDead();
+		//this.list.removeDead();
 	}
 }

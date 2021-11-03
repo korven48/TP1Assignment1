@@ -6,6 +6,7 @@
 * The GameElementGenerator have to be integrated in the other classes
 * We have to modify the visibility of some classes and methods 
 * Maybe we should put the coins and obstacles and the Factory to an subpackage?
+* How do we implement the factory the best?
 
 ## Test failing:
 
