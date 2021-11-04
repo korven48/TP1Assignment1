@@ -5,7 +5,7 @@ public class Player extends GameElement{
 	private static final String CRASHED_PLAYER = "@";
 	
 	private static Player player = null;
-	private final static int speed = 1; 
+//	private final static int speed = 1;
 	
 	private int coinsCount;
 	private int resistance;

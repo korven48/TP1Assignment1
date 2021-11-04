@@ -1,8 +1,7 @@
 package es.ucm.tp1.model;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Random;
 
-import es.ucm.tp1.control.Controller;
 import es.ucm.tp1.control.Level;
 
 public class Game {
@@ -24,7 +23,6 @@ public class Game {
 	private boolean exit;
 	
 	private static final String FINISH_LINE = "¦";
-	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 	
 	Long seed;
 	Level level;
@@ -254,28 +252,28 @@ public class Game {
 	public String positionToString(int x, int y) {
 		String position = "";
 		GameElement elem;
+		if (x ==  level.getLength()) {
+			position = FINISH_LINE;
+		} 
 		if(player.isInPos(x, y)) {
 			position = player.getSymbol();
 		} else {
 			elem = getObjectInPosition(x, y);
 			if (elem != null) {
 				position = elem.getSymbol();
-			} else {
-				position = "";
-			}
+			} 
 		}
 		return position;
 	}
 		
 	public void removeDeadObjects() {
-		elements.removeDead();
-//		coinList.removeDead();
-//		obstacleList.removeDead();		
+		elements.removeDead();	
 	}
 
 	public void update() {
 		// Should update the rest of elements 
 		player.update();
+		removeDeadObjects();
 	}
 }
 

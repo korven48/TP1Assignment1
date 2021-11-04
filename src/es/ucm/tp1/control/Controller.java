@@ -12,6 +12,8 @@ public class Controller {
 	private static final String PROMPT = "Command > ";
 
 	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
+	
+	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 
 	private Game game;
 
@@ -39,23 +41,22 @@ public class Controller {
 
 	public void run() {
 		boolean refreshDisplay = true;
-		//String commandString = ""; 
 		Command command = null; 
 		
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
-				game.update();
-				game.removeDeadObjects();
 				printGame();
 			}
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
 			String [] parameters = s.toLowerCase().trim().split (" ");
-			System.out.println("[DEBUG] Executing: " + s);
+			if (game.isTest())
+				System.out.println(DEBUG_MSG + s);
 			command = Command.getCommand(parameters);
 			if (command != null) {
 				refreshDisplay = command.execute(game);
+				game.update();
 			} else {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
