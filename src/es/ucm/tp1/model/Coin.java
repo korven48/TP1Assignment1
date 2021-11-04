@@ -4,18 +4,40 @@ class Coin extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	
-	protected Coin(int x, int y) {
-		super(x, y);
-		Coin.counter++;
+	public Coin(Game game, int y, int x) {
+		super(x, y, game);
+		symbol = "¢";
 	}
-	
+	/*
 	protected Coin(Game game, int x, int y) {
 		super(game, x, y);
 		Coin.counter++;
 	}
-	
+	*/
 	@Override
-	protected boolean isAlive() {
+	public void onEnter() {
+		Coin.counter++;
+	}
+
+	@Override
+	public boolean receiveCollision(ColliderCallback player) {
+		player.addCoin();
+		setCollected();
+		return false;
+	}
+
+	@Override
+	public void update() {
+		
+	}
+
+	@Override
+	public void onDelete() {
+		Coin.counter--;
+	}
+
+	@Override
+	public boolean isAlive() {
 		return ! isCollected();
 	}
 			

@@ -23,7 +23,7 @@ final class MoveDownCommand extends Command {
 		try {
 			result = game.movePlayer(result, direction);
 			game.incrementCyle();
-			game.removeDeadObjects();
+//			game.removeDeadObjects();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

@@ -1,38 +1,47 @@
 package es.ucm.tp1.model;
 
-class Player extends GameElement{
+public class Player extends GameElement{
+	private static final String ALIVE_PLAYER = ">";
+	private static final String CRASHED_PLAYER = "@";
+	
 	private static Player player = null;
 	private final static int speed = 1; 
 	
 	private int coinsCount;
-	private boolean crashed;
-	private int resistance; 
-
+	private int resistance;
 	
-	private Player(int startingPostion) {
-		super(0, startingPostion);
+	private Player(int startingPostion, Game game) {
+		super(0, startingPostion, game);
 		this.coinsCount = 5;
 		this.resistance = 1;
-		crashed = false;
+		symbol = ALIVE_PLAYER;
 	}
 	
-	public static Player getPlayer(final boolean reset, int startingPostion) {
+	public static Player getPlayer(final boolean reset, int startingPostion, Game game) {
 		if (player == null || reset) {
-			player = new Player(startingPostion); 
+			player = new Player(startingPostion, game); 
 		}
 		return player; 
 	}
 	
-	public void setCoinCounterUp() {
-		this.coinsCount++;
-	}	
-	
-	public int getCoins () {
-		return coinsCount;
+	@Override
+	public boolean doCollision() {
+		GameElement gameElement = game.getObjectInPosition(x, y);
+		if (gameElement != null) {
+			return gameElement.receiveCollision(this);
+		}
+		return false;
 	}
 	
+	@Override
+	public void reciveDamage () {
+		player.resistance--;
+	}
+	
+	
+	
 	public void move(Direction direction) {
-		// UP, DOWN, FOREWARD, NONE uses the Enum-Direction
+		// UP, DOWN, FOREWARD, NONE uses the Enum Direction
 		if (direction.equals(Direction.UP)) 
 			this.y--;
 		else if (direction.equals(Direction.DOWN))
@@ -42,19 +51,43 @@ class Player extends GameElement{
 			this.x++;
 	}
 	
-	public void setCollision() {
-		this.resistance--;
-		if (resistance == 0) {
-			this.crashed = true;			
-		}
+	@Override
+	public String toString() {
+		return getSymbol();
 	}
 	
-	public boolean isCrashed() {
-		return crashed;
+	@Override
+	public boolean isAlive() {
+		return ! isCrashed();
 	}
 
 	@Override
-	protected boolean isAlive() {
-		return ! isCrashed();
+	public void onEnter() {
+		
+	}
+
+	@Override
+	public void update() {
+		doCollision();
+		if (isCrashed()) {
+			symbol = CRASHED_PLAYER;
+		}
+	}
+
+	@Override
+	public void onDelete() {
+		
+	}
+	
+	@Override
+	public void addCoin() {
+		this.coinsCount++;
+	}
+	
+	public int getCoins () {
+		return coinsCount;
+	}
+	public boolean isCrashed() {
+		return player.resistance == 0;
 	}
 }

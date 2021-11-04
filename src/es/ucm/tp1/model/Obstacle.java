@@ -1,35 +1,51 @@
 package es.ucm.tp1.model;
 
-class Obstacle extends GameElement{
+
+public class Obstacle extends GameElement{
 	private int resistance;
 	static int counter;
 
-	protected Obstacle (int x, int y) {
-		super(x, y);
+	public Obstacle(Game game, int y, int x) {
+		super(x, y, game);
 		this.resistance = 1;
-		Obstacle.counter++;
+		symbol = "░";
 	}
-	
+	/*
 	protected Obstacle(Game game, int x, int y) {
 		super(game, x, y);
 		Coin.counter++;
 	}
+	*/
 	
 	@Override
-	protected boolean isAlive() {
+	public boolean receiveCollision(ColliderCallback player) {
+		player.reciveDamage();
+		return true; // true because the player crashes 
+	}
+
+
+	@Override
+	public boolean isAlive() {
 		if (resistance > 0) {
 			return true;
 		}
 		return false;
 	}
 	
+	
+	@Override
+	public void onEnter() {
+		Obstacle.counter++;
+	}
+
+	@Override
+	public void update() {
 		
-	protected boolean checkHit(Player player) {
-		boolean result = false;
-		if (player.getY() == this.y && player.getX() == this.x) {
-			result = true; 
-		}
-		return result;
+	}
+
+	@Override
+	public void onDelete() {
+		Obstacle.counter--;
 	}	
 	
 	//Has to be changed?

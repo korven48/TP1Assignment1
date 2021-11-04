@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GamePrinter;
+
 import es.ucm.tp1.control.commands.Command;
 
 public class Controller {
@@ -37,13 +38,16 @@ public class Controller {
 	}
 
 	public void run() {
-		// TODO fill your code
 		boolean refreshDisplay = true;
 		//String commandString = ""; 
 		Command command = null; 
 		
 		while (!game.isFinished()) {
-			if (refreshDisplay) printGame();
+			if (refreshDisplay) {
+				game.update();
+				game.removeDeadObjects();
+				printGame();
+			}
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
