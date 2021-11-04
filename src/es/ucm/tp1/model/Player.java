@@ -25,14 +25,6 @@ public class Player extends GameElement{
 		return player; 
 	}
 	
-	public void setCoinCounterUp() {
-		this.coinsCount++;
-	}
-	
-	public int getCoins () {
-		return coinsCount;
-	}
-	
 	@Override
 	public boolean doCollision() {
 		GameElement gameElement = game.getObjectInPosition(x, y);
@@ -41,6 +33,16 @@ public class Player extends GameElement{
 		}
 		return false;
 	}
+	
+	@Override
+	public void reciveDamage () {
+		player.resistance--;
+		if (player.resistance == 0) {
+			player.crashed = true;			
+		}
+	}
+	
+	
 	
 	public void move(Direction direction) {
 		// UP, DOWN, FOREWARD, NONE uses the Enum Direction
@@ -52,13 +54,6 @@ public class Player extends GameElement{
 		if (! direction.equals(Direction.NONE))
 			this.x++;
 	}
-	
-
-	
-	public boolean isCrashed() {
-		return crashed;
-	}
-
 	
 	protected String getSymbol() {
 		String symbol;
@@ -96,5 +91,16 @@ public class Player extends GameElement{
 	public void onDelete() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void addCoin() {
+		this.coinsCount++;
+	}
+	
+	public int getCoins () {
+		return coinsCount;
+	}
+	public boolean isCrashed() {
+		return crashed;
 	}
 }

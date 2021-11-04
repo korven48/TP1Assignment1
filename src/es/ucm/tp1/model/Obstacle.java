@@ -9,24 +9,12 @@ public class Obstacle extends GameElement{
 		super(x, y, game);
 		this.resistance = 1;
 	}
-
-	@Override
-	public boolean doCollision() {
-		return false;
-	}
 	
-
-	/*
 	@Override
-	public boolean receiveCollision(Player player) {
-		// seters, getters or package level??
-		player.resistance--;
-		if (player.resistance == 0) {
-			player.crashed = true;			
-		}
-		return true; // I guess its only true, I dont understand why is it a boolean
+	public boolean receiveCollision(ColliderCallback player) {
+		player.reciveDamage();
+		return true; // true because the player crashes 
 	}
-	*/
 
 
 	@Override
@@ -45,13 +33,11 @@ public class Obstacle extends GameElement{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
 		Obstacle.counter--;
 	}	
 }

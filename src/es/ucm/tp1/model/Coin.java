@@ -15,14 +15,18 @@ public class Coin extends GameElement {
 	}
 
 	@Override
+	public boolean receiveCollision(ColliderCallback player) {
+		player.addCoin();
+		return false;
+	}
+
+	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
 		Coin.counter--;
 	}
 

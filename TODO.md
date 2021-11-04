@@ -1,6 +1,6 @@
 # TODO
 # Imp
-* ResetCommand.java has to be modified
+* ResetCommand.java has to be modified (only one command should exist)
 * Reset method in the Game has to be modified
 * GameElementContainer could be implemented with ArrayList instead of array
 
@@ -14,6 +14,5 @@
   * [ERROR]: [ERROR]: Unknown command --> [ERROR]: Unknown command
 
 #Questions
-* What is onEnter, how is it different from the constructor?
 * 
 

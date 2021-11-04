@@ -1,10 +1,11 @@
 package es.ucm.tp1.model;
 
-public abstract class GameElement implements Collider{
+public abstract class GameElement implements Collider, ColliderCallback{
 	protected int x;
 	protected int y;
 	protected Game game;
 	
+
 	public GameElement(int x, int y, Game game) {
 		super();
 		this.x = x;
@@ -19,7 +20,7 @@ public abstract class GameElement implements Collider{
 	}
 
 	@Override
-	public boolean receiveCollision(Player player) {
+	public boolean receiveCollision(ColliderCallback player) {
 		return false;
 	}
  
@@ -43,6 +44,12 @@ public abstract class GameElement implements Collider{
 	public abstract void update();
 	public abstract void onDelete();
 	public abstract boolean isAlive();
+
+	@Override
+	public void reciveDamage() {}
+	
+	@Override
+	public void addCoin() {}
 
 	public int getX() {
 		return x;

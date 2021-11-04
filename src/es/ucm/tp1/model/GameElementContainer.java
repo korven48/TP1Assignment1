@@ -13,6 +13,7 @@ final class GameElementContainer {
 	public boolean add(GameElement gameObject) {
 		if (!this.isFull()) {
 			this.objectArray[counter++] = gameObject;
+			gameObject.onEnter();
 			return true;
 		}
 		return false;
