@@ -21,6 +21,7 @@ public class Game {
 	Long seed;
 	Level level;
 	boolean isTestMode;
+	Random rand;
 	
 	public Game(Long seed, Level level, boolean isTestMode) {
 		this.seed = seed;
@@ -28,6 +29,8 @@ public class Game {
 		this.isTestMode = isTestMode;
 		this.cycle = 0; 
 		this.ellapsedtime = 0;
+		this.elements = new GameElementContainer();
+		initRand(this.seed);
 		initObjects();
 		boolean reset = false;
 		setUniquePlayer(reset);
@@ -38,21 +41,56 @@ public class Game {
 	// ---------------------------  Begin - Have to get knowledge ---------------------------
 	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
 		GameElement element = null;
-		Random rand = new Random(seed);
+		Random rand = this.rand;
 		double createElement = rand.nextDouble();
 		if (createElement < elementFrequency) {
-			for (int i = 0; i < elements.size(); i++) {
-				element = elements.get(i);
-				if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
-					return;
+			if (elements != null) {
+				for (int i = 0; i < elements.size(); i++) {
+					element = elements.get(i);
+					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
+						return;
+					}
 				}
 			}
-			elements.add(gameElement);
+			this.elements.add(gameElement);
+			gameElement.onEnter();
 		}
 	}
 	
-	protected final int getRandomLane() {
+	/*
+	private void initObjects() {
+		Coin currentCoin = null;
+		Obstacle currentObstacle = null;
+		elements = new GameElementContainer();
+//		this.coinList = new ElementList();
+//		this.obstacleList = new ElementList();
+		boolean obstacleWasCreated;
 		Random rand = new Random(seed);
+		int obstacleLane, coinLane;
+		double createObstacle, createCoin;
+		for (int column = this.getVisibility() / 2; column <= this.getRoadLength() - 1; column++) {
+			obstacleWasCreated = false;
+			obstacleLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createObstacle = rand.nextDouble();
+			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
+			createCoin = rand.nextDouble();
+			if (createObstacle < level.obstacleFrequency()) {
+				currentObstacle = new Obstacle(this, obstacleLane, column);
+				this.elements.add(currentObstacle);
+				obstacleWasCreated = true;
+			}
+			if (!obstacleWasCreated || obstacleLane != coinLane) {
+				if (createCoin < level.coinFrequency()) {
+					currentCoin = new Coin(this, coinLane, column);
+					this.elements.add(currentCoin);
+				}
+			}
+		}
+	}
+	 */
+	
+	protected final int getRandomLane() {
+		Random rand = this.rand;
 		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
 		return lane;
 	}
@@ -117,36 +155,14 @@ public class Game {
 	
 	// ---------------------------  End of Setters and Getters  ---------------------------
 	
-	//the inner code has to be replaced
 	private void initObjects() {
-		Coin currentCoin = null;
-		Obstacle currentObstacle = null;
-		elements = new GameElementContainer();
-//		this.coinList = new ElementList();
-//		this.obstacleList = new ElementList();
-		boolean obstacleWasCreated;
-		Random rand = new Random(seed);
-		int obstacleLane, coinLane;
-		double createObstacle, createCoin;
-		for (int column = this.getVisibility() / 2; column <= this.getRoadLength() - 1; column++) {
-			obstacleWasCreated = false;
-			obstacleLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createObstacle = rand.nextDouble();
-			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createCoin = rand.nextDouble();
-			if (createObstacle < level.obstacleFrequency()) {
-				currentObstacle = new Obstacle(this, obstacleLane, column);
-				this.elements.add(currentObstacle);
-				obstacleWasCreated = true;
-			}
-			if (!obstacleWasCreated || obstacleLane != coinLane) {
-				if (createCoin < level.coinFrequency()) {
-					currentCoin = new Coin(this, coinLane, column);
-					this.elements.add(currentCoin);
-				}
-			}
-		}
+		GameElementGenerator.generateGameElements(this, this.level);
 	}
+
+	protected void initRand(long seed) {
+		this.rand = new Random(seed);
+	}
+	
 
 	protected int getRoadLength() {
 		return this.level.getLength();

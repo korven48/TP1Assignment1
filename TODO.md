@@ -11,6 +11,7 @@
 
 ## Test failing
 * <b>Easy_s100_2:</b>
+- The count of the elements is the douple and they are not visibile 
 - the [DEBUG] Executing: t is missing
 - The last <b>total coins</b> have the wrong out put
 * <b>Easy_s666_0:</b>
