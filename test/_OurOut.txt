@@ -498,4 +498,3 @@ Total coins: -35
 
 [GAME OVER] Player wins!
 
-

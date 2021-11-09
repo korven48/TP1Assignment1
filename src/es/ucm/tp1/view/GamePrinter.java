@@ -66,7 +66,7 @@ public class GamePrinter {
 			}
 		}
 		str.append(this.indentedRoadBorder);
-
+		
 		return str.toString();
 	}
 
@@ -80,8 +80,8 @@ public class GamePrinter {
 		sb.append(GAME_OVER_MSG);
 		if (game.getVictory()) {
 			sb.append(WIN_MSG);
-			sb.append("\r\n");
 			if (!game.isTest()) {
+				sb.append("\r\n");
 				sb.append("New record!: ");
 				sb.append(game.getTime());				
 			}
@@ -90,7 +90,6 @@ public class GamePrinter {
 		} else {
 			sb.append(CRASH_MSG);
 		}
-		s = sb.toString();
-		return s;
+		return sb.toString();
 	}
 }

@@ -13,14 +13,13 @@
 * <b>Easy_s100_2:</b>
 - The last <b>total coins</b> have the wrong out put
 * <b>Easy_s666_0:</b
-- In the last line the game is printed
+- ...
 * <b>Easy_s666_1:</b>
 - ...
 * <b>hard_s100_4</b>
 - total coin at the end is not matching
-- the end has to much line space
 * <b>test_s100_3</b>
-- Basiclly okay but still to much line feed at the end
+- ...
 
 ## Questions
 
