@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public abstract class GameElement implements Collider, ColliderCallback{
+public abstract class GameElement implements Collider, ColliderCallback {
 	protected int x;
 	protected int y;
 	protected Game game;

@@ -1,18 +1,19 @@
 package es.ucm.tp1.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 final class GameElementContainer {
 	protected final static int CAPACITY = 100;
-	protected int counter;
-	private GameElement[] objectArray;
+	private List<GameElement> gameElements;
 	
 	public GameElementContainer() {
-		this.objectArray = new GameElement[CAPACITY];
-		this.counter = 0;
+		this.gameElements = new ArrayList<>();
 	}
 
 	protected boolean add(GameElement gameObject) {
 		if (!this.isFull()) {
-			this.objectArray[counter++] = gameObject;
+			this.gameElements.add(gameObject);
 			gameObject.onEnter();
 			return true;
 		}
@@ -29,32 +30,33 @@ final class GameElementContainer {
 	}
 	
 	boolean remove(int pos) {
-		if (this.counter - 1 == pos || this.counter - 1 > pos) {
-			for (int i = pos; i <= this.counter - 1; i++) {
-				if (objectArray[i+1] != null) {
-					objectArray[i] = objectArray[i+1];
+		int size = this.gameElements.size();
+		if ((size - 1 == pos || size - 1 > pos) && size > 0) {
+			for (int i = pos; i < size - 1; i++) {
+				if (gameElements.get(i+1) != null) {
+					gameElements.set(i, gameElements.get(i+1));
 				}
 			}				
-			counter--;
 			return true;
 		}
 		return false;
 	}
 	
 	protected void removeDead() {
-		GameElement gameObject;
+		GameElement gameElement;
 		for (int i = 0; i < this.size(); i++) {
-			gameObject = this.get(i);
-			if (! gameObject.isAlive()) {
+			gameElement = this.get(i);
+			if (! gameElement.isAlive()) {
 				remove(i);
-				gameObject.onDelete();
+				gameElement.onDelete();
 			}			
 		}
 	}
 	
-	public GameElement get(int index) {
+	protected GameElement get(int index) {
+		int counter = this.gameElements.size();
 		if (index < counter && index >= 0 && index < CAPACITY) {
-			return objectArray[index];
+			return gameElements.get(index);
 		}
 		return null; 
 	}
@@ -73,24 +75,25 @@ final class GameElementContainer {
 	
 
 	public boolean isFull() {
-		if (this.counter == CAPACITY) return true;
+		if ((this.gameElements.size()) == CAPACITY) return true;
 		return false;
 	}
 	
 	public boolean isEmpty() {
-		if (this.counter == 0) return true;
+		if ((this.gameElements.size()) == 0) return true;
 		return false; 
 	}
 	
 	public int size() {
-		return this.counter;
+		return this.gameElements.size();
 	}
 	
 	@Override
 	public String toString() {
+		int counter = this.gameElements.size();
 		String stringOut = String.format("Elements of the list:%n%n");
-		for(int i = 0; i < this.counter; i++) {
-			stringOut += String.format("%s%n", objectArray[i]);
+		for(int i = 0; i < counter; i++) {
+			stringOut += String.format("%s%n", gameElements.get(i));
 		}
 		return stringOut;
 	}

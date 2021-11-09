@@ -7,12 +7,6 @@ import es.ucm.tp1.control.Level;
 public class Game {
 	private Player player = null;
 
-	
-	// I think we should only have one unique list.
-//	private GameElementContainer coinList;
-//	private GameElementContainer obstacleList; 
-//	private GameElementContainer list;
-
 	private GameElementContainer elements; 
 
 	private long ellapsedtime;
@@ -47,7 +41,7 @@ public class Game {
 		Random rand = new Random(seed);
 		double createElement = rand.nextDouble();
 		if (createElement < elementFrequency) {
-			for (int i = 0; i < elements.counter; i++) {
+			for (int i = 0; i < elements.size(); i++) {
 				element = elements.get(i);
 				if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
 					return;
@@ -158,7 +152,7 @@ public class Game {
 		return this.level.getLength();
 	}
 	
-	// // ---------------------------  Begins - Time methods ---------------------------
+	// ---------------------------  Begins - Time methods ---------------------------
 	
 	public void startTime() {
 		ellapsedtime = System.currentTimeMillis();

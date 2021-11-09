@@ -8,12 +8,7 @@ class Coin extends GameElement {
 		super(x, y, game);
 		symbol = "¢";
 	}
-	/*
-	protected Coin(Game game, int x, int y) {
-		super(game, x, y);
-		Coin.counter++;
-	}
-	*/
+
 	@Override
 	public void onEnter() {
 		Coin.counter++;
