@@ -51,8 +51,7 @@ public class Controller {
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
 			String [] parameters = s.toLowerCase().trim().split (" ");
-			if (game.isTest())
-				System.out.println(DEBUG_MSG + s);
+			System.out.println(DEBUG_MSG + s);
 			command = Command.getCommand(parameters);
 			if (command != null) {
 				refreshDisplay = command.execute(game);

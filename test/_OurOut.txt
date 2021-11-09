@@ -2,7 +2,6 @@ Super cars 1.0
 
 Level: EASY
 Random generator initialized with seed: 100
-5 0
 Distance: 30
 Coins: 5
 Cicle: 0
@@ -18,6 +17,7 @@ Ellapsed Time: 0,00 s
   ═════════════════════════════════════════════════════════════════
 
 Command > 
+[DEBUG] Executing: t
 Distance: 30
 Coins: 5
 Cicle: 0

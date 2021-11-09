@@ -124,7 +124,6 @@ public class Game {
 	
 	private void initObjects() {
 		GameElementGenerator.generateGameElements(this, this.level);
-		System.out.println(this.elements.get(1).getX() + " " + this.elements.get(1).getY());
 	}
 
 	protected void initRand(long seed) {
