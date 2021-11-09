@@ -4,7 +4,7 @@ class Coin extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	
-	public Coin(Game game, int y, int x) {
+	public Coin(Game game, int x, int y) {
 		super(x, y, game);
 		symbol = "¢";
 	}

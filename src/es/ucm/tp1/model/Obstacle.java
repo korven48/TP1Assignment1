@@ -5,7 +5,7 @@ public class Obstacle extends GameElement{
 	private int resistance;
 	static int counter;
 
-	public Obstacle(Game game, int y, int x) {
+	public Obstacle(Game game, int x, int y) {
 		super(x, y, game);
 		this.resistance = 1;
 		symbol = "░";

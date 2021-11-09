@@ -53,42 +53,9 @@ public class Game {
 				}
 			}
 			this.elements.add(gameElement);
-			gameElement.onEnter();
 		}
 	}
-	
-	/*
-	private void initObjects() {
-		Coin currentCoin = null;
-		Obstacle currentObstacle = null;
-		elements = new GameElementContainer();
-//		this.coinList = new ElementList();
-//		this.obstacleList = new ElementList();
-		boolean obstacleWasCreated;
-		Random rand = new Random(seed);
-		int obstacleLane, coinLane;
-		double createObstacle, createCoin;
-		for (int column = this.getVisibility() / 2; column <= this.getRoadLength() - 1; column++) {
-			obstacleWasCreated = false;
-			obstacleLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createObstacle = rand.nextDouble();
-			coinLane =  (int) (rand.nextDouble() * (this.getRoadWidth()));
-			createCoin = rand.nextDouble();
-			if (createObstacle < level.obstacleFrequency()) {
-				currentObstacle = new Obstacle(this, obstacleLane, column);
-				this.elements.add(currentObstacle);
-				obstacleWasCreated = true;
-			}
-			if (!obstacleWasCreated || obstacleLane != coinLane) {
-				if (createCoin < level.coinFrequency()) {
-					currentCoin = new Coin(this, coinLane, column);
-					this.elements.add(currentCoin);
-				}
-			}
-		}
-	}
-	 */
-	
+		
 	protected final int getRandomLane() {
 		Random rand = this.rand;
 		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
@@ -157,6 +124,7 @@ public class Game {
 	
 	private void initObjects() {
 		GameElementGenerator.generateGameElements(this, this.level);
+		System.out.println(this.elements.get(1).getX() + " " + this.elements.get(1).getY());
 	}
 
 	protected void initRand(long seed) {
