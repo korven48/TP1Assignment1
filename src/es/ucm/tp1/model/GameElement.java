@@ -23,8 +23,6 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		return false;
 	}
  
-	
-
 	public boolean isInPos(int x, int y) {
 		boolean out = false;
 		if (this.getX() == x && this.getY() == y) {

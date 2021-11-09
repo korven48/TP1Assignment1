@@ -58,7 +58,7 @@ public class Player extends GameElement{
 	
 	@Override
 	public boolean isAlive() {
-		return ! isCrashed();
+		return !isCrashed();
 	}
 
 	@Override

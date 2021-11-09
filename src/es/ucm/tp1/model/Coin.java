@@ -49,7 +49,6 @@ class Coin extends GameElement {
 		return player.isInPos(this.x, this.y);
 	}	
 	
-	//Has to be added
 	protected static void reset() {
 		Coin.counter = 0;
 	}
