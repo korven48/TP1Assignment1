@@ -32,11 +32,7 @@ final class GameElementContainer {
 	boolean remove(int pos) {
 		int size = this.gameElements.size();
 		if ((size - 1 == pos || size - 1 > pos) && size > 0) {
-			for (int i = pos; i < size - 1; i++) {
-				if (gameElements.get(i+1) != null) {
-					gameElements.set(i, gameElements.get(i+1));
-				}
-			}				
+			gameElements.remove(pos);
 			return true;
 		}
 		return false;
@@ -46,9 +42,10 @@ final class GameElementContainer {
 		GameElement gameElement;
 		for (int i = 0; i < this.size(); i++) {
 			gameElement = this.get(i);
-			if (! gameElement.isAlive()) {
-				remove(i);
-				gameElement.onDelete();
+			if (!gameElement.isAlive()) {
+				if (remove(i)) {
+					gameElement.onDelete();
+				}
 			}			
 		}
 	}

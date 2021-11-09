@@ -10,16 +10,17 @@
 * GameElementContainer could be implemented with ArrayList instead of array
 
 ## Test failing
-* <b>Easy_s100_2:</b>
-- The last <b>total coins</b> have the wrong out put
 * <b>Easy_s666_0:</b
 - ...
 * <b>Easy_s666_1:</b>
 - ...
-* <b>hard_s100_4</b>
-- total coin at the end is not matching
+* <b>Easy_s100_2:</b>
+- ...
 * <b>test_s100_3</b>
 - ...
+* <b>hard_s100_4</b>
+- total coin at the end is not matching
+
 
 ## Questions
 
