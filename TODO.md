@@ -19,7 +19,7 @@
 * <b>test_s100_3</b>
 - ...
 * <b>hard_s100_4</b>
-- total coin at the end is not matching
+- ...
 
 
 ## Questions

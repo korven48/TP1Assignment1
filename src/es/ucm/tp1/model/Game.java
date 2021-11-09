@@ -248,7 +248,6 @@ public class Game {
 	}
 
 	public void update() {
-		// Should update the rest of elements 
 		player.update();
 		removeDeadObjects();
 	}
