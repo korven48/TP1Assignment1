@@ -3,7 +3,6 @@ package es.ucm.tp1.control.commands;
 import es.ucm.tp1.model.Game;
 
 public abstract class Command {
-	private static final String UNKNOWN_COMMAND_MSG = "Unknown command";
 	protected static final String INCORRECT_NUMBER_OF_ARGS_MSG = "Incorrect number of Arguments";
 	protected static final Command[] AVAILABLE_COMMANDS = {
 			new HelpCommand(),

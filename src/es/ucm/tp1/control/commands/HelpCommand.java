@@ -6,7 +6,6 @@ final class HelpCommand extends Command {
 	private static final String NAME = "help";
 	private static final String DETAILS = "[h]elp";
 	private static final String SHORTCUT = "h";
-	//private static final String HELP = "show this help";
 	
 	/* @formatter:off */
 	private static final String[] HELP = new String[] {
@@ -37,12 +36,10 @@ final class HelpCommand extends Command {
 		super(NAME, DETAILS, SHORTCUT, HELP.toString());
 	}
 	
-	//Here we have to return false because anyway the game should not be refreshed
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		//How to parralize the task? --> It is not beautiful
 		try {
 			System.out.println(HelpCommand.HelpToString());
 			result = false;

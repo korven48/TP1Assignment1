@@ -8,10 +8,6 @@ final class ExitCommand extends Command {
 	private static final String SHORTCUT = "e";
 	private static final String HELP = "exit game";
 	
-    static {
-    	
-    }
-	
 	public ExitCommand() {
 		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);

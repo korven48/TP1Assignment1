@@ -38,31 +38,6 @@ public class Game {
 		exit = false;
 	}
 	
-	// ---------------------------  Begin - Have to get knowledge ---------------------------
-	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
-		GameElement element = null;
-		Random rand = this.rand;
-		double createElement = rand.nextDouble();
-		if (createElement < elementFrequency) {
-			if (elements != null) {
-				for (int i = 0; i < elements.size(); i++) {
-					element = elements.get(i);
-					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
-						return;
-					}
-				}
-			}
-			this.elements.add(gameElement);
-		}
-	}
-		
-	protected final int getRandomLane() {
-		Random rand = this.rand;
-		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
-		return lane;
-	}
-			
-	// ---------------------------  End - Have to get knowledge ---------------------------
 	
 	private void setUniquePlayer(boolean reset) {
 		int startingline = (int) this.getRoadWidth() / 2; 
@@ -122,9 +97,36 @@ public class Game {
 	
 	// ---------------------------  End of Setters and Getters  ---------------------------
 	
+	// ---------------------------  Begin - Creating the elements ---------------------------
+	
 	private void initObjects() {
 		GameElementGenerator.generateGameElements(this, this.level);
 	}
+	
+	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
+		GameElement element = null;
+		Random rand = this.rand;
+		double createElement = rand.nextDouble();
+		if (createElement < elementFrequency) {
+			if (elements != null) {
+				for (int i = 0; i < elements.size(); i++) {
+					element = elements.get(i);
+					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
+						return;
+					}
+				}
+			}
+			this.elements.add(gameElement);
+		}
+	}
+	
+	protected final int getRandomLane() {
+		Random rand = this.rand;
+		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
+		return lane;
+	}
+	
+	// ---------------------------  End - Creating the elements ---------------------------
 
 	protected void initRand(long seed) {
 		this.rand = new Random(seed);

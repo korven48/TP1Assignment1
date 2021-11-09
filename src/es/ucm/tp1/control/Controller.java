@@ -10,15 +10,11 @@ import es.ucm.tp1.control.commands.Command;
 public class Controller {
 
 	private static final String PROMPT = "Command > ";
-
 	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
-	
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
 
 	private Game game;
-
 	private Scanner scanner;
-	
 	private GamePrinter printer;
 
 	public Controller(Game game, Scanner scanner) {

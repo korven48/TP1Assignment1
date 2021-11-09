@@ -29,32 +29,9 @@ final class NoneCommand extends Command {
 		try {
 			result = game.movePlayer(result, direction);
 			game.incrementCyle();
-//			game.removeDeadObjects();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-/*
-@Override
-protected Command commandParser(String[] params) {
-	// TODO Auto-generated method stub
-	char c = ' ';
-	for (String param : params) {
-		c = param.toLowerCase().charAt(1);
-		if (c == SHORTCUT.charAt(1) || c == ' ') {
-			return (Command) this;
-		}
-	}
-	return (Command) null;
-}
-*/

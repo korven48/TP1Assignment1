@@ -1,5 +1,6 @@
 # TODO
 ## Implementation
+* <b> We have to take about the visibility of the different classes
 * ResetCommand.java has to be modified (only one command should exist)
 * Reset method in the Game has to be modified
 * The methods from the GameElementGenerator have to be implemented 
