@@ -10,12 +10,6 @@ public class Obstacle extends GameElement{
 		this.resistance = 1;
 		symbol = "░";
 	}
-	/*
-	protected Obstacle(Game game, int x, int y) {
-		super(game, x, y);
-		Coin.counter++;
-	}
-	*/
 	
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
@@ -48,7 +42,6 @@ public class Obstacle extends GameElement{
 		Obstacle.counter--;
 	}	
 	
-	//Has to be changed?
 	protected static void reset() {
 		Obstacle.counter = 0;
 	}
