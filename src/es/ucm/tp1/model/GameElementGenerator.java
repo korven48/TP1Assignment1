@@ -9,7 +9,7 @@ public final class GameElementGenerator {
 			game.tryToAddObject(new Coin(game, x, game.getRandomLane()), level.coinFrequency());
 		}
 	}
-	
+		
 	public static void reset(Level level) {
 		Obstacle.reset();
 		Coin.reset();

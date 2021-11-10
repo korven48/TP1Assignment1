@@ -33,10 +33,9 @@ class Coin extends GameElement {
 
 	@Override
 	public boolean isAlive() {
-		return ! isCollected();
+		return !isCollected();
 	}
 			
-
 	protected void setCollected() {
 		collected = true;
 	}
@@ -44,10 +43,6 @@ class Coin extends GameElement {
 	protected boolean isCollected() {
 		return collected;
 	}
-
-	protected boolean canCollect(Player player) {
-		return player.isInPos(this.x, this.y);
-	}	
 	
 	protected static void reset() {
 		Coin.counter = 0;

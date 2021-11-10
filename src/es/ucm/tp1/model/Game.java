@@ -132,7 +132,6 @@ public class Game {
 		this.rand = new Random(seed);
 	}
 	
-
 	protected int getRoadLength() {
 		return this.level.getLength();
 	}

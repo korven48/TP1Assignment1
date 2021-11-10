@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-public class Player extends GameElement{
+public class Player extends GameElement {
 	private static final String ALIVE_PLAYER = ">";
 	private static final String CRASHED_PLAYER = "@";
 	
@@ -38,8 +38,6 @@ public class Player extends GameElement{
 		player.resistance--;
 	}
 	
-	
-	
 	public void move(Direction direction) {
 		// UP, DOWN, FOREWARD, NONE uses the Enum Direction
 		if (direction.equals(Direction.UP)) 
@@ -49,6 +47,11 @@ public class Player extends GameElement{
 		
 		if (! direction.equals(Direction.NONE))
 			this.x++;
+	}
+	
+	@Override
+	public void moveForward(int steps) {
+		this.x = this.x + steps;  
 	}
 	
 	@Override

@@ -1,8 +1,12 @@
 # TODO
 ## Implementation
 ### Prio tasks
-* Lukas: 1.1 + 1.3 (in progress)
+* Lukas: 1.1 (in progress) + 1.3 (done - just have to see how we should generate it) 
 * Lucas: 1.2 + 1.4
+* in the game elements in the following method is encapsulation broken:
+	<b> protected boolean canCollect(Player player) {
+		return player.isInPos(this.x, this.y);
+	} </b> --> I have removed it but we still should check the code for things like that
 
 ### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>
