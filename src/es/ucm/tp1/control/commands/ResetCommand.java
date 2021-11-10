@@ -46,7 +46,6 @@ final class ResetCommand extends Command {
 		
 	}
 	
-	//Has to be modifyed
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub

@@ -1,17 +1,10 @@
 # TODO
 ## Implementation
-* <b> We have to take about the visibility of the different classes
-* ResetCommand.java has to be modified (only one command should exist)
+* <b> We have to take about the visibility of the different classes </b>
 * Reset method in the Game has to be modified
-* The methods from the GameElementGenerator have to be implemented 
-* The GameElementGenerator have to be integrated in the other classes
-* We have to modify the visibility of some classes and methods 
-* Maybe we should put the coins and obstacles and the Factory to an subpackage?
-* How do we implement the factory the best?
-* GameElementContainer could be implemented with ArrayList instead of array
 
 ## Test failing
-* <b>Easy_s666_0:</b
+* <b>Easy_s666_0:</b>
 - ...
 * <b>Easy_s666_1:</b>
 - ...
