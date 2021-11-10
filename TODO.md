@@ -1,5 +1,10 @@
 # TODO
 ## Implementation
+### Prio tasks
+* Lukas: 1.1 + 1.3
+* Lucas: 1.2 + 1.4
+
+### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>
 * Reset method in the Game has to be modified
 
