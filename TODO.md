@@ -1,7 +1,7 @@
 # TODO
 ## Implementation
 ### Prio tasks
-* Lukas: 1.1 + 1.3
+* Lukas: 1.1 + 1.3 (in progress)
 * Lucas: 1.2 + 1.4
 
 ### Non-prio tasks
