@@ -10,7 +10,6 @@ final class MoveDownCommand extends Command {
 	private static final String HELP = "go down";
 	
 	public MoveDownCommand() {
-		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 	

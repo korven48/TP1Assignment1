@@ -5,12 +5,42 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	protected int y;
 	protected Game game;
 	protected String symbol;
-
-	public GameElement(int x, int y, Game game) {
+	private final String NAME;
+	
+	public GameElement(int x, int y, Game game, String name) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.game = game;
+		this.NAME = name;
+	}
+	
+	public GameElement(String name) {
+		this.NAME = name;
+	}
+	
+	public boolean isAdvanced() {
+		return false;
+	}
+	
+	protected GameElement parse(String word) {
+		if (matchElementName(word))
+			return this;
+		return null;
+	}
+	
+	public static GameElement getGameElement(String word) {
+		GameElement gameElement = null;
+		for (GameElement currentElement: GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
+			gameElement = currentElement.parse(word);
+			if (gameElement != null)
+				break;
+		}
+		return gameElement;
+	}
+
+	private boolean matchElementName(String name) {
+		return NAME == name;
 	}
 
 	@Override

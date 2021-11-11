@@ -1,6 +1,7 @@
 package es.ucm.tp1.model;
 
 public class Player extends GameElement{
+	private static final String NAME = "player";
 	private static final String ALIVE_PLAYER = ">";
 	private static final String CRASHED_PLAYER = "@";
 	
@@ -11,7 +12,7 @@ public class Player extends GameElement{
 	private int resistance;
 	
 	private Player(int startingPostion, Game game) {
-		super(0, startingPostion, game);
+		super(0, startingPostion, game, NAME);
 		this.coinsCount = 5;
 		this.resistance = 1;
 		symbol = ALIVE_PLAYER;

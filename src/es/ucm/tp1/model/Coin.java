@@ -1,12 +1,17 @@
 package es.ucm.tp1.model;
 
 class Coin extends GameElement {
+	private static final String NAME = "coin";
 	private boolean collected = false; 
 	static int counter;
 	
 	public Coin(Game game, int x, int y) {
-		super(x, y, game);
+		super(x, y, game, NAME);
 		symbol = "¢";
+	}
+	
+	public Coin() {
+		super(NAME);
 	}
 
 	@Override

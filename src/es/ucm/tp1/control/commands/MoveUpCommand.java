@@ -10,14 +10,12 @@ final class MoveUpCommand extends Command {
 	private static final String HELP = "go up";
 	
 	public MoveUpCommand() {
-		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 
 	
 	@Override
 	public boolean execute(Game game) {
-		// TODO Auto-generated method stub
 		boolean result = false;
 		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.UP;

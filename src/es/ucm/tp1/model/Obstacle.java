@@ -2,13 +2,18 @@ package es.ucm.tp1.model;
 
 
 class Obstacle extends GameElement{
+	private static final String NAME = "obstacle";
 	private int resistance;
 	static int counter;
 
 	public Obstacle(Game game, int x, int y) {
-		super(x, y, game);
+		super(x, y, game, NAME);
 		this.resistance = 1;
 		symbol = "░";
+	}
+	
+	public Obstacle() {
+		super(NAME);
 	}
 	
 	@Override
