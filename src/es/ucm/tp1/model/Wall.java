@@ -1,24 +1,18 @@
 package es.ucm.tp1.model;
 
-
-class Obstacle extends GameElement{
+final class Wall extends Obstacle {
 	private int resistance;
 	static int counter;
-
-	public Obstacle(int x, int y, Game game) {
-		super(x, y, game);
-		this.resistance = 1;
-		symbol = "░";
-	}
 	
-	@Override
-	public boolean receiveShot() {
-		boolean result = false; 
-		if (resistance > 0) {
-			resistance--;
-			result = true; 
-		}
-		return result;
+	private static final String THREE_WALL = "█";
+	private static final String TWO_WALL = "▒";
+	private static final String ONE_WALL = "░";
+	
+	public Wall(int x, int y, Game game) {
+		// TODO Auto-generated constructor stub
+		super(x, y, game); 
+		this.resistance = 3;
+		symbol = Wall.THREE_WALL;
 	}
 	
 	@Override
@@ -39,7 +33,7 @@ class Obstacle extends GameElement{
 	
 	@Override
 	public void onEnter() {
-		Obstacle.counter++;
+		Wall.counter++;
 	}
 
 	@Override
@@ -49,10 +43,10 @@ class Obstacle extends GameElement{
 
 	@Override
 	public void onDelete() {
-		Obstacle.counter--;
+		Wall.counter--;
 	}	
 	
 	protected static void reset() {
-		Obstacle.counter = 0;
+		Wall.counter = 0;
 	}
 }

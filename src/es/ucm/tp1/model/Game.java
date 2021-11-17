@@ -6,14 +6,11 @@ import es.ucm.tp1.control.Level;
 
 public class Game {
 	private Player player = null;
-
 	private GameElementContainer elements; 
 
 	private long ellapsedtime;
 	private int cycle;
-
 	private boolean victory;
-	
 	private boolean exit;
 	
 	private static final String FINISH_LINE = "¦";
