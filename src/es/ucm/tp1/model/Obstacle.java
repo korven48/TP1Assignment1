@@ -22,7 +22,11 @@ class Obstacle extends GameElement{
 		return true; // true because the player crashes 
 	}
 
-
+	@Override
+	public Obstacle create(Game game, int x, int y) {
+		return new Obstacle(game, x, y);
+	}
+	
 	@Override
 	public boolean isAlive() {
 		if (resistance > 0) {

@@ -3,6 +3,7 @@ package es.ucm.tp1.model;
 class Coin extends GameElement {
 	private static final String NAME = "coin";
 	private boolean collected = false; 
+	private static final int addedCoins = 1;
 	static int counter;
 	
 	public Coin(Game game, int x, int y) {
@@ -21,7 +22,7 @@ class Coin extends GameElement {
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
-		player.addCoin();
+		player.addCoins(addedCoins);
 		setCollected();
 		return false;
 	}
@@ -40,6 +41,11 @@ class Coin extends GameElement {
 	public boolean isAlive() {
 		return ! isCollected();
 	}
+	
+	@Override
+	public Coin create(Game game, int x, int y) {
+		return new Coin(game, x, y);
+	}
 			
 
 	protected void setCollected() {
@@ -49,10 +55,6 @@ class Coin extends GameElement {
 	protected boolean isCollected() {
 		return collected;
 	}
-
-	protected boolean canCollect(Player player) {
-		return player.isInPos(this.x, this.y);
-	}	
 	
 	protected static void reset() {
 		Coin.counter = 0;

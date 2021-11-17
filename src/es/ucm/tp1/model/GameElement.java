@@ -29,18 +29,9 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		return null;
 	}
 	
-	public static GameElement getGameElement(String word) {
-		GameElement gameElement = null;
-		for (GameElement currentElement: GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
-			gameElement = currentElement.parse(word);
-			if (gameElement != null)
-				break;
-		}
-		return gameElement;
-	}
 
 	private boolean matchElementName(String name) {
-		return NAME == name;
+		return NAME.equals(name);
 	}
 
 	@Override
@@ -75,7 +66,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	public void reciveDamage() {}
 	
 	@Override
-	public void addCoin() {}
+	public void addCoins(int coins) {}
 	
 	public String getSymbol() {
 		return symbol;
@@ -96,4 +87,6 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public abstract GameElement create(Game game, int x, int y);
 }
