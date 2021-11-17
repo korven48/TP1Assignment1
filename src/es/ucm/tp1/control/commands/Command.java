@@ -55,7 +55,7 @@ public abstract class Command {
 			currentCommand = com.parse(commandWords);
 			//Maybe remove in future versions
 			if (currentCommand != null) {
-				break;
+				return currentCommand;;
 			}
 		}
 		return currentCommand;

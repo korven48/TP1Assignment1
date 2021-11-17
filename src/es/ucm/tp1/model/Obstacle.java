@@ -16,7 +16,7 @@ class Obstacle extends GameElement{
 		boolean result = false; 
 		if (resistance > 0) {
 			resistance--;
-			result = true; 
+			result = true;
 		}
 		return result;
 	}

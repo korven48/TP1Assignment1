@@ -12,7 +12,27 @@ final class Wall extends Obstacle {
 		// TODO Auto-generated constructor stub
 		super(x, y, game); 
 		this.resistance = 3;
-		symbol = Wall.THREE_WALL;
+	}
+	
+	@Override
+	public String getSymbol() {
+		// TODO Auto-generated method stub
+		String result = "";
+		switch (resistance) {
+			case 3:
+				result = Wall.ONE_WALL;
+				break;
+			case 2:
+				result = Wall.TWO_WALL;
+				break;
+			case 1:
+				result = Wall.ONE_WALL;
+				break;
+			default: 
+				result = "";
+				
+		}
+		return result;
 	}
 	
 	@Override
@@ -43,6 +63,7 @@ final class Wall extends Obstacle {
 
 	@Override
 	public void onDelete() {
+		//This should give 5 coins to the player
 		Wall.counter--;
 	}	
 	
