@@ -14,6 +14,16 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	}
 
 	@Override
+	public boolean receiveShot() {
+		return false; 
+	};
+	
+	@Override
+	public void moveForward(int steps) {
+		//Do nothing
+	}
+	
+	@Override
 	public boolean doCollision() {
 		return false;
 	}

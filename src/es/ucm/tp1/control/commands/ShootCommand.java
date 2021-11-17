@@ -1,6 +1,7 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.InstantActions.ShootAction;
 
 final class ShootCommand extends Command {
 	private static final String NAME = "shoot";
@@ -17,9 +18,8 @@ final class ShootCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		
-		
-		
+		game.doInstantAction(new ShootAction());
+		result = true; 
 		return result;
 	}
 }

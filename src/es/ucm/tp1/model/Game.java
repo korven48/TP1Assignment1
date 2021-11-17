@@ -3,6 +3,7 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.model.InstantActions.InstantAction;
 
 public class Game {
 	private Player player = null;
@@ -248,6 +249,16 @@ public class Game {
 	public void update() {
 		player.update();
 		removeDeadObjects();
+	}
+	
+	public void playerReceiveCoin (int amount) {
+		for (int i = 0; i < amount; i++) {
+			player.addCoin();
+		}
+	}
+	
+	public void doInstantAction(InstantAction action) {
+		action.execute(this);		
 	}
 }
 

@@ -7,6 +7,7 @@ final class Wall extends Obstacle {
 	private static final String THREE_WALL = "█";
 	private static final String TWO_WALL = "▒";
 	private static final String ONE_WALL = "░";
+	private static final int AMOUNT_COIN_GAINABLE = 5;
 	
 	public Wall(int x, int y, Game game) {
 		// TODO Auto-generated constructor stub
@@ -63,7 +64,7 @@ final class Wall extends Obstacle {
 
 	@Override
 	public void onDelete() {
-		//This should give 5 coins to the player
+		game.playerReceiveCoin(Wall.AMOUNT_COIN_GAINABLE);
 		Wall.counter--;
 	}	
 	
