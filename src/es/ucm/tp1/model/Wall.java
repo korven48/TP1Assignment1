@@ -14,6 +14,17 @@ final class Wall extends Obstacle {
 		super(x, y, game); 
 		this.resistance = 3;
 	}
+
+	@Override
+	public boolean receiveShot() {
+		// TODO Auto-generated method stub
+		boolean result = false; 
+		if (resistance > 0) {
+			resistance--;
+			result = true;
+		}
+		return result;
+	}
 	
 	@Override
 	public String getSymbol() {

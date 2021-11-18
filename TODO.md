@@ -1,7 +1,7 @@
 # TODO
 ## Implementation
 ### Prio tasks
-* Lukas: 1.1 (in progress) + 1.3 (done - how shall it be generated ) 
+* Lukas: 1.1 (done) + 1.3 (done - how shall it be generated ) 
 * Lucas: 1.2 + 1.4
 * in the game elements in the following method is encapsulation broken:
 	<b> protected boolean canCollect(Player player) {
