@@ -101,8 +101,13 @@ public class Game {
 		GameElementGenerator.generateGameElements(this, this.level);
 	}
 	
-	protected final void tryToAddObject(GameElement gameElement, double elementFrequency) {
+	public void removeAll() {
+		elements.clear();
+	}
+	
+	public final void tryToAddObject(GameElement gameElement, double elementFrequency) {
 		GameElement element = null;
+		// TODO: We should only create one random, right?
 		Random rand = this.rand;
 		double createElement = rand.nextDouble();
 		if (createElement < elementFrequency) {
@@ -114,11 +119,20 @@ public class Game {
 					}
 				}
 			}
-			this.elements.add(gameElement);
+			addObject(gameElement);
 		}
 	}
 	
-	protected final int getRandomLane() {
+	public void addObject(GameElement gameElement) {
+		int x = gameElement.getX();
+		int y = gameElement.getY();
+		if (elements.isObjectInPos(x, y)) {
+			elements.remove(x, y);
+		}
+		elements.add(gameElement);
+	}
+	
+	public final int getRandomLane() {
 		Random rand = this.rand;
 		int lane = (int) (rand.nextDouble() * (this.getRoadWidth()));
 		return lane;

@@ -12,7 +12,9 @@ public abstract class Command {
 			new ExitCommand(),
 			new NoneCommand(),
 			new ResetCommand(),
-			new TestModeCommand()
+			new TestModeCommand(),
+			new CheatCommand(),
+			new ClearCommand()
 	};
 	
 	private final String name;

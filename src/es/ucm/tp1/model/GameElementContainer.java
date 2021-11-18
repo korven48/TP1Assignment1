@@ -38,6 +38,17 @@ final class GameElementContainer {
 		return false;
 	}
 	
+	protected void remove(int x, int y) {
+		GameElement gameObject;
+		for (int i = 0; i < this.size(); i++) {
+			gameObject = get(i);
+			if (gameObject.isInPos(x, y) ) {
+				remove(i);
+				break;
+			}
+		}
+	}
+	
 	protected void removeDead() {
 		GameElement gameElement;
 		for (int i = 0; i < this.size(); i++) {
@@ -51,6 +62,7 @@ final class GameElementContainer {
 	}
 	
 	protected GameElement get(int index) {
+		// Should be deleted
 		int counter = this.gameElements.size();
 		if (index < counter && index >= 0 && index < CAPACITY) {
 			return gameElements.get(index);
@@ -69,6 +81,7 @@ final class GameElementContainer {
 		}
 		return out;
 	}
+	
 	
 
 	public boolean isFull() {
@@ -93,5 +106,9 @@ final class GameElementContainer {
 			stringOut += String.format("%s%n", gameElements.get(i));
 		}
 		return stringOut;
+	}
+
+	public void clear() {
+		gameElements.clear();		
 	}
 }

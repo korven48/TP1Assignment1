@@ -26,11 +26,12 @@ final class ResetCommand extends Command {
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 	
+	@Override
 	protected Command parse(String[] words) {
 		//Able to store 
 		String seed;
 		String level;
-		if (matchCommandName(words[0]))
+		if (matchCommandName(words[0])) {
 			if (words.length != 1 && words.length != 3) {
 				System.out.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
 							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
@@ -42,6 +43,7 @@ final class ResetCommand extends Command {
 			} else if (words.length != 3) {
 				return new ResetCommand(ResetCommand.DEFAULT_SEED, ResetCommand.DEFAULT_LEVEL);
 			}
+		}
 		return null;
 		
 	}

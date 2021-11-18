@@ -1,14 +1,20 @@
 package es.ucm.tp1.model;
 
 class Coin extends GameElement {
+	private static final String NAME = "coin";
 	private boolean collected = false; 
+	private static final int addedCoins = 1;
 	static int counter;
 	
 	private static final String CON_SYMBOL = "¢";
 	
-	public Coin(int x, int y, Game game) {
-		super(x, y, game);
+	public Coin(Game game, int x, int y) {
+		super(x, y, game, NAME);
 		symbol = Coin.CON_SYMBOL;
+	 }
+	
+	public Coin() {
+		super(NAME);
 	}
 
 	@Override
@@ -18,7 +24,7 @@ class Coin extends GameElement {
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
-		player.addCoin();
+		player.addCoins(addedCoins);
 		setCollected();
 		return false;
 	}
@@ -36,6 +42,11 @@ class Coin extends GameElement {
 	@Override
 	public boolean isAlive() {
 		return !isCollected();
+	}
+	
+	@Override
+	public Coin create(Game game, int x, int y) {
+		return new Coin(game, x, y);
 	}
 			
 	protected void setCollected() {
