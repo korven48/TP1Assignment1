@@ -1,8 +1,23 @@
 # TODO
 ## Implementation
 ### Prio tasks
-* Lukas: 1.1 + 1.3
+* Lukas: 1.1 (done) + 1.3 (done - how shall it be generated ) 
 * Lucas: 1.2 + 1.4
+* in the game elements in the following method is encapsulation broken:
+	<b> protected boolean canCollect(Player player) {
+		return player.isInPos(this.x, this.y);
+	} </b> --> I have removed it but we still should check the code for things like that
+	
+* we have to talk about this: game.getObjectInPosition(0, 0)
+* have to talk about positionToString in Game
+* How to imporve the working with the symboles in the diffrent classes?
+
+####
+* Questions (Task 1.1):
+* How do we want to generate the wall
+* how shall it revice a demage and give coins back when it is destroyed?
+* 
+
 
 ### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>

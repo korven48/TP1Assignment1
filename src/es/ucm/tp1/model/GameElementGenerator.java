@@ -12,11 +12,11 @@ public final class GameElementGenerator {
 
 	public static void generateGameElements(Game game, Level level) {
 		for(int x = game.getVisibility()/2; x < game.getRoadLength(); x ++) {
-			game.tryToAddObject(new Obstacle(game, x, game.getRandomLane()), level.obstacleFrequency());
-			game.tryToAddObject(new Coin(game, x, game.getRandomLane()), level.coinFrequency());
+			game.tryToAddObject(new Obstacle(x, game.getRandomLane(), game), level.obstacleFrequency());
+			game.tryToAddObject(new Coin(x, game.getRandomLane(), game), level.coinFrequency());
 		}
 	}
-	
+
 	public static GameElement getGameElement(String word) {
 		GameElement gameElement = null;
 		for (GameElement currentElement: GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
@@ -39,7 +39,7 @@ public final class GameElementGenerator {
 		}
 		return generated;
 	}
-	
+
 	public static void reset(Level level) {
 		Obstacle.reset();
 		Coin.reset();

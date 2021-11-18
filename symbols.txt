@@ -6,3 +6,9 @@ Obstacle: ░
 Lane separator: ─
 Road delimiter: ═
 Finish Line: ¦
+Wall: ░, ▒, █
+SuperCoin: $
+Truck: ←
+Turbo: >>>
+Pedestrian: ☺
+Grenade: ð

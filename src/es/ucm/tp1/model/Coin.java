@@ -6,10 +6,12 @@ class Coin extends GameElement {
 	private static final int addedCoins = 1;
 	static int counter;
 	
+	private static final String CON_SYMBOL = "¢";
+	
 	public Coin(Game game, int x, int y) {
 		super(x, y, game, NAME);
-		symbol = "¢";
-	}
+		symbol = Coin.CON_SYMBOL;
+	 }
 	
 	public Coin() {
 		super(NAME);
@@ -39,7 +41,7 @@ class Coin extends GameElement {
 
 	@Override
 	public boolean isAlive() {
-		return ! isCollected();
+		return !isCollected();
 	}
 	
 	@Override
@@ -47,7 +49,6 @@ class Coin extends GameElement {
 		return new Coin(game, x, y);
 	}
 			
-
 	protected void setCollected() {
 		collected = true;
 	}

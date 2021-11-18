@@ -5,11 +5,23 @@ class Obstacle extends GameElement{
 	private static final String NAME = "obstacle";
 	private int resistance;
 	static int counter;
+	
+	private static final String CON_SYMBOL = "░";
 
 	public Obstacle(Game game, int x, int y) {
 		super(x, y, game, NAME);
 		this.resistance = 1;
-		symbol = "░";
+		symbol = Obstacle.CON_SYMBOL;
+	}
+	
+	@Override
+	public boolean receiveShot() {
+		boolean result = false; 
+		if (resistance > 0) {
+			resistance--;
+			result = true;
+		}
+		return result;
 	}
 	
 	public Obstacle() {

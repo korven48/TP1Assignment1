@@ -27,7 +27,7 @@ public class Player extends GameElement{
 	
 	@Override
 	public boolean doCollision() {
-		GameElement gameElement = game.getObjectInPosition(x, y);
+		Collider gameElement = game.getObjectInPosition(x, y);
 		if (gameElement != null) {
 			return gameElement.receiveCollision(this);
 		}
@@ -39,8 +39,6 @@ public class Player extends GameElement{
 		player.resistance--;
 	}
 	
-	
-	
 	public void move(Direction direction) {
 		// UP, DOWN, FOREWARD, NONE uses the Enum Direction
 		if (direction.equals(Direction.UP)) 
@@ -50,6 +48,11 @@ public class Player extends GameElement{
 		
 		if (! direction.equals(Direction.NONE))
 			this.x++;
+	}
+	
+	@Override
+	public void moveForward(int steps) {
+		this.x = this.x + steps;  
 	}
 	
 	@Override
@@ -91,6 +94,9 @@ public class Player extends GameElement{
 	public boolean isCrashed() {
 		return player.resistance == 0;
 	}
+
+	public void pay() {
+		this.coinsCount--;
 
 	@Override
 	public GameElement create(Game game, int x, int y) {

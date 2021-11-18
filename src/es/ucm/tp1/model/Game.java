@@ -3,17 +3,15 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.model.InstantActions.InstantAction;
 
 public class Game {
 	private Player player = null;
-
 	private GameElementContainer elements; 
 
 	private long ellapsedtime;
 	private int cycle;
-
 	private boolean victory;
-	
 	private boolean exit;
 	
 	private static final String FINISH_LINE = "¦";
@@ -146,7 +144,6 @@ public class Game {
 		this.rand = new Random(seed);
 	}
 	
-
 	protected int getRoadLength() {
 		return this.level.getLength();
 	}
@@ -203,8 +200,9 @@ public class Game {
 	}
 
 
-	public GameElement getObjectInPosition(int x, int y) {
-		GameElement elem, out;
+	public Collider getObjectInPosition(int x, int y) {
+		GameElement elem;
+		Collider out;
 		int index = -1;
 		for (int i = 0; i < elements.size(); i++) {
 			elem = elements.get(i);
@@ -215,7 +213,7 @@ public class Game {
 		if (index == -1) {
 			out = null;
 		} else {
-			out = elements.get(index);			
+			out = (Collider) elements.get(index);			
 		}
 		return out;
 	}
@@ -244,14 +242,20 @@ public class Game {
 	
 	public String positionToString(int x, int y) {
 		String position = "";
-		GameElement elem;
+		GameElement elem = null;
 		if (x ==  level.getLength()) {
 			position = FINISH_LINE;
 		} 
 		if(player.isInPos(x, y)) {
 			position = player.getSymbol();
 		} else {
-			elem = getObjectInPosition(x, y);
+			GameElement elem2;
+			for (int i = 0; i < elements.size(); i++) {
+				elem2 = elements.get(i);
+				if (elem2.isInPos(x, y)) {
+					elem = elem2;
+				}
+			}
 			if (elem != null) {
 				position = elem.getSymbol();
 			} 
@@ -266,6 +270,24 @@ public class Game {
 	public void update() {
 		player.update();
 		removeDeadObjects();
+	}
+	
+	public void playerReceiveCoin (int amount) {
+		for (int i = 0; i < amount; i++) {
+			player.addCoin();
+		}
+	}
+	
+	public void doInstantAction(InstantAction action) {
+		action.execute(this);		
+	}
+	
+	public boolean playerPays (int amount) {
+		if (player.getCoins() > 0) {
+			player.pay();
+			return true;
+		}
+		return false;
 	}
 }
 
