@@ -4,9 +4,11 @@ class Coin extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	
+	private static final String CON_SYMBOL = "¢";
+	
 	public Coin(int x, int y, Game game) {
 		super(x, y, game);
-		symbol = "¢";
+		symbol = Coin.CON_SYMBOL;
 	}
 
 	@Override

@@ -10,6 +10,7 @@
 	
 * we have to talk about this: game.getObjectInPosition(0, 0)
 * have to talk about positionToString in Game
+* How to imporve the working with the symboles in the diffrent classes?
 
 ####
 * Questions (Task 1.1):

@@ -4,11 +4,13 @@ package es.ucm.tp1.model;
 class Obstacle extends GameElement{
 	private int resistance;
 	static int counter;
+	
+	private static final String CON_SYMBOL = "░";
 
 	public Obstacle(int x, int y, Game game) {
 		super(x, y, game);
 		this.resistance = 1;
-		symbol = "░";
+		symbol = Obstacle.CON_SYMBOL;
 	}
 	
 	@Override
