@@ -273,9 +273,7 @@ public class Game {
 	}
 	
 	public void playerReceiveCoin (int amount) {
-		for (int i = 0; i < amount; i++) {
-			player.addCoin();
-		}
+		player.addCoins(amount);
 	}
 	
 	public void doInstantAction(InstantAction action) {
