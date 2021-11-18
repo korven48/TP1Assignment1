@@ -7,6 +7,9 @@
 	<b> protected boolean canCollect(Player player) {
 		return player.isInPos(this.x, this.y);
 	} </b> --> I have removed it but we still should check the code for things like that
+	
+* we have to talk about this: game.getObjectInPosition(0, 0)
+* have to talk about positionToString in Game
 
 ####
 * Questions (Task 1.1):

@@ -26,7 +26,7 @@ public class Player extends GameElement {
 	
 	@Override
 	public boolean doCollision() {
-		GameElement gameElement = game.getObjectInPosition(x, y);
+		Collider gameElement = game.getObjectInPosition(x, y);
 		if (gameElement != null) {
 			return gameElement.receiveCollision(this);
 		}
@@ -92,5 +92,8 @@ public class Player extends GameElement {
 	}
 	public boolean isCrashed() {
 		return player.resistance == 0;
+	}
+	public void pay() {
+		this.coinsCount--;
 	}
 }
