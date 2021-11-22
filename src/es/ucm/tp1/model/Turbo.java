@@ -1,15 +1,15 @@
 package es.ucm.tp1.model;
 
 class Turbo extends GameElement {
+	private static final String NAME = "turbos";
 	private boolean collected = false; 
 	static int counter;
 	
 	private static final int steps = 3;
 	private static final String CON_SYMBOL = ">>>";
 	
-	
 	public Turbo(int x, int y, Game game) {
-		super(x, y, game);
+		super(x, y, game, NAME);
 		// TODO Auto-generated constructor stub
 		symbol = Turbo.CON_SYMBOL;
 	}

@@ -11,7 +11,7 @@ final class Wall extends Obstacle {
 	
 	public Wall(int x, int y, Game game) {
 		// TODO Auto-generated constructor stub
-		super(x, y, game); 
+		super(game, x, y); 
 		this.resistance = 3;
 	}
 

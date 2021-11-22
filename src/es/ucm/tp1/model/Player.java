@@ -97,6 +97,7 @@ public class Player extends GameElement{
 
 	public void pay() {
 		this.coinsCount--;
+	}
 
 	@Override
 	public GameElement create(Game game, int x, int y) {
