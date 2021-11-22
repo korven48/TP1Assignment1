@@ -98,7 +98,7 @@ public class Player extends GameElement{
 	public void pay(int amount) {
 		this.coinsCount -= amount;
 	}
-		
+
 	@Override
 	public GameElement create(int x, int y, Game game) {
 		// player doesnt create anything, does it?
