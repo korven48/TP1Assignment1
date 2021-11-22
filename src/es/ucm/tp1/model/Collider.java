@@ -4,4 +4,5 @@ public interface Collider {
 	boolean doCollision();
 	boolean receiveCollision(ColliderCallback player);
 	boolean receiveShot();
+	boolean receiveExplosion();
 }

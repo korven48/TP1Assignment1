@@ -84,8 +84,8 @@ public class Player extends GameElement{
 	}
 	
 	@Override
-	public void addCoins(int coins) {
-		coinsCount += coins;
+	public void addCoins(int amount) {
+		coinsCount += amount;
 	}
 	
 	public int getCoins () {
@@ -95,11 +95,12 @@ public class Player extends GameElement{
 		return player.resistance == 0;
 	}
 
-	public void pay() {
-		this.coinsCount--;
-
+	public void pay(int amount) {
+		this.coinsCount -= amount;
+	}
+		
 	@Override
-	public GameElement create(Game game, int x, int y) {
+	public GameElement create(int x, int y, Game game) {
 		// player doesnt create anything, does it?
 		return null;
 	}

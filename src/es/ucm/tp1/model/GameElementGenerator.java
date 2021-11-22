@@ -7,7 +7,8 @@ public final class GameElementGenerator {
 			// Should contain all the GameElements
 			new Coin(),
 			new Obstacle(),
-			new SuperCoin()
+			new SuperCoin(),
+			new Grenade()
 	};
 
 	public static void generateGameElements(Game game, Level level) {
@@ -16,8 +17,12 @@ public final class GameElementGenerator {
 			game.tryToAddObject(new Coin(x, game.getRandomLane(), game), level.coinFrequency());
 		}
 	}
+	
+	public static void generateGranade(Game game, int x, int y) {
+		game.addObject(new Grenade(x, y, game));
+	}
 
-	public static GameElement getGameElement(String word) {
+	private static GameElement getGameElement(String word) {
 		GameElement gameElement = null;
 		for (GameElement currentElement: GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
 			gameElement = currentElement.parse(word);
@@ -34,7 +39,7 @@ public final class GameElementGenerator {
 		if (currentElement != null && currentElement.isAdvanced()) {
 			int lane = game.getRandomLane();
 			int column = game.getCameraPosition() + game.getVisibility() - 1; // + position of player 
-			game.addObject(currentElement.create(game, column, lane));			
+			game.addObject(currentElement.create(column, lane, game));			
 			generated = true;
 		}
 		return generated;

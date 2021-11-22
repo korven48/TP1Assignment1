@@ -61,8 +61,8 @@ final class GameElementContainer {
 		}
 	}
 	
+	// This could be breaking encapsulation
 	protected GameElement get(int index) {
-		// Should be deleted
 		int counter = this.gameElements.size();
 		if (index < counter && index >= 0 && index < CAPACITY) {
 			return gameElements.get(index);

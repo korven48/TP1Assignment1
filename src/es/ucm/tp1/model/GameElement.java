@@ -94,9 +94,14 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		return y;
 	}
 	
+	@Override
+	public boolean receiveExplosion() {
+		return false;
+	}
+
 	public void setY(int y) {
 		this.y = y;
 	}
 
-	public abstract GameElement create(Game game, int x, int y);
+	public abstract GameElement create(int x, int y, Game game);
 }

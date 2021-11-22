@@ -21,7 +21,7 @@
 * <b> We have to take about the visibility of the different classes </b>
 * Reset method in the Game has to be modified
 * Should the get() method in gameElementContainer deleted?
-* Or maybe the getElementInPosition from Game
+* Grenade explotion takes time to update
 
 ## Test failing
 * <b>Easy_s666_0:</b>

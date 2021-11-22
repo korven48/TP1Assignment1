@@ -42,7 +42,7 @@ public class SuperCoin extends GameElement {
 	}
 	
 	@Override
-	public SuperCoin create(Game game, int x, int y) {
+	public SuperCoin create(int x, int y, Game game) {
 		return getSuperCoin(game, x, y, false);
 	}
 	

@@ -9,10 +9,16 @@ final class Wall extends Obstacle {
 	private static final String ONE_WALL = "░";
 	private static final int AMOUNT_COIN_GAINABLE = 5;
 	
+	private static final String NAME = "wall";
+	
 	public Wall(int x, int y, Game game) {
 		// TODO Auto-generated constructor stub
-		super(x, y, game); 
+		super(x, y, game, NAME); 
 		this.resistance = 3;
+	}
+	
+	public Wall() {
+		super(NAME);
 	}
 
 	@Override

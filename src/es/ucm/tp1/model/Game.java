@@ -78,6 +78,10 @@ public class Game {
 		this.cycle++;
 	}
 	
+	public int getCycle() {
+		return cycle;
+	}
+	
 	public int getCameraPosition() {
 		return player.getX();
 	}
@@ -114,7 +118,8 @@ public class Game {
 			if (elements != null) {
 				for (int i = 0; i < elements.size(); i++) {
 					element = elements.get(i);
-					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
+//					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
+					if (element.isInPos(gameElement.getX(), gameElement.getY())) {
 						return;
 					}
 				}
@@ -269,6 +274,7 @@ public class Game {
 
 	public void update() {
 		player.update();
+		elements.update();
 		removeDeadObjects();
 	}
 	
@@ -281,8 +287,8 @@ public class Game {
 	}
 	
 	public boolean playerPays (int amount) {
-		if (player.getCoins() > 0) {
-			player.pay();
+		if (player.getCoins() >= amount) {
+			player.pay(amount);
 			return true;
 		}
 		return false;
