@@ -2,6 +2,7 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
+import es.ucm.tp1.model.InstantActions.ShootAction;
 
 public class GrenadeCommand extends Command implements Buyable {
 	private static final String NAME = "granade";
@@ -46,8 +47,12 @@ public class GrenadeCommand extends Command implements Buyable {
 	@Override
 	public boolean execute(Game game) {
 		// should create a granade in position (playerX + x, y), with x < visibility
-		GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
-		return true;
+		boolean result = false;
+		if (game.playerPays(cost())) {
+			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
+			result = true;
+		}
+		return result;
 	}
 
 }

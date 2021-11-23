@@ -1,7 +1,6 @@
 package es.ucm.tp1.model;
 
 final class Wall extends Obstacle {
-	private int resistance;
 	static int counter;
 	
 	private static final String THREE_WALL = "█";
@@ -12,7 +11,6 @@ final class Wall extends Obstacle {
 	private static final String NAME = "wall";
 	
 	public Wall(int x, int y, Game game) {
-		// TODO Auto-generated constructor stub
 		super(x, y, game, NAME); 
 		this.resistance = 3;
 	}
@@ -22,8 +20,12 @@ final class Wall extends Obstacle {
 	}
 
 	@Override
+	public boolean isAdvanced() {
+		return true;
+	}
+	
+	@Override
 	public boolean receiveShot() {
-		// TODO Auto-generated method stub
 		boolean result = false; 
 		if (resistance > 0) {
 			resistance--;
@@ -34,11 +36,10 @@ final class Wall extends Obstacle {
 	
 	@Override
 	public String getSymbol() {
-		// TODO Auto-generated method stub
 		String result = "";
 		switch (resistance) {
 			case 3:
-				result = Wall.ONE_WALL;
+				result = Wall.THREE_WALL;
 				break;
 			case 2:
 				result = Wall.TWO_WALL;
@@ -87,5 +88,11 @@ final class Wall extends Obstacle {
 	
 	protected static void reset() {
 		Wall.counter = 0;
+	}
+	
+	@Override
+	public Wall create(int x, int y, Game game) {
+		// TODO Auto-generated method stub
+		return new Wall(x, y, game);
 	}
 }

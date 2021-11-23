@@ -4,21 +4,20 @@ import es.ucm.tp1.model.Collider;
 import es.ucm.tp1.model.Game;
 
 public final class ShootAction implements InstantAction {
-	
-	public ShootAction() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public void execute(Game game) {
 		game.getVisibility();
-		int lanePlayer = 1;
+		int lanePlayer = game.getPlayerLane();
+		int camera = game.getCameraPosition();
 		Collider element = null;
-		for (int x = 0; x <= game.getVisibility(); x++) {
+		for (int x = camera; x <= camera + game.getVisibility(); x++) {
 			element = game.getObjectInPosition(x, lanePlayer);
-		}
-		if (element != null) {
-			element.receiveShot();
+			if (element != null) {
+				if (element.receiveShot()) {
+					return;					
+				}
+			}
 		}
 	}
 

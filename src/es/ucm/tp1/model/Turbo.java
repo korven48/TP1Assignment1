@@ -17,6 +17,11 @@ class Turbo extends GameElement {
 	public Turbo() {
 		super(NAME);
 	}
+	
+	@Override
+	public boolean isAdvanced() {
+		return true;
+	}
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
@@ -61,7 +66,7 @@ class Turbo extends GameElement {
 	}
 
 	@Override
-	public GameElement create(int x, int y, Game game) {
+	public Turbo create(int x, int y, Game game) {
 		return new Turbo(x, y, game);
 	}
 }

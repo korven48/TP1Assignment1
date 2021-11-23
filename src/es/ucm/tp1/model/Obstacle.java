@@ -3,7 +3,7 @@ package es.ucm.tp1.model;
 
 class Obstacle extends GameElement{
 	private static final String NAME = "obstacle";
-	private int resistance;
+	protected int resistance;
 	static int counter;
 	
 	private static final String CON_SYMBOL = "░";
@@ -37,6 +37,12 @@ class Obstacle extends GameElement{
 	@Override
 	public boolean receiveExplosion() {
 		return receiveShot();
+	}
+	
+	@Override
+	public boolean receiveThunder() {
+		resistance = 0;
+		return true;
 	}
 	
 	public Obstacle() {

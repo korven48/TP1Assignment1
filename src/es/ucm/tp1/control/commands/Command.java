@@ -16,7 +16,8 @@ public abstract class Command {
 			new CheatCommand(),
 			new ClearCommand(),
 			new GrenadeCommand(),
-			new WaveCommand()
+			new WaveCommand(),
+			new ShootCommand()
 	};
 	
 	private final String name;

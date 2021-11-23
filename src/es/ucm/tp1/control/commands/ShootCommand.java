@@ -12,7 +12,6 @@ final class ShootCommand extends Command implements Buyable {
 	private static final int COST = 1;
 	
 	public ShootCommand() {
-		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP);
 	}
 

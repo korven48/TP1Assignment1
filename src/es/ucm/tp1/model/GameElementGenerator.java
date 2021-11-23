@@ -7,8 +7,13 @@ public final class GameElementGenerator {
 			// Should contain all the GameElements
 			new Coin(),
 			new Obstacle(),
+			new Grenade(),
+			// Advanced Game Elements
+			new Wall(),
+			new Turbo(),
 			new SuperCoin(),
-			new Grenade()
+			new Truck(),
+			new Pedestrian()
 	};
 
 	public static void generateGameElements(Game game, Level level) {

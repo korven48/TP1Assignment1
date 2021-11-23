@@ -13,8 +13,9 @@ public class Grenade extends GameElement {
 		// ExplodeAction object should be so
 		// created by the constructor of the Grenade class
 		super(x, y, game, NAME);
-		initialCycle = game.getCycle();
-		cyclesLeft = TOTALCYCLES;
+//		initialCycle = game.getCycle();
+//		cyclesLeft = TOTALCYCLES;
+		cyclesLeft = 3;
 		symbol = "ð";
 	}
 	
@@ -30,7 +31,8 @@ public class Grenade extends GameElement {
 
 	@Override
 	public void update() {
-		cyclesLeft = TOTALCYCLES - (game.getCycle() - initialCycle);
+//		cyclesLeft = TOTALCYCLES - (game.getCycle() - initialCycle);
+		cyclesLeft--;
 	}
 
 	@Override

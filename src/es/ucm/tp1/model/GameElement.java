@@ -15,6 +15,11 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		this.NAME = name;
 	}
 	
+	@Override
+	public boolean receiveThunder() {
+		return false;
+	}
+
 	public GameElement(String name) {
 		this.NAME = name;
 	}

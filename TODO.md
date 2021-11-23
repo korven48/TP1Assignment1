@@ -17,6 +17,9 @@
 * have to talk about positionToString in Game
 * How to imporve the working with the symboles in the diffrent classes?
 
+
+* The update method should occur only when the game cycle is updated?
+
 ### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>
 * Reset method in the Game has to be modified
