@@ -294,9 +294,12 @@ public class Game {
 		return false;
 	}
 
-
 	public int getPlayerLane() {
 		return player.getY();
+	}
+	
+	public int getAmountOfCoinsPlayer() {
+		return player.getCoins();
 	}
 }
 

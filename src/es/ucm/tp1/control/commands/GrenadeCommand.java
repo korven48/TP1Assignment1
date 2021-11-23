@@ -39,20 +39,26 @@ public class GrenadeCommand extends Command implements Buyable {
 		return null;
 	}
 
-	@Override
-	public int cost() {
-		return COST;
-	}
 
 	@Override
 	public boolean execute(Game game) {
 		// should create a granade in position (playerX + x, y), with x < visibility
 		boolean result = false;
 		if (game.playerPays(cost())) {
+			this.buy(game);
 			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
 			result = true;
 		}
 		return result;
 	}
-
+	
+	@Override
+	public int cost() {
+		return COST;
+	}
+	
+	@Override
+	public void buy(Game game) {
+		game.playerPays(cost());
+	}
 }

@@ -18,7 +18,8 @@ final class ShootCommand extends Command implements Buyable {
 	@Override
 	public boolean execute(Game game) {
 		boolean result = false;
-		if (game.playerPays(cost())) {
+		if (game.getAmountOfCoinsPlayer() >= this.cost()) {
+			this.buy(game);
 			game.doInstantAction(new ShootAction());
 			result = true;
 		}
@@ -28,5 +29,10 @@ final class ShootCommand extends Command implements Buyable {
 	@Override
 	public int cost() {
 		return COST;
+	}
+	
+	@Override
+	public void buy(Game game) {
+		game.playerPays(cost());
 	}
 }

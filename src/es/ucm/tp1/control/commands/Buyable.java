@@ -4,6 +4,6 @@ import es.ucm.tp1.model.Game;
 public interface Buyable {
 	public int cost();
 	public default void buy(Game game){
-	// TODO add your code
+		// TODO add your code
 	};
 }

@@ -20,7 +20,8 @@ public class WaveCommand extends Command implements Buyable{
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		if (game.playerPays(cost())) {
+		if (game.getAmountOfCoinsPlayer() >= this.cost()) {
+			this.buy(game);
 			game.doInstantAction(null);
 			result = true;
 		}		
@@ -32,5 +33,9 @@ public class WaveCommand extends Command implements Buyable{
 	public int cost() {
 		return COST;
 	}
-
+	
+	@Override
+	public void buy(Game game) {
+		game.playerPays(cost());
+	}
 }
