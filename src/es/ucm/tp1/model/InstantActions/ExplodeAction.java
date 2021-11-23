@@ -3,7 +3,7 @@ package es.ucm.tp1.model.InstantActions;
 import es.ucm.tp1.model.Collider;
 import es.ucm.tp1.model.Game;
 
-public class ExplodeAction implements InstantAction {
+public final class ExplodeAction implements InstantAction {
 	private int x, y;
 	
 	public ExplodeAction(int x, int y) {

@@ -3,7 +3,7 @@ package es.ucm.tp1.model.InstantActions;
 import es.ucm.tp1.model.Collider;
 import es.ucm.tp1.model.Game;
 
-public class ThunderAction implements InstantAction {
+public final class ThunderAction implements InstantAction {
 
 	@Override
 	public void execute(Game game) {

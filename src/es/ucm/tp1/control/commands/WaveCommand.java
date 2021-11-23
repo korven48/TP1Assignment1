@@ -1,6 +1,7 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.InstantActions.ShootAction;
 
 public class WaveCommand extends Command implements Buyable{
 	private static final String NAME = "wave";
@@ -19,7 +20,12 @@ public class WaveCommand extends Command implements Buyable{
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		if (game.playerPays(cost())) {
+			game.doInstantAction(null);
+			result = true;
+		}		
+		return result;
 	}
 
 

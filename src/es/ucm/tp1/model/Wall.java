@@ -77,7 +77,8 @@ final class Wall extends Obstacle {
 
 	@Override
 	public void update() {
-		
+		//Element wird eins nach hinten versetzt
+		this.x--;
 	}
 
 	@Override

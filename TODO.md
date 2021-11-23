@@ -40,5 +40,8 @@
 
 
 ## Questions
-
+* For what is the Name in e.g. Turbo
+* For what is the interface buyable
+* Where shall we implement the paying logic?
+* 1.5 shall we also move the player?
 
