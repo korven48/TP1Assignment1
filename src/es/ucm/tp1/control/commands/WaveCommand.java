@@ -1,7 +1,6 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.model.InstantActions.ShootAction;
 
 public class WaveCommand extends Command implements Buyable{
 	private static final String NAME = "wave";
