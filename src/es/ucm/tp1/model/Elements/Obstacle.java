@@ -79,8 +79,7 @@ public class Obstacle extends GameElement{
 
 	@Override
 	public void update() {
-		//Element wird eins nach hinten versetzt
-		//this.x--;
+
 	}
 
 	@Override

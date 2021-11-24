@@ -20,8 +20,7 @@
 * In Player check: //Maybe breaking enaspsulation
 * Executing "w" throws an nullpointer exception
 * Sometimes the truck just fanish
-
-
+* Why is sometime the truck just passing the player?
 * The update method should occur only when the game cycle is updated?
 
 ### Non-prio tasks

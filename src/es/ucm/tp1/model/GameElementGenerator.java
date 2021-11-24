@@ -18,6 +18,7 @@ public final class GameElementGenerator {
 			new Coin(),
 			new Obstacle(),
 			new Grenade(),
+			
 			// Advanced Game Elements
 			new Wall(),
 			new Turbo(),

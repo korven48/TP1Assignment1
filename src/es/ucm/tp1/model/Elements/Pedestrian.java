@@ -9,9 +9,11 @@ public class Pedestrian extends Obstacle {
 	
 	private boolean goingUp;
 	
-	/*You must not allow the player and a pedestrian to pass
-	  through each other without colliding; as for the implementation of the Turbo command,
-	  this will involve checking for collisions twice on every cycle. */ 
+	/*
+	 * You must not allow the player and a pedestrian to pass
+	 * through each other without colliding; as for the implementation of the Turbo command,
+	 * this will involve checking for collisions twice on every cycle. 
+	*/ 
 	
 	public Pedestrian(Game game, int x, int y) {
 		super(game, x, y, NAME); 

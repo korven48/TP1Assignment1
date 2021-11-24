@@ -237,14 +237,16 @@ public class Game {
 		
 	
 	public boolean movePlayer(boolean shouldDisplay, Direction direction) {
-		if (canMove(direction)) {
-			if (!(direction.equals(Direction.NONE))) {
-				player.move(direction);
-				shouldDisplay = true;				
+		//if (this.player.doCollision()) {
+			if (canMove(direction)) {
+				if (!(direction.equals(Direction.NONE))) {
+					player.move(direction);
+					shouldDisplay = true;				
+				}
+			} else {
+				System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
 			}
-		} else {
-			System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
-		}
+		//}
 		this.player.doCollision();
 		return shouldDisplay;
 	}
