@@ -2,7 +2,6 @@ package es.ucm.tp1.model;
 //import java.util.Iterator;
 import java.util.Random;
 
-import es.ucm.tp1.control.ILevel;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.InstantActions.InstantAction;
 
@@ -307,7 +306,7 @@ public class Game {
 		
 	}
 	
-	public ILevel getLevel() {
+	public Level getLevel() {
 		return this.level;
 	}
 }
