@@ -1,12 +1,15 @@
 package es.ucm.tp1.model;
 
+//Convert to Singelton in the future
 public class SuperCoin extends GameElement {
 	private static final String NAME = "super";
 	private static final int addedCoins = 1000;
 	boolean onScreen;
 	private boolean collected = false;
 	
+	private static final String SUPER_CON_SYMBOL = "8";
 	private static SuperCoin sCoin;
+	private static boolean isExisting = false; 
 	
 	public static SuperCoin getSuperCoin(Game game, int x, int y, boolean reset) {
 		if (sCoin == null || reset) {
@@ -18,7 +21,8 @@ public class SuperCoin extends GameElement {
 	public SuperCoin(Game game, int x, int y) {
 		super(game, x, y, NAME);
 		onScreen = false;
-		symbol = "8";
+		symbol = SuperCoin.SUPER_CON_SYMBOL;
+		SuperCoin.isExisting = true; 
 	}
 	
 	public SuperCoin() {
@@ -70,7 +74,7 @@ public class SuperCoin extends GameElement {
 	}
 
 	public static final boolean hasSuperCoin() {
-		if (SuperCoin.sCoin != null) {
+		if (SuperCoin.isExisting) {
 			return true;
 		}
 		return false;
