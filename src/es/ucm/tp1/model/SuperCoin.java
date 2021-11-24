@@ -7,7 +7,7 @@ public class SuperCoin extends GameElement {
 	boolean onScreen;
 	private boolean collected = false;
 	
-	private static final String SUPER_CON_SYMBOL = "8";
+	private static final String SUPER_CON_SYMBOL = "$";
 	private static SuperCoin sCoin;
 	private static boolean isExisting = false; 
 	

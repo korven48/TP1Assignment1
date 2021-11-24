@@ -117,7 +117,6 @@ public class Game {
 			if (elements != null) {
 				for (int i = 0; i < elements.size(); i++) {
 					element = elements.get(i);
-//					if (element.getX() == gameElement.getX() && element.getY() == gameElement.getY()) {
 					if (element.isInPos(gameElement.getX(), gameElement.getY())) {
 						return;
 					}
