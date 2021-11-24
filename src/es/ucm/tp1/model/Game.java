@@ -240,6 +240,7 @@ public class Game {
 		} else {
 			System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
 		}
+		this.player.doCollision();
 		return shouldDisplay;
 	}
 	

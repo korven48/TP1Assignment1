@@ -21,8 +21,7 @@ public class SuperCoin extends GameElement {
 	public SuperCoin(Game game, int x, int y) {
 		super(game, x, y, NAME);
 		onScreen = false;
-		symbol = SuperCoin.SUPER_CON_SYMBOL;
-		SuperCoin.isExisting = true; 
+		symbol = SuperCoin.SUPER_CON_SYMBOL; 
 	}
 	
 	public SuperCoin() {
