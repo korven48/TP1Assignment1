@@ -1,6 +1,15 @@
 package es.ucm.tp1.model;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.model.Elements.Coin;
+import es.ucm.tp1.model.Elements.GameElement;
+import es.ucm.tp1.model.Elements.Grenade;
+import es.ucm.tp1.model.Elements.Obstacle;
+import es.ucm.tp1.model.Elements.Pedestrian;
+import es.ucm.tp1.model.Elements.SuperCoin;
+import es.ucm.tp1.model.Elements.Truck;
+import es.ucm.tp1.model.Elements.Turbo;
+import es.ucm.tp1.model.Elements.Wall;
 import es.ucm.tp1.model.InstantActions.*;
 
 public final class GameElementGenerator {
@@ -47,7 +56,7 @@ public final class GameElementGenerator {
 
 	private static GameElement getGameElement(String word) {
 		GameElement gameElement = null;
-		for (GameElement currentElement: GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
+		for (GameElement currentElement : GameElementGenerator.AVAILABLE_GAMEELEMENTS) {
 			gameElement = currentElement.parse(word);
 			if (gameElement != null) {
 				break;

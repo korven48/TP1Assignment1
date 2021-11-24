@@ -1,4 +1,8 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
+
+import es.ucm.tp1.model.Collider;
+import es.ucm.tp1.model.ColliderCallback;
+import es.ucm.tp1.model.Game;
 
 public abstract class GameElement implements Collider, ColliderCallback {
 	protected int x;
@@ -28,7 +32,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		return false;
 	}
 	
-	protected GameElement parse(String word) {
+	public GameElement parse(String word) {
 		if (matchElementName(word))
 			return this;
 		return null;

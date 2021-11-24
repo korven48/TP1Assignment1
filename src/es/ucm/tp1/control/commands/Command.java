@@ -56,7 +56,6 @@ public abstract class Command {
 	public final static Command getCommand(final String[] commandWords) {
 		Command currentCommand = null;
 		for (Command com : Command.AVAILABLE_COMMANDS) {
-			//Is their an equal to ??= operator in C#
 			currentCommand = com.parse(commandWords);
 			//Maybe remove in future versions
 			if (currentCommand != null) {

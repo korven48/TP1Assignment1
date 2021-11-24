@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-interface ColliderCallback {
+public interface ColliderCallback {
 	public void reciveDamage();
 
 	void moveForward(int steps);

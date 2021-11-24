@@ -1,10 +1,12 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.ColliderCallback;
 
-class Obstacle extends GameElement{
+public class Obstacle extends GameElement{
 	private static final String NAME = "obstacle";
 	protected int resistance;
-	static int counter;
+	public static int counter;
 	
 	private static final String CON_SYMBOL = "░";
 
@@ -86,7 +88,7 @@ class Obstacle extends GameElement{
 		Obstacle.counter--;
 	}	
 	
-	protected static void reset() {
+	public static void reset() {
 		Obstacle.counter = 0;
 	}
 }

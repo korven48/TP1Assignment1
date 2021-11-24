@@ -1,4 +1,7 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
+
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.ColliderCallback;
 
 //Convert to Singelton in the future --> https://refactoring.guru/design-patterns/singleton 
 public class SuperCoin extends GameElement {

@@ -1,6 +1,10 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
-class Turbo extends GameElement {
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.ColliderCallback;
+import es.ucm.tp1.model.Direction;
+
+public class Turbo extends GameElement {
 	private boolean collected = false; 
 	static int counter;
 	

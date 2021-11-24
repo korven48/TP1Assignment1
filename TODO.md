@@ -18,6 +18,8 @@
 * How to imporve the working with the symboles in the diffrent classes?
 * In Game are is printing implemented
 * In Player check: //Maybe breaking enaspsulation
+* Executing "w" throws an nullpointer exception
+* Sometimes the truck just fanish
 
 
 * The update method should occur only when the game cycle is updated?

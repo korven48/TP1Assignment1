@@ -1,5 +1,7 @@
 package es.ucm.tp1.model;
 
+import es.ucm.tp1.model.Elements.GameElement;
+
 public class Player extends GameElement{
 	private static final String NAME = "player";
 	private static final String ALIVE_PLAYER = ">";
@@ -42,18 +44,19 @@ public class Player extends GameElement{
 	
 	public void move(Direction direction) {
 		// UP, DOWN, FOREWARD, NONE uses the Enum Direction
-		if (direction.equals(Direction.UP)) 
+		if (direction.equals(Direction.UP)) {
 			this.y--;
-		else if (direction.equals(Direction.DOWN))
-			this.y++;
-		
-		if (! direction.equals(Direction.NONE))
+		} else if (direction.equals(Direction.DOWN)) {
+			this.y++;	
+		}
+		if (! direction.equals(Direction.NONE)) {
 			this.x++;
+		}
 	}
 	
 	@Override
 	public void moveForward(int steps) {
-		this.x = this.x + steps;  
+		this.x += steps;  
 	}
 	
 	@Override

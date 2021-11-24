@@ -1,9 +1,9 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
 import java.util.List;
 import java.util.ArrayList;
 
-final class GameElementContainer {
+public final class GameElementContainer {
 	protected final static int CAPACITY = 100;
 	private List<GameElement> gameElements;
 	
@@ -11,7 +11,7 @@ final class GameElementContainer {
 		this.gameElements = new ArrayList<>();
 	}
 
-	protected boolean add(GameElement gameObject) {
+	public boolean add(GameElement gameObject) {
 		if (!this.isFull()) {
 			this.gameElements.add(gameObject);
 			gameObject.onEnter();
@@ -21,7 +21,7 @@ final class GameElementContainer {
 	}
 	
 
-	void update() {
+	public void update() {
 		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
 			gameObject = this.get(i);
@@ -29,7 +29,7 @@ final class GameElementContainer {
 		}
 	}
 	
-	boolean remove(int pos) {
+	public boolean remove(int pos) {
 		int size = this.gameElements.size();
 		if ((size - 1 == pos || size - 1 > pos) && size > 0) {
 			gameElements.remove(pos);
@@ -38,7 +38,7 @@ final class GameElementContainer {
 		return false;
 	}
 	
-	protected void remove(int x, int y) {
+	public void remove(int x, int y) {
 		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {
 			gameObject = get(i);
@@ -49,7 +49,7 @@ final class GameElementContainer {
 		}
 	}
 	
-	protected void removeDead() {
+	public void removeDead() {
 		GameElement gameElement;
 		for (int i = 0; i < this.size(); i++) {
 			gameElement = this.get(i);
@@ -62,7 +62,7 @@ final class GameElementContainer {
 	}
 	
 	// This could be breaking encapsulation
-	protected GameElement get(int index) {
+	public GameElement get(int index) {
 		int counter = this.gameElements.size();
 		if (index < counter && index >= 0 && index < CAPACITY) {
 			return gameElements.get(index);
@@ -70,7 +70,7 @@ final class GameElementContainer {
 		return null; 
 	}
 	
-	protected boolean isObjectInPos(int x, int y) {
+	public boolean isObjectInPos(int x, int y) {
 		boolean out = false;
 		GameElement gameObject;
 		for (int i = 0; i < this.size(); i++) {

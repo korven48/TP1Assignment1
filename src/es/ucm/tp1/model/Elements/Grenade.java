@@ -1,6 +1,7 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.InstantActions.ExplodeAction;
+import es.ucm.tp1.model.Game;
 
 public class Grenade extends GameElement {
 

@@ -1,6 +1,9 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
-final class Wall extends Obstacle {
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.ColliderCallback;
+
+public final class Wall extends Obstacle {
 	static int counter;
 	
 	private static final String THREE_WALL = "█";
@@ -87,7 +90,7 @@ final class Wall extends Obstacle {
 		Wall.counter--;
 	}	
 	
-	protected static void reset() {
+	public static void reset() {
 		Wall.counter = 0;
 	}
 	

@@ -1,10 +1,13 @@
-package es.ucm.tp1.model;
+package es.ucm.tp1.model.Elements;
 
-class Coin extends GameElement {
+import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.ColliderCallback;
+
+public class Coin extends GameElement {
 	private static final String NAME = "coin";
 	private boolean collected = false; 
 	private static final int addedCoins = 1;
-	static int counter;
+	public static int counter;
 	
 	private static final String CON_SYMBOL = "¢";
 	
@@ -58,7 +61,7 @@ class Coin extends GameElement {
 		return collected;
 	}
 	
-	protected static void reset() {
+	public static void reset() {
 		Coin.counter = 0;
 	}
 }

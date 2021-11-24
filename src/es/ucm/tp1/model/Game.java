@@ -2,7 +2,11 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.model.Elements.Coin;
+import es.ucm.tp1.model.Elements.GameElement;
+import es.ucm.tp1.model.Elements.Obstacle;
 import es.ucm.tp1.model.InstantActions.InstantAction;
+import es.ucm.tp1.model.Elements.GameElementContainer;
 
 public class Game {
 	private Player player = null;
