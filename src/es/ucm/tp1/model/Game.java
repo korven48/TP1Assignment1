@@ -123,6 +123,7 @@ public class Game {
 				}
 			}
 			addObject(gameElement);
+			gameElement.onEnter();
 		}
 	}
 	
