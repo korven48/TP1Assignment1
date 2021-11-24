@@ -16,6 +16,8 @@
 * we have to talk about this: game.getObjectInPosition(0, 0)
 * have to talk about positionToString in Game
 * How to imporve the working with the symboles in the diffrent classes?
+* In Game are is printing implemented
+* In Player check: //Maybe breaking enaspsulation
 
 
 * The update method should occur only when the game cycle is updated?

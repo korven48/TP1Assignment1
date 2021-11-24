@@ -25,7 +25,9 @@ class Turbo extends GameElement {
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
-		player.moveForward(Turbo.steps);
+		for (int i = 0; i < Turbo.steps; i++) {
+			this.game.movePlayer(false, Direction.FORWARD);
+		}
 		return true; // true because the player crashes 
 	}
 	

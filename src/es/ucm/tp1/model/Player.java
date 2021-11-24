@@ -29,6 +29,7 @@ public class Player extends GameElement{
 	public boolean doCollision() {
 		Collider gameElement = game.getObjectInPosition(x, y);
 		if (gameElement != null) {
+			//Maybe breaking enaspsulation
 			return gameElement.receiveCollision(this);
 		}
 		return false;
@@ -72,7 +73,7 @@ public class Player extends GameElement{
 
 	@Override
 	public void update() {
-		doCollision();
+		//doCollision();
 		if (isCrashed()) {
 			symbol = CRASHED_PLAYER;
 		}
