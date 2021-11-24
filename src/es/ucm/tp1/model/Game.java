@@ -1,5 +1,4 @@
 package es.ucm.tp1.model;
-//import java.util.Iterator;
 import java.util.Random;
 
 import es.ucm.tp1.control.Level;

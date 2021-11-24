@@ -94,7 +94,11 @@ public enum Level {
 	
 	public boolean hasAdvancedObjects() {
 		boolean result = false;
-		
+		if (this.advancedObjectsFrequency() > 0) {
+			result = true;
+		} else if (true) {
+			result = true;
+		}
 		return result;
 	}
 }
