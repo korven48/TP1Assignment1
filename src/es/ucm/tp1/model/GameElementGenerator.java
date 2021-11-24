@@ -27,7 +27,7 @@ public final class GameElementGenerator {
 			game.tryToAddObject(new Turbo(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
 			if (!SuperCoin.hasSuperCoin()) {
 				game.tryToAddObject(new SuperCoin(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
-			}
+			} 
 			game.tryToAddObject(new Truck(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
 			game.tryToAddObject(new Pedestrian(game, x, 0), level.advancedObjectsFrequency());
 		    }

@@ -5,5 +5,7 @@ public interface Collider {
 	boolean receiveCollision(ColliderCallback player);
 	boolean receiveShot();
 	boolean receiveExplosion();
+//	boolean receiveShot(ColliderCallback player);
+//	boolean receiveExplosion(ColliderCallback player);
 	boolean receiveThunder();
 }

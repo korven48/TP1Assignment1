@@ -4,7 +4,6 @@ package es.ucm.tp1.model;
 public class SuperCoin extends GameElement {
 	private static final String NAME = "super";
 	private static final int addedCoins = 1000;
-	boolean onScreen;
 	private boolean collected = false;
 	
 	private static final String SUPER_CON_SYMBOL = "8";
@@ -20,9 +19,7 @@ public class SuperCoin extends GameElement {
 	
 	public SuperCoin(Game game, int x, int y) {
 		super(game, x, y, NAME);
-		onScreen = false;
 		symbol = SuperCoin.SUPER_CON_SYMBOL;
-		SuperCoin.isExisting = true; 
 	}
 	
 	public SuperCoin() {
@@ -52,19 +49,19 @@ public class SuperCoin extends GameElement {
 	
 	@Override
 	public void onEnter() {
-		onScreen = true;
+		isExisting = true;
 	}
 
 	@Override
 	public void update() {
-		if (onScreen) {
+		if (isExisting) {
 			System.out.println("Supercoin is present");
 		}
 	}
 
 	@Override
 	public void onDelete() {
-		onScreen = false;
+		isExisting = false;
 		sCoin = null;
 	}
 
