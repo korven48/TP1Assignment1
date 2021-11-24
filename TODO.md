@@ -50,6 +50,8 @@
 * Their are some magic numbers in the code but why?
 * How to handle the thunder and the detaction of place
 * Why have you added public Obstacle create(int x, int y, Game game) --> What is the diffrence to the constructor?
+* We should introduce a static final for all the symboles... we would reduce the need of RAM
+* Why do you have a couple of constructors in the SuperCoin?
 
 
 ##Notes to Lukas (myself)

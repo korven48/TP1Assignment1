@@ -6,7 +6,7 @@ public class Truck extends Obstacle {
 	private static final String NAME = "truck";
 	private static final String CON_SYMBOL = "←"; // \u2190
 	
-	public Truck(int x, int y, Game game) {
+	public Truck(Game game, int x, int y) {
 		// TODO Auto-generated constructor stub
 		super(game, x, y, NAME); 
 		this.resistance = 3;
@@ -31,6 +31,6 @@ public class Truck extends Obstacle {
 	
 	@Override
 	public Truck create(Game game, int x, int y) {
-		return new Truck(x, y, game);
+		return new Truck(game, x, y);
 	}
 }

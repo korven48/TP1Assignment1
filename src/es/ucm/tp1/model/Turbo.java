@@ -8,7 +8,7 @@ class Turbo extends GameElement {
 	private static final String CON_SYMBOL = ">>>";
 	private static final String NAME = "turbo";
 	
-	public Turbo(int x, int y, Game game) {
+	public Turbo(Game game, int x, int y) {
 		super(game, x, y, NAME);
 		// TODO Auto-generated constructor stub
 		symbol = Turbo.CON_SYMBOL;
@@ -67,6 +67,6 @@ class Turbo extends GameElement {
 
 	@Override
 	public Turbo create(Game game, int x, int y) {
-		return new Turbo(x, y, game);
+		return new Turbo(game, x, y);
 	}
 }

@@ -6,16 +6,16 @@ public class SuperCoin extends GameElement {
 	boolean onScreen;
 	private boolean collected = false;
 	
-	private static SuperCoin scoin;
+	private static SuperCoin sCoin;
 	
 	public static SuperCoin getSuperCoin(Game game, int x, int y, boolean reset) {
-		if (scoin == null || reset) {
-			scoin = new SuperCoin(game, x, y); 
+		if (sCoin == null || reset) {
+			sCoin = new SuperCoin(game, x, y); 
 		}
-		return scoin; 
+		return sCoin; 
 	}
 	
-	private SuperCoin(Game game, int x, int y) {
+	public SuperCoin(Game game, int x, int y) {
 		super(game, x, y, NAME);
 		onScreen = false;
 		symbol = "8";
@@ -61,7 +61,7 @@ public class SuperCoin extends GameElement {
 	@Override
 	public void onDelete() {
 		onScreen = false;
-		scoin = null;
+		sCoin = null;
 	}
 
 	@Override
@@ -69,4 +69,10 @@ public class SuperCoin extends GameElement {
 		return ! collected;
 	}
 
+	public static final boolean hasSuperCoin() {
+		if (SuperCoin.sCoin != null) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -9,7 +9,7 @@ public class Pedestrian extends Obstacle {
 	  through each other without colliding; as for the implementation of the Turbo command,
 	  this will involve checking for collisions twice on every cycle. */ 
 	
-	public Pedestrian(int x, int y, Game game) {
+	public Pedestrian(Game game, int x, int y) {
 		super(game, x, y, NAME); 
 		symbol = CON_SYMBOL;
 	}
@@ -39,6 +39,6 @@ public class Pedestrian extends Obstacle {
 	
 	@Override
 	public Pedestrian create(Game game, int x, int y) {
-		return new Pedestrian(x, y, game);
+		return new Pedestrian(game, x, y);
 	}
 }
