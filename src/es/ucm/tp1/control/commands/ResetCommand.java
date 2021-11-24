@@ -37,8 +37,8 @@ final class ResetCommand extends Command {
 							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
 				return null;
 			} else if (words.length != 1) {
-				seed = words[1];
-				level = words[2];
+				level = words[1];
+				seed = words[2];
 				return new ResetCommand(Integer.parseInt(seed), Level.parse(level));
 			} else if (words.length != 3) {
 				return new ResetCommand(ResetCommand.DEFAULT_SEED, ResetCommand.DEFAULT_LEVEL);
@@ -54,6 +54,7 @@ final class ResetCommand extends Command {
 		boolean result = false;		
 		try {
 			game.reset(this.seed, this.level);
+			result = true;
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

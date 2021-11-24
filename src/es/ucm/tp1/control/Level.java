@@ -27,16 +27,20 @@ public enum Level {
 	
 	public static final Level parse(final String levelName) {
 		Level level = null;
-		switch (levelName) {
-			case "Test":
+		String lowerLevel = levelName.toLowerCase();
+		switch (lowerLevel) {
+			case "test":
 				level = Level.TEST;
 				break;
-			case "EASY":
+			case "easy":
 				level = Level.EASY;
 				break;
-			case "HARD":
+			case "hard":
 				level = Level.HARD;
 				break; 
+			case "advanced":
+				level = Level.ADVANCED;
+				break;
 			}	
 		return level;
 	}
@@ -95,8 +99,6 @@ public enum Level {
 	public boolean hasAdvancedObjects() {
 		boolean result = false;
 		if (this.advancedObjectsFrequency() > 0) {
-			result = true;
-		} else if (true) {
 			result = true;
 		}
 		return result;
