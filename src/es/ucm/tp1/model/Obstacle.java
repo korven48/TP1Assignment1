@@ -8,14 +8,14 @@ class Obstacle extends GameElement{
 	
 	private static final String CON_SYMBOL = "░";
 
-	public Obstacle(int x, int y, Game game) {
-		super(x, y, game, NAME);
+	public Obstacle(Game game, int x, int y) {
+		super(game, x, y, NAME);
 		this.resistance = 1;
 		symbol = Obstacle.CON_SYMBOL;
 	}
 	
-	public Obstacle(int x, int y, Game game, String name) {
-		super(x, y, game, name);
+	public Obstacle(Game game, int x, int y, String name) {
+		super(game, x, y, name);
 		this.resistance = 1;
 		symbol = Obstacle.CON_SYMBOL;
 	}
@@ -57,8 +57,8 @@ class Obstacle extends GameElement{
 	}
 
 	@Override
-	public Obstacle create(int x, int y, Game game) {
-		return new Obstacle(x, y, game);
+	public Obstacle create(Game game, int x, int y) {
+		return new Obstacle(game, x, y);
 	}
 	
 	@Override

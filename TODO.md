@@ -45,4 +45,13 @@
 * Where shall we implement the paying logic?
 * 1.5 shall we also move the player?
 * Thinking how we should implement the buy method the best
+* Explain me the the GameElementGenerator!
+* In thunder you have a print line which should not be!
+* Their are some magic numbers in the code but why?
+* How to handle the thunder and the detaction of place
+* Why have you added public Obstacle create(int x, int y, Game game) --> What is the diffrence to the constructor?
+
+
+##Notes to Lukas (myself)
+* Implement hasAdvancedObjects()
 

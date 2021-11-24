@@ -10,7 +10,7 @@ public class Pedestrian extends Obstacle {
 	  this will involve checking for collisions twice on every cycle. */ 
 	
 	public Pedestrian(int x, int y, Game game) {
-		super(x, y, game, NAME); 
+		super(game, x, y, NAME); 
 		symbol = CON_SYMBOL;
 	}
 	
@@ -38,7 +38,7 @@ public class Pedestrian extends Obstacle {
 	}
 	
 	@Override
-	public Pedestrian create(int x, int y, Game game) {
+	public Pedestrian create(Game game, int x, int y) {
 		return new Pedestrian(x, y, game);
 	}
 }

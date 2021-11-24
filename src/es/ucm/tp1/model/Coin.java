@@ -9,7 +9,7 @@ class Coin extends GameElement {
 	private static final String CON_SYMBOL = "¢";
 	
 	public Coin(int x, int y, Game game) {
-		super(x, y, game, NAME);
+		super(game, x, y, NAME);
 		symbol = Coin.CON_SYMBOL;
 	 }
 	
@@ -46,7 +46,7 @@ class Coin extends GameElement {
 	}
 	
 	@Override
-	public Coin create(int x, int y, Game game) {
+	public Coin create(Game game, int x, int y) {
 		return new Coin(x, y, game);
 	}
 			

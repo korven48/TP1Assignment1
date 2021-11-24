@@ -10,8 +10,8 @@ final class Wall extends Obstacle {
 	
 	private static final String NAME = "wall";
 	
-	public Wall(int x, int y, Game game) {
-		super(x, y, game, NAME); 
+	public Wall(Game game, int x, int y) {
+		super(game, x, y, NAME); 
 		this.resistance = 3;
 	}
 	
@@ -92,8 +92,8 @@ final class Wall extends Obstacle {
 	}
 	
 	@Override
-	public Wall create(int x, int y, Game game) {
+	public Wall create(Game game, int x, int y) {
 		// TODO Auto-generated method stub
-		return new Wall(x, y, game);
+		return new Wall(game, x, y);
 	}
 }

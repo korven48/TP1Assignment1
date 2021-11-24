@@ -16,7 +16,7 @@ public class SuperCoin extends GameElement {
 	}
 	
 	private SuperCoin(Game game, int x, int y) {
-		super(x, y, game, NAME);
+		super(game, x, y, NAME);
 		onScreen = false;
 		symbol = "8";
 	}
@@ -42,7 +42,7 @@ public class SuperCoin extends GameElement {
 	}
 	
 	@Override
-	public SuperCoin create(int x, int y, Game game) {
+	public SuperCoin create(Game game, int x, int y) {
 		return getSuperCoin(game, x, y, false);
 	}
 	

@@ -9,7 +9,7 @@ class Turbo extends GameElement {
 	private static final String NAME = "turbo";
 	
 	public Turbo(int x, int y, Game game) {
-		super(x, y, game, NAME);
+		super(game, x, y, NAME);
 		// TODO Auto-generated constructor stub
 		symbol = Turbo.CON_SYMBOL;
 	}
@@ -32,7 +32,7 @@ class Turbo extends GameElement {
 	@Override
 	public void onEnter() {
 		// TODO Auto-generated method stub
-		this.counter++;
+		Turbo.counter++;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ class Turbo extends GameElement {
 	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
-		this.counter--;
+		Turbo.counter--;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ class Turbo extends GameElement {
 	}
 
 	@Override
-	public Turbo create(int x, int y, Game game) {
+	public Turbo create(Game game, int x, int y) {
 		return new Turbo(x, y, game);
 	}
 }

@@ -7,7 +7,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	protected String symbol;
 	private final String NAME;
 	
-	public GameElement(int x, int y, Game game, String name) {
+	public GameElement(Game game, int x, int y, String name) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -108,5 +108,5 @@ public abstract class GameElement implements Collider, ColliderCallback {
 		this.y = y;
 	}
 
-	public abstract GameElement create(int x, int y, Game game);
+	public abstract GameElement create(Game game, int x, int y);
 }

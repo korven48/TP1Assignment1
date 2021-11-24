@@ -1,6 +1,7 @@
 package es.ucm.tp1.model;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.model.InstantActions.*;
 
 public final class GameElementGenerator {
 	public static final GameElement[] AVAILABLE_GAMEELEMENTS = {
@@ -18,8 +19,26 @@ public final class GameElementGenerator {
 
 	public static void generateGameElements(Game game, Level level) {
 		for(int x = game.getVisibility()/2; x < game.getRoadLength(); x ++) {
-			game.tryToAddObject(new Obstacle(x, game.getRandomLane(), game), level.obstacleFrequency());
+			game.tryToAddObject(new Obstacle(game, x, game.getRandomLane()), level.obstacleFrequency());
 			game.tryToAddObject(new Coin(x, game.getRandomLane(), game), level.coinFrequency());
+		
+		if (level .hasAdvancedObjects()) {
+			game.tryToAddObject(new Wall(game.getRandomLane(), game, x), level.advancedObjectsFrequency());
+			game.tryToAddObject(new Turbo(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+			if (!SuperCoin.hasSuperCoin()) {
+			game.tryToAddObject(new SuperCoin(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+			}
+			game.tryToAddObject(new Truck(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+			game.tryToAddObject(new Pedestrian(game, x, 0), level.advancedObjectsFrequency());
+
+			}
+		}
+	}
+	
+	public static void generateRuntimeObjects(Game game) {
+		// Note we use this method to create and inject new objects or actions on runtime.
+		if (game.getLevel().hasAdvancedObjects()) {
+			game.execute(new ThunderAction()); 
 		}
 	}
 	
@@ -44,7 +63,7 @@ public final class GameElementGenerator {
 		if (currentElement != null && currentElement.isAdvanced()) {
 			int lane = game.getRandomLane();
 			int column = game.getCameraPosition() + game.getVisibility() - 1; // + position of player 
-			game.addObject(currentElement.create(column, lane, game));			
+			game.addObject(currentElement.create(game, column, lane));			
 			generated = true;
 		}
 		return generated;

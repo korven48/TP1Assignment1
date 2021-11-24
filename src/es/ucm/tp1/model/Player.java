@@ -12,7 +12,7 @@ public class Player extends GameElement{
 	private int resistance;
 	
 	private Player(int startingPostion, Game game) {
-		super(0, startingPostion, game, NAME);
+		super(game, 0, startingPostion, NAME);
 		this.coinsCount = 5;
 		this.resistance = 1;
 		symbol = ALIVE_PLAYER;
@@ -100,7 +100,7 @@ public class Player extends GameElement{
 	}
 
 	@Override
-	public GameElement create(int x, int y, Game game) {
+	public GameElement create(Game game, int x, int y) {
 		// player doesnt create anything, does it?
 		return null;
 	}

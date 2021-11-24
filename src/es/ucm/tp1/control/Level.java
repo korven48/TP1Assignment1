@@ -1,6 +1,6 @@
 package es.ucm.tp1.control;
 
-public enum Level {
+public enum Level implements ILevel {
 
 	TEST(10, 3, 8, 0.5, 0 , 0.0), EASY(30, 3, 8, 0.5, 0.5, 0.0), HARD(100, 5, 6, 0.7, 0.3, 0.0), ADVANCED(100, 3, 8, 0.3, 0.3, 0.1);
 
@@ -65,6 +65,10 @@ public enum Level {
 	public double obstacleFrequency() {
 		return obstacleFrequency;
 	}
+	
+	public double advancedObjectsFrequency() {
+		return this.advObjFreq;
+	}
 
 	public static Level valueOfIgnoreCase(String inputString) {
 		for (Level level : Level.values()) {
@@ -86,5 +90,11 @@ public enum Level {
 			levelCount++;
 		}
 		return buffer.toString();
+	}
+	
+	public boolean hasAdvancedObjects() {
+		boolean result = false;
+		
+		return result;
 	}
 }

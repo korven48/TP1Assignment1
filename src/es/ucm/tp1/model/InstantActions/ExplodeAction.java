@@ -12,8 +12,6 @@ public final class ExplodeAction implements InstantAction {
 		this.y = y;
 	}
 
-
-
 	@Override
 	public void execute(Game game) {
 		game.getVisibility();

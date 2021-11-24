@@ -8,7 +8,7 @@ public class Truck extends Obstacle {
 	
 	public Truck(int x, int y, Game game) {
 		// TODO Auto-generated constructor stub
-		super(x, y, game, NAME); 
+		super(game, x, y, NAME); 
 		this.resistance = 3;
 		this.symbol = CON_SYMBOL;
 	}
@@ -30,7 +30,7 @@ public class Truck extends Obstacle {
 	
 	
 	@Override
-	public Truck create(int x, int y, Game game) {
+	public Truck create(Game game, int x, int y) {
 		return new Truck(x, y, game);
 	}
 }

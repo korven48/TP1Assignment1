@@ -12,7 +12,7 @@ public class Grenade extends GameElement {
 	public Grenade(int x, int y, Game game) {
 		// ExplodeAction object should be so
 		// created by the constructor of the Grenade class
-		super(x, y, game, NAME);
+		super(game, x, y, NAME);
 //		initialCycle = game.getCycle();
 //		cyclesLeft = TOTALCYCLES;
 		cyclesLeft = 3;
@@ -56,7 +56,7 @@ public class Grenade extends GameElement {
 	}
 
 	@Override
-	public GameElement create(int x, int y, Game game) {
+	public GameElement create(Game game, int x, int y) {
 		return new Grenade(x, y, game);
 	}
 
