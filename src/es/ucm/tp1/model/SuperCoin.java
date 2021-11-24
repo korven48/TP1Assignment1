@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-//Convert to Singelton in the future
+//Convert to Singelton in the future --> https://refactoring.guru/design-patterns/singleton 
 public class SuperCoin extends GameElement {
 	private static final String NAME = "super";
 	private static final int addedCoins = 1000;
