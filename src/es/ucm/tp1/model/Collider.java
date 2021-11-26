@@ -8,4 +8,5 @@ public interface Collider {
 //	boolean receiveShot(ColliderCallback player);
 //	boolean receiveExplosion(ColliderCallback player);
 	boolean receiveThunder();
+	boolean moveRight();
 }

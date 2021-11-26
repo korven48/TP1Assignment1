@@ -108,4 +108,10 @@ public class Player extends GameElement{
 		// player doesnt create anything, does it?
 		return null;
 	}
+	
+	//This is the only GameElement should not move to the right
+	@Override 
+	public boolean moveRight() {
+		return false;
+	}
 }

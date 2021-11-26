@@ -111,6 +111,12 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	@Override
+	public boolean moveRight() {
+		this.x++;
+		return true;
+	}
 
 	public abstract GameElement create(Game game, int x, int y);
 }
