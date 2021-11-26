@@ -11,7 +11,9 @@ public final class WaveAction implements InstantAction {
 
 	@Override
 	public void execute(Game game) {
-		for (int x = game.getCameraPosition(); x <= game.getLevel().getLength(); x++) {
+		//iterate from the end of the ElementsContainer to the front
+		//Because the other way around lead to erros like doppel or more times moving
+		for (int x = game.getLevel().getLength(); x >= game.getCameraPosition(); x--) {
 			for (int y = 0; y <= game.getLevel().getWidth(); y++) {
 				Collider gameElement = game.getObjectInPosition(x, y);
 				if (gameElement != null) {

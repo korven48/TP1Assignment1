@@ -22,6 +22,7 @@
 * Sometimes the truck just fanish
 * Why is sometime the truck just passing the player?
 * The update method should occur only when the game cycle is updated?
+* Should we introduce a postion interface? Because the solution for wave is really dirty
 
 ### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>
