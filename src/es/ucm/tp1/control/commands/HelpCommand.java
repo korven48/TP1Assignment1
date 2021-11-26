@@ -17,7 +17,13 @@ final class HelpCommand extends Command {
 		"[a]: go down",
 		"[e]xit: exit game",
 		"[r]eset: reset game",
-		"[t]est: enables test mode",	
+		"[t]est: enables test mode",
+		"[t]est: enables test mode",
+		"[s]hoot: shoot bullet",
+		"[g]renade <x> <y>: add a grenade in position x, y",
+		"[w]ave: do wave",
+		"Clear [0]: Clears the road",
+		"Cheat <AO-name>: Removes all elements of last visible column and adds advanced object AO"
 	};
 	/* @formatter:off */
 	
