@@ -54,6 +54,7 @@ public class Obstacle extends GameElement{
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
+		resistance = 0;
 		player.reciveDamage();
 		return true; // true because the player crashes 
 	}

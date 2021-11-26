@@ -47,7 +47,7 @@ public class Player extends GameElement{
 		if (direction.equals(Direction.UP)) {
 			this.y--;
 		} else if (direction.equals(Direction.DOWN)) {
-			this.y++;	
+			this.y++;
 		}
 		if (! direction.equals(Direction.NONE)) {
 			this.x++;

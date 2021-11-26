@@ -247,9 +247,13 @@ public class Game {
 				System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
 			}
 		//}
-		this.player.doCollision();
+		player.doCollision();
 		return shouldDisplay;
 	}
+	
+//	public boolean checkCollitions() {
+//		return this.player.doCollision();		
+//	}
 	
 	public String positionToString(int x, int y) {
 		String position = "";
@@ -279,9 +283,10 @@ public class Game {
 	}
 
 	public void update() {
-		player.update();
 		elements.update();
 		removeDeadObjects();
+		player.doCollision();
+		player.update();
 	}
 	
 	public void playerReceiveCoin (int amount) {

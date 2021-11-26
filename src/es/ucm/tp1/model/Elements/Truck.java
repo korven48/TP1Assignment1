@@ -3,8 +3,6 @@ package es.ucm.tp1.model.Elements;
 import es.ucm.tp1.model.Game;
 
 public class Truck extends Obstacle {
-	// Maybe its not an obstacle
-	
 	private static final String NAME = "truck";
 	private static final String CON_SYMBOL = "←"; // \u2190
 	

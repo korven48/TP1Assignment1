@@ -24,7 +24,7 @@ public class Controller {
 	}
 
 	public void printGame() {
-		game.update();
+//		game.update();
 		System.out.println(printer);
 	}
 	
@@ -52,7 +52,7 @@ public class Controller {
 			command = Command.getCommand(parameters);
 			if (command != null) {
 				refreshDisplay = command.execute(game);
-//				game.update();
+				game.update();
 			} else {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
