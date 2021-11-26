@@ -29,33 +29,32 @@ public class Turbo extends GameElement {
 
 	@Override
 	public boolean receiveCollision(ColliderCallback player) {
-		for (int i = 0; i < Turbo.steps; i++) {
-			this.game.movePlayer(false, Direction.FORWARD);
-		}
+		// This checks collitions
+//		for (int i = 0; i < Turbo.steps; i++) {
+//			this.game.movePlayer(false, Direction.FORWARD);
+//		}
+		// This does not checks collitions
+		player.moveForward(steps);
 		return true; // true because the player crashes 
 	}
 	
 	@Override
 	public void onEnter() {
-		// TODO Auto-generated method stub
 		Turbo.counter++;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
 		Turbo.counter--;
 	}
 
 	@Override
 	public boolean isAlive() {
-		// TODO Auto-generated method stub
 		return !isCollected();
 	}
 	

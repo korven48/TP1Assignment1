@@ -279,7 +279,7 @@ public class Game {
 	}
 		
 	public void removeDeadObjects() {
-		elements.removeDead();	
+		elements.removeDead();
 	}
 
 	public void update() {
