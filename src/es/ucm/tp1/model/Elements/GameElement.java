@@ -114,7 +114,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	
 	@Override
 	public boolean moveRight() {
-		this.x++;
+		x += 1;
 		return true;
 	}
 

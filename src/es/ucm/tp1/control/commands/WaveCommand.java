@@ -17,7 +17,6 @@ final class WaveCommand extends Command implements Buyable{
 		
 	@Override
 	public boolean execute(Game game) {
-		// TODO Auto-generated method stub
 		boolean result = false;
 		if (game.getAmountOfCoinsPlayer() >= this.cost()) {
 			this.buy(game);
