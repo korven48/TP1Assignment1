@@ -20,8 +20,7 @@ final class MoveUpCommand extends Command {
 		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.UP;
 		try {
-			result = game.movePlayer(result, direction);
-			game.incrementCyle();
+			result = game.incrementCyle(direction);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

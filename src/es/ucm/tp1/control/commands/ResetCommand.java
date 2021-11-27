@@ -5,7 +5,7 @@ import es.ucm.tp1.model.Game;
 
 final class ResetCommand extends Command {
 	private static final String NAME = "reset";
-	private static final String DETAILS = "[r]eset";
+	private static final String DETAILS = "[r]eset [<level> <seed>]";
 	private static final String SHORTCUT = "r";
 	private static final String HELP = "reset game";
 	

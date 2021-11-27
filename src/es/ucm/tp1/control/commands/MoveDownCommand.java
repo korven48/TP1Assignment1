@@ -20,8 +20,7 @@ final class MoveDownCommand extends Command {
 		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.DOWN;
 		try {
-			result = game.movePlayer(result, direction);
-			game.incrementCyle();
+			result = game.incrementCyle(direction);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

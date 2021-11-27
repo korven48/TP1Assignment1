@@ -7,8 +7,7 @@ final class WaveCommand extends Command implements Buyable{
 	private static final String NAME = "wave";
 	private static final String DETAILS = "[w]ave"; 
 	private static final String SHORTCUT = "w";
-	private static final String HELP = "pushes all the game elements within the visibility (except the car) one square to the right";
-
+	private static final String HELP = "do wave";
 	private static final int COST = 5;
 
 	public WaveCommand() {

@@ -59,7 +59,7 @@ public class Game {
 		this.level = level;
 		//this is just setting the player to the middle without considering the previous postion!
 		//Problem!
-		this.player.setX((int)(level.getWidth() / 2));
+		//this.player.setX((int)(level.getWidth() / 2));
 		// ---------------------------  End - Addition to reset ---------------------------
 	}
 	
@@ -81,8 +81,14 @@ public class Game {
 		return isTestMode;
 	}
 	
-	public void incrementCyle() {
+	//In further iterations we could also throw an exception if it does not work
+	public boolean incrementCyle(Direction direction) {
+		boolean result = false;
+		if (direction != null) {
+			result = this.movePlayer(result, direction);
+		}
 		this.cycle++;
+		return result; 
 	}
 	
 	public int getCycle() {
@@ -213,21 +219,8 @@ public class Game {
 
 
 	public Collider getObjectInPosition(int x, int y) {
-		GameElement elem;
-		Collider out;
-		int index = -1;
-		for (int i = 0; i < elements.size(); i++) {
-			elem = elements.get(i);
-			if (elem.isInPos(x, y)) {
-				index = i;
-			}
-		}
-		if (index == -1) {
-			out = null;
-		} else {
-			out = (Collider) elements.get(index);			
-		}
-		return out;
+		Collider col = elements.getObjectInPosition(x, y);
+		return col;
 	}
 	
 	private boolean canMove(Direction direction) {
@@ -240,7 +233,7 @@ public class Game {
 	}
 		
 	
-	public boolean movePlayer(boolean shouldDisplay, Direction direction) {
+	boolean movePlayer(boolean shouldDisplay, Direction direction) {
 		//if (this.player.doCollision()) {
 			if (canMove(direction)) {
 				if (!(direction.equals(Direction.NONE))) {
@@ -266,7 +259,7 @@ public class Game {
 			position = FINISH_LINE;
 		} 
 		if(player.isInPos(x, y)) {
-			position = player.getSymbol();
+			position = player.toString();
 		} else {
 			GameElement elem2;
 			for (int i = 0; i < elements.size(); i++) {
@@ -276,7 +269,7 @@ public class Game {
 				}
 			}
 			if (elem != null) {
-				position = elem.getSymbol();
+				position = elem.toString();
 			} 
 		}
 		return position;

@@ -72,15 +72,9 @@ public class Obstacle extends GameElement{
 		return false;
 	}
 	
-	
 	@Override
 	public void onEnter() {
 		Obstacle.counter++;
-	}
-
-	@Override
-	public void update() {
-
 	}
 
 	@Override

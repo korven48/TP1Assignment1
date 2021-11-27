@@ -25,12 +25,6 @@ public class Grenade extends GameElement {
 	}
 
 	@Override
-	public void onEnter() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void update() {
 //		cyclesLeft = TOTALCYCLES - (game.getCycle() - initialCycle);
 		cyclesLeft--;
@@ -40,9 +34,9 @@ public class Grenade extends GameElement {
 	public void onDelete() {
 		explode();
 	}
-	
+		
 	@Override
-	public String getSymbol() {
+	public String toString() {
 		// ð[3]
 		return symbol + "[" + cyclesLeft + "]";
 	}

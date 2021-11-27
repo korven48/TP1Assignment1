@@ -5,6 +5,11 @@
 * Lukas: 1.5 + 1.7 + 1.10
 * Lucas: 1.6 + 1.8 + 1.9
 
+		//this is just setting the player to the middle without considering the previous postion!
+		//Problem!
+		//this.player.setX((int)(level.getWidth() / 2));
+		//How to solve the printing from the Playercan not move
+
 #### Free for review
 * Lukas: 1.1 (done) + 1.3 (done - how shall it be generated) 
 * Lucas: 1.2 (done) + 1.4 (done)
@@ -23,6 +28,7 @@
 * Why is sometime the truck just passing the player?
 * The update method should occur only when the game cycle is updated?
 * Should we introduce a postion interface? Because the solution for wave is really dirty
+* We should check the printing of info
 
 ### Non-prio tasks
 * <b> We have to take about the visibility of the different classes </b>

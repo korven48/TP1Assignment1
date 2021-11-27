@@ -1,6 +1,9 @@
 package es.ucm.tp1.model.Elements;
 
 import java.util.List;
+
+import es.ucm.tp1.model.Collider;
+
 import java.util.ArrayList;
 
 public final class GameElementContainer {
@@ -82,8 +85,24 @@ public final class GameElementContainer {
 		return out;
 	}
 	
+	public Collider getObjectInPosition(int x, int y) {
+		GameElement elem;
+		Collider out;
+		int index = -1;
+		for (int i = 0; i < gameElements.size(); i++) {
+			elem = gameElements.get(i);
+			if (elem.isInPos(x, y)) {
+				index = i;
+			}
+		}
+		if (index == -1) {
+			out = null;
+		} else {
+			out = (Collider) gameElements.get(index);			
+		}
+		return out;
+	}
 	
-
 	public boolean isFull() {
 		if ((this.gameElements.size()) == CAPACITY) return true;
 		return false;
