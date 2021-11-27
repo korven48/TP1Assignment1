@@ -219,21 +219,8 @@ public class Game {
 
 
 	public Collider getObjectInPosition(int x, int y) {
-		GameElement elem;
-		Collider out;
-		int index = -1;
-		for (int i = 0; i < elements.size(); i++) {
-			elem = elements.get(i);
-			if (elem.isInPos(x, y)) {
-				index = i;
-			}
-		}
-		if (index == -1) {
-			out = null;
-		} else {
-			out = (Collider) elements.get(index);			
-		}
-		return out;
+		Collider col = elements.getObjectInPosition(x, y);
+		return col;
 	}
 	
 	private boolean canMove(Direction direction) {
