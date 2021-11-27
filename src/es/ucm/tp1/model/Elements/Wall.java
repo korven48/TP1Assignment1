@@ -26,17 +26,7 @@ public final class Wall extends Obstacle {
 	public boolean isAdvanced() {
 		return true;
 	}
-	
-	@Override
-	public boolean receiveShot() {
-		boolean result = false; 
-		if (resistance > 0) {
-			resistance--;
-			result = true;
-		}
-		return result;
-	}
-		
+			
 	@Override
 	public String toString() {
 		String result = "";
@@ -56,21 +46,7 @@ public final class Wall extends Obstacle {
 		}
 		return result;
 	}
-	
-	@Override
-	public boolean receiveCollision(ColliderCallback player) {
-		player.reciveDamage();
-		return true; // true because the player crashes 
-	}
-
-	@Override
-	public boolean isAlive() {
-		if (resistance > 0) {
-			return true;
-		}
-		return false;
-	}
-	
+		
 	@Override
 	public void onEnter() {
 		Wall.counter++;
@@ -78,9 +54,18 @@ public final class Wall extends Obstacle {
 
 	@Override
 	public void onDelete() {
-		game.playerReceiveCoin(Wall.AMOUNT_COIN_GAINABLE);
+		super.onDelete();
 		Wall.counter--;
 	}	
+	
+	@Override
+	public boolean receiveShot() {
+		boolean result = super.receiveShot();
+		if (this.resistance == 0) {
+			game.sendPlayerCoins(AMOUNT_COIN_GAINABLE);
+		}
+		return result;
+	}
 	
 	public static void reset() {
 		Wall.counter = 0;
@@ -88,7 +73,6 @@ public final class Wall extends Obstacle {
 	
 	@Override
 	public Wall create(Game game, int x, int y) {
-		// TODO Auto-generated method stub
 		return new Wall(game, x, y);
 	}
 }

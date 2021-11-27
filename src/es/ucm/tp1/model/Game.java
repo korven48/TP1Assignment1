@@ -318,6 +318,10 @@ public class Game {
 	public Level getLevel() {
 		return this.level;
 	}
+	
+	public void sendPlayerCoins(int amount) {
+		player.addCoins(amount);
+	}
 }
 
 
