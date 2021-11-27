@@ -61,7 +61,7 @@ public class Player extends GameElement{
 	
 	@Override
 	public String toString() {
-		return getSymbol();
+		return symbol;
 	}
 	
 	@Override

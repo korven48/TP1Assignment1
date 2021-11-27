@@ -36,9 +36,9 @@ public final class Wall extends Obstacle {
 		}
 		return result;
 	}
-	
+		
 	@Override
-	public String getSymbol() {
+	public String toString() {
 		String result = "";
 		switch (resistance) {
 			case 3:
@@ -63,7 +63,6 @@ public final class Wall extends Obstacle {
 		return true; // true because the player crashes 
 	}
 
-
 	@Override
 	public boolean isAlive() {
 		if (resistance > 0) {
@@ -72,16 +71,9 @@ public final class Wall extends Obstacle {
 		return false;
 	}
 	
-	
 	@Override
 	public void onEnter() {
 		Wall.counter++;
-	}
-
-	@Override
-	public void update() {
-		//Element wird eins nach hinten versetzt
-		//this.x--;
 	}
 
 	@Override

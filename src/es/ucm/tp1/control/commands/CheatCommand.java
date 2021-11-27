@@ -6,9 +6,9 @@ import es.ucm.tp1.model.Elements.GameElement;
 
 public class CheatCommand extends Command {
 	private static final String NAME = "cheat";
-	private static final String DETAILS = "[c]heat";
+	private static final String DETAILS = "Cheat <AO-name>";
 	private static final String SHORTCUT = "c";
-	private static final String HELP = "add an advanced game element";
+	private static final String HELP = "Removes all elements of last visible column and adds advanced object AO";
 	private static final String NOT_AN_ADVANCED_GAME_ELEMENT = "Not an advanced game element";
 	private String element;
 	

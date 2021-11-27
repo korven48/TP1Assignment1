@@ -7,17 +7,17 @@ public abstract class Command {
 	protected static final Command[] AVAILABLE_COMMANDS = {
 			new HelpCommand(),
 			new InfoCommand(),
-			new MoveDownCommand(),
-			new MoveUpCommand(),
-			new ExitCommand(),
 			new NoneCommand(),
+			new MoveUpCommand(),
+			new MoveDownCommand(),
+			new ExitCommand(),
 			new ResetCommand(),
 			new TestModeCommand(),
-			new CheatCommand(),
-			new ClearCommand(),
+			new ShootCommand(),
 			new GrenadeCommand(),
 			new WaveCommand(),
-			new ShootCommand()
+			new ClearCommand(),
+			new CheatCommand()
 	};
 	
 	private final String name;
@@ -63,5 +63,23 @@ public abstract class Command {
 			}
 		}
 		return currentCommand;
+	}
+	
+	protected static final String getCommandDetailsAndHelpToString() {
+		StringBuilder sb = new StringBuilder();
+		String ac = "Available commands:%n";
+		sb.append(ac);
+		for (Command command : Command.AVAILABLE_COMMANDS) {
+			sb.append(command.getDetails() + ": " + command.getHelp() + "%n");
+		}
+		return String.format(sb.toString()).trim();
+	}
+	
+	String getDetails() {
+		return this.details;
+	}
+	
+	String getHelp() {
+		return this.help;
 	}
 }

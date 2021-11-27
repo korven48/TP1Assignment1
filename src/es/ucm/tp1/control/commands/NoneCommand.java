@@ -5,7 +5,7 @@ import es.ucm.tp1.model.Game;
 
 final class NoneCommand extends Command {
 	private static final String NAME = "none";
-	private static final String DETAILS = "[n]one";
+	private static final String DETAILS = "[n]one | []";
 	private static final String SHORTCUT = "n";
 	private static final String HELP = "update";
 	
@@ -27,8 +27,7 @@ final class NoneCommand extends Command {
 		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.FORWARD;
 		try {
-			result = game.movePlayer(result, direction);
-			game.incrementCyle();
+			result = game.incrementCyle(direction);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		
