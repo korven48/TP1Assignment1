@@ -115,11 +115,22 @@ public class Player extends GameElement{
 		return false;
 	}
 
-	protected boolean canMove(Game game, Direction direction, boolean result) {
+	boolean canMove(Game game, Direction direction) {
+		boolean result = true;
 		if (direction.equals(Direction.DOWN) && getY() >= game.level.getWidth() - 1)
 			result = false;
 		else if (direction.equals(Direction.UP) && getY() <= 0)
 			result = false;
 		return result;
+	}
+
+	boolean processingMovement(Game game, boolean shouldDisplay, Direction direction) {
+		if (this.canMove(game, direction)) {
+			if (!(direction.equals(Direction.NONE))) {
+				move(direction);
+				shouldDisplay = true;				
+			}
+		}
+		return shouldDisplay;
 	}
 }

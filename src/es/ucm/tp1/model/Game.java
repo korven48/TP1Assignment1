@@ -206,7 +206,6 @@ public class Game {
 		boolean crashed, result;
 		victory = checkFinishLine();
 		crashed = player.isCrashed();
-		
 		result = crashed || victory || exit;
 		
 		return result; 
@@ -224,24 +223,13 @@ public class Game {
 		return col;
 	}
 	
-	private boolean canMove(Direction direction) {
-		boolean result = true;
-		result = player.canMove(this, direction, result);
-		return result;
-	}
-
-
 	boolean movePlayer(boolean shouldDisplay, Direction direction) {
-		if (canMove(direction)) {
-			if (!(direction.equals(Direction.NONE))) {
-				player.move(direction);
-				shouldDisplay = true;				
-			}
-		}
+		shouldDisplay = player.processingMovement(this, shouldDisplay, direction);
 		player.doCollision();
 		return shouldDisplay;
 	}
-		
+
+
 	public String positionToString(int x, int y) {
 		String position = "";
 		GameElement elem = null;
