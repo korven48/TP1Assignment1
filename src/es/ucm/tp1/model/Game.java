@@ -234,24 +234,16 @@ public class Game {
 		
 	
 	boolean movePlayer(boolean shouldDisplay, Direction direction) {
-		//if (this.player.doCollision()) {
-			if (canMove(direction)) {
-				if (!(direction.equals(Direction.NONE))) {
-					player.move(direction);
-					shouldDisplay = true;				
-				}
-			} else {
-				System.out.println("\n\tWARNING: Coudn't move the player in that direction\n");
+		if (canMove(direction)) {
+			if (!(direction.equals(Direction.NONE))) {
+				player.move(direction);
+				shouldDisplay = true;				
 			}
-		//}
+		}
 		player.doCollision();
 		return shouldDisplay;
 	}
-	
-//	public boolean checkCollitions() {
-//		return this.player.doCollision();		
-//	}
-	
+		
 	public String positionToString(int x, int y) {
 		String position = "";
 		GameElement elem = null;
