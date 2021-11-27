@@ -13,7 +13,7 @@ import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
 
 public class Game {
-	private Player player = null;
+	Player player = null;
 	private GameElementContainer elements; 
 
 	private long ellapsedtime;
@@ -226,14 +226,11 @@ public class Game {
 	
 	private boolean canMove(Direction direction) {
 		boolean result = true;
-		if (direction.equals(Direction.DOWN) && player.getY() >= level.getWidth() - 1)
-			result = false;
-		else if (direction.equals(Direction.UP) && player.getY() <= 0)
-			result = false;
+		result = player.canMove(this, direction, result);
 		return result;
 	}
-		
-	
+
+
 	boolean movePlayer(boolean shouldDisplay, Direction direction) {
 		if (canMove(direction)) {
 			if (!(direction.equals(Direction.NONE))) {

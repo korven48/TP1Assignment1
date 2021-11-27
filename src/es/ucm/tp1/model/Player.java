@@ -114,4 +114,12 @@ public class Player extends GameElement{
 	public boolean moveRight() {
 		return false;
 	}
+
+	protected boolean canMove(Game game, Direction direction, boolean result) {
+		if (direction.equals(Direction.DOWN) && getY() >= game.level.getWidth() - 1)
+			result = false;
+		else if (direction.equals(Direction.UP) && getY() <= 0)
+			result = false;
+		return result;
+	}
 }
