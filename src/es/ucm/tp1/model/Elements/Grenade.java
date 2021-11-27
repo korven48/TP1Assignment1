@@ -6,17 +6,15 @@ import es.ucm.tp1.model.Game;
 public class Grenade extends GameElement {
 
 	private static final String NAME = "granade";
-	private static final int TOTALCYCLES = 3;
+	private static final int TOTALCYCLES = 4;
 	
-	private int initialCycle, cyclesLeft;
+	private int cyclesLeft;
 
-	public Grenade(int x, int y, Game game) {
+	public Grenade(Game game, int x, int y) {
 		// ExplodeAction object should be so
 		// created by the constructor of the Grenade class
 		super(game, x, y, NAME);
-//		initialCycle = game.getCycle();
-//		cyclesLeft = TOTALCYCLES;
-		cyclesLeft = 3;
+		cyclesLeft = TOTALCYCLES;
 		symbol = "ð";
 	}
 	
@@ -52,7 +50,7 @@ public class Grenade extends GameElement {
 
 	@Override
 	public GameElement create(Game game, int x, int y) {
-		return new Grenade(x, y, game);
+		return new Grenade(game, x, y);
 	}
 
 }

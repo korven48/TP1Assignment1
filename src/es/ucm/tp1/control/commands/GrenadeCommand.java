@@ -32,8 +32,8 @@ public class GrenadeCommand extends Command implements Buyable {
 				y = Integer.valueOf(words[2]);
 				return new GrenadeCommand(x, y);
 			} else {
-				System.out.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
-					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
+				Command.printMessage(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
 		}
 		return null;
@@ -44,7 +44,7 @@ public class GrenadeCommand extends Command implements Buyable {
 	public boolean execute(Game game) {
 		// should create a granade in position (playerX + x, y), with x < visibility
 		boolean result = false;
-		if (game.playerPays(cost())) {
+		if (game.getAmountOfCoinsPlayer() >= this.cost()){
 			this.buy(game);
 			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
 			result = true;

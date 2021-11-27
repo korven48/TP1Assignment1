@@ -26,8 +26,8 @@ public class CheatCommand extends Command {
 		String element;
 		if (this.matchCommandName(words[0])) {
 			if (words.length != 2) {
-				System.out.format("[ERROR]: Command %s: %s%n%n", CheatCommand.NAME,
-							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
+				Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 				return null;
 			} else {
 				element = words[1];
@@ -41,8 +41,8 @@ public class CheatCommand extends Command {
 	public boolean execute(Game game) {
 		boolean generated = GameElementGenerator.generateCheatObject(game, element);
 		if (! generated) {
-			System.out.format("[ERROR]: Command %s: %s%n%n", CheatCommand.NAME,
-					CheatCommand.NOT_AN_ADVANCED_GAME_ELEMENT);					
+			Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+					CheatCommand.NOT_AN_ADVANCED_GAME_ELEMENT));			
 		}
 		return generated;
 	}

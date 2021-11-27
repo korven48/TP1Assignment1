@@ -19,5 +19,4 @@ public class ClearCommand extends Command {
 		game.removeAll();
 		return true;
 	}
-
 }

@@ -87,6 +87,7 @@ public class Game {
 		if (direction != null) {
 			result = this.movePlayer(result, direction);
 		}
+//		GameElementGenerator.generateRuntimeObjects(this);
 		this.cycle++;
 		return result; 
 	}
@@ -287,13 +288,6 @@ public class Game {
 		action.execute(this);		
 	}
 	
-	public boolean playerPays (int amount) {
-		if (player.getCoins() >= amount) {
-			player.pay(amount);
-			return true;
-		}
-		return false;
-	}
 
 	public int getPlayerLane() {
 		return player.getY();
@@ -304,13 +298,23 @@ public class Game {
 	}
 	
 	public void execute (InstantAction action) {
-		
+		action.execute(this);
 	}
 	
 	public Level getLevel() {
 		return this.level;
 	}
-	
+
+	public void playerPays(int cost) {
+		player.pay(cost);
+	}
+
+
+	public int getRandomColumn() {
+		int column = rand.nextInt(getVisibility()) + getCameraPosition();
+		return column;
+	}
+
 	public void sendPlayerCoins(int amount) {
 		player.addCoins(amount);
 	}

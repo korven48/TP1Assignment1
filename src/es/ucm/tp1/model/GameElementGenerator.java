@@ -52,7 +52,7 @@ public final class GameElementGenerator {
 	}
 	
 	public static void generateGranade(Game game, int x, int y) {
-		game.addObject(new Grenade(x, y, game));
+		game.addObject(new Grenade(game, x, y));
 	}
 
 	private static GameElement getGameElement(String word) {
