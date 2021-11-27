@@ -28,7 +28,7 @@ final class NoneCommand extends Command {
 		Direction direction = Direction.FORWARD;
 		try {
 			result = game.incrementCyle(direction);
-			if (result) Command.printMessage(String.format("%nWARNING: Coudn't move the player in that direction"));
+			if (result) Command.printMessage(String.format("WARNING: Coudn't move the player in that direction"));
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		
