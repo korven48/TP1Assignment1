@@ -1,6 +1,7 @@
 package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.ColliderCallback;
 
 //Convert to Singelton in the future --> https://refactoring.guru/design-patterns/singleton 
@@ -17,7 +18,7 @@ public class SuperCoin extends GameElement {
 		if (sCoin == null || reset) {
 			sCoin = new SuperCoin(game, x, y); 
 		}
-		return sCoin; 
+		return sCoin;
 	}
 	
 	public SuperCoin(Game game, int x, int y) {
@@ -58,7 +59,7 @@ public class SuperCoin extends GameElement {
 	@Override
 	public void update() {
 		if (isExisting) {
-			System.out.println("Supercoin is present");
+			GamePrinter.printMessage("Super coin is present!");
 		}
 	}
 

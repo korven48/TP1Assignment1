@@ -69,6 +69,10 @@ public class GamePrinter {
 		
 		return str.toString();
 	}
+	
+	public static final void printMessage(String msg) {
+		System.out.println(msg);
+	}
 
 	
 	public String endMessage(){
