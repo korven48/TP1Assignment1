@@ -313,7 +313,6 @@ public class Game {
 		return this.level;
 	}
 
-
 	public void playerPays(int cost) {
 		player.pay(cost);
 	}
@@ -322,6 +321,10 @@ public class Game {
 	public int getRandomColumn() {
 		int column = rand.nextInt(getVisibility()) + getCameraPosition();
 		return column;
+	}
+
+	public void sendPlayerCoins(int amount) {
+		player.addCoins(amount);
 	}
 }
 
