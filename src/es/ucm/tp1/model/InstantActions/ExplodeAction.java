@@ -22,12 +22,12 @@ public final class ExplodeAction implements InstantAction {
 				if (i != 0 || j != 0) { // if the position is not that of the granade
 					element = game.getObjectInPosition(x + i, y + j);									
 					if (element != null) {
-						element.receiveShot();
+						element.receiveShot(game.getPlayerCallback());
 					}
 				}
 			}
 		}
-		game.update();
+		game.removeDeadObjects();
 	}
 
 }

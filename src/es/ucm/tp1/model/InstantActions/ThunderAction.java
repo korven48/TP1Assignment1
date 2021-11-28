@@ -12,13 +12,13 @@ public final class ThunderAction implements InstantAction {
 		int x = game.getRandomColumn();
 		int y = game.getRandomLane();
 		boolean hit = false;
-		
+
+				
 		Collider gameElement = game.getObjectInPosition(x, y);
 		
 		if (gameElement != null) {
 			hit = gameElement.receiveThunder();
 		}
-		
-		GamePrinter.printMessage("Thunder hit position: (" + x + ", " + y + ")" + ((hit) ? "-> Obstacle hit":""));
+		GamePrinter.printMessage("Thunder hit position: (" + (x - game.getCameraPosition()) + ", " + y + ")" + (hit ? " -> Obstacle hit":""));
 	}
 }

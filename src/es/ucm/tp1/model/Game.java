@@ -5,8 +5,9 @@ import es.ucm.tp1.control.Level;
 
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
+import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.Elements.GameElementContainer;
-import es.ucm.tp1.model.GameElementGenerator;
+//import es.ucm.tp1.model.GameElementGenerator;
 
 //We just imported that because we need to access the static fields
 import es.ucm.tp1.model.Elements.Coin;
@@ -87,7 +88,7 @@ public class Game {
 		if (direction != null) {
 			result = this.movePlayer(result, direction);
 		}
-//		GameElementGenerator.generateRuntimeObjects(this);
+		update();
 		this.cycle++;
 		return result; 
 	}
@@ -194,7 +195,7 @@ public class Game {
 		str.append(String.format("Coins: " + player.getCoins() + "%n"));
 		str.append(String.format("Cicle: " + this.cycle + "%n"));
 		str.append(String.format("Total obstacles: " + Obstacle.counter + "%n"));
-		str.append(String.format("Total coins: " + Coin.counter + "%n")); 
+		str.append(String.format("Total coins: " + Coin.counter + "%n"));
 		if (!isTest()) {
 			str.append(String.format("Ellapsed Time: " + getTime() + "%n"));
 		}
@@ -217,18 +218,20 @@ public class Game {
 		return finnished;
 	}
 
-
 	public Collider getObjectInPosition(int x, int y) {
 		Collider col = elements.getObjectInPosition(x, y);
 		return col;
 	}
 	
+	public ColliderCallback getPlayerCallback() {
+		return player;
+	}
+		
 	boolean movePlayer(boolean shouldDisplay, Direction direction) {
-		shouldDisplay = player.processingMovement(this, shouldDisplay, direction);
+		shouldDisplay = player.processingMovement(shouldDisplay, direction);
 		player.doCollision();
 		return shouldDisplay;
 	}
-
 
 	public String positionToString(int x, int y) {
 		String position = "";
@@ -265,25 +268,16 @@ public class Game {
 		player.update();
 	}
 	
-	public void playerReceiveCoin (int amount) {
-		player.addCoins(amount);
-	}
-	
 	public void doInstantAction(InstantAction action) {
 		action.execute(this);		
 	}
 	
-
 	public int getPlayerLane() {
 		return player.getY();
 	}
 	
 	public int getAmountOfCoinsPlayer() {
 		return player.getCoins();
-	}
-	
-	public void execute (InstantAction action) {
-		action.execute(this);
 	}
 	
 	public Level getLevel() {
@@ -294,15 +288,8 @@ public class Game {
 		player.pay(cost);
 	}
 
-
 	public int getRandomColumn() {
 		int column = rand.nextInt(getVisibility()) + getCameraPosition();
 		return column;
 	}
-
-	public void sendPlayerCoins(int amount) {
-		player.addCoins(amount);
-	}
 }
-
-

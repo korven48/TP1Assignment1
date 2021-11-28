@@ -21,7 +21,6 @@ final class MoveDownCommand extends Command {
 		Direction direction = Direction.DOWN;
 		try {
 			result = game.incrementCyle(direction);
-			if (result) Command.printMessage(String.format("WARNING: Coudn't move the player in that direction"));
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}		

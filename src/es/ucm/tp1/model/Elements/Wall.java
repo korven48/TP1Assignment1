@@ -59,10 +59,10 @@ public final class Wall extends Obstacle {
 	}	
 	
 	@Override
-	public boolean receiveShot() {
-		boolean result = super.receiveShot();
+	public boolean receiveShot(ColliderCallback player) {
+		boolean result = super.receiveShot(player);
 		if (this.resistance == 0) {
-			game.sendPlayerCoins(AMOUNT_COIN_GAINABLE);
+			player.addCoins(AMOUNT_COIN_GAINABLE);
 		}
 		return result;
 	}

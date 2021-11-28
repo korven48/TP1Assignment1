@@ -11,10 +11,10 @@ public final class ShootAction implements InstantAction {
 		int lanePlayer = game.getPlayerLane();
 		int camera = game.getCameraPosition();
 		Collider element = null;
-		for (int x = camera; x <= camera + game.getVisibility(); x++) {
+		for (int x = camera; x <= camera + game.getVisibility() - 1; x++) {
 			element = game.getObjectInPosition(x, lanePlayer);
 			if (element != null) {
-				if (element.receiveShot()) {
+				if (element.receiveShot(game.getPlayerCallback())) {
 					return;					
 				}
 			}

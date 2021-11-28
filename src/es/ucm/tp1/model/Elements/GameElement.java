@@ -23,6 +23,11 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	public boolean receiveThunder() {
 		return false;
 	}
+	
+	@Override
+	public void looseCoins() {
+
+	}
 
 	public GameElement(String name) {
 		this.NAME = name;
@@ -44,7 +49,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	}
 
 	@Override
-	public boolean receiveShot() {
+	public boolean receiveShot(ColliderCallback player) {
 		return false; 
 	};
 	
@@ -110,7 +115,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	}
 	
 	@Override
-	public boolean receiveExplosion() {
+	public boolean receiveExplosion(ColliderCallback player) {
 		return false;
 	}
 	

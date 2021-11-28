@@ -73,12 +73,17 @@ public class GamePrinter {
 	public static final void printMessage(String msg) {
 		System.out.println(msg);
 	}
+	
+	public static final void printMessage(String msg, boolean newline) {
+		if (newline) {
+			System.out.println(msg);
+		} else {
+			System.out.print(msg);			
+		}
+	}
 
 	
 	public String endMessage(){
-		
-		String s;
-		
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append(GAME_OVER_MSG);

@@ -47,7 +47,7 @@ public final class GameElementGenerator {
 	public static void generateRuntimeObjects(Game game) {
 		// Note we use this method to create and inject new objects or actions on runtime.
 		if (game.getLevel().hasAdvancedObjects()) {
-			game.execute(new ThunderAction()); 
+			game.doInstantAction(new ThunderAction()); 
 		}
 	}
 	

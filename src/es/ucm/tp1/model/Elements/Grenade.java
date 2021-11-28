@@ -6,13 +6,11 @@ import es.ucm.tp1.model.Game;
 public class Grenade extends GameElement {
 
 	private static final String NAME = "granade";
-	private static final int TOTALCYCLES = 4;
+	private static final int TOTALCYCLES = 3;
 	
 	private int cyclesLeft;
 
 	public Grenade(Game game, int x, int y) {
-		// ExplodeAction object should be so
-		// created by the constructor of the Grenade class
 		super(game, x, y, NAME);
 		cyclesLeft = TOTALCYCLES;
 		symbol = "ð";
@@ -24,7 +22,6 @@ public class Grenade extends GameElement {
 
 	@Override
 	public void update() {
-//		cyclesLeft = TOTALCYCLES - (game.getCycle() - initialCycle);
 		cyclesLeft--;
 	}
 

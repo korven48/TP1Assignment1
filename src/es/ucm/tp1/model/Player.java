@@ -1,6 +1,7 @@
 package es.ucm.tp1.model;
 
 import es.ucm.tp1.model.Elements.GameElement;
+import es.ucm.tp1.view.GamePrinter;
 
 public class Player extends GameElement{
 	private static final String NAME = "player";
@@ -40,6 +41,33 @@ public class Player extends GameElement{
 	@Override
 	public void reciveDamage () {
 		player.resistance--;
+	}
+	
+	@Override
+	public void looseCoins() {
+		super.looseCoins();
+		coinsCount = 0;
+	}
+	
+	boolean canMove(Direction direction) {
+		boolean result = true;
+		if (direction.equals(Direction.DOWN) && getY() >= game.level.getWidth() - 1)
+			result = false;
+		else if (direction.equals(Direction.UP) && getY() <= 0)
+			result = false;
+		return result;
+	}
+	
+	boolean processingMovement(boolean shouldDisplay, Direction direction) {
+		if (this.canMove(direction)) {
+			if (!(direction.equals(Direction.NONE))) {
+				move(direction);
+				shouldDisplay = true;				
+			}
+		} else {
+			GamePrinter.printMessage("WARNING: Coudn't move the player in that direction");
+		}
+		return shouldDisplay;
 	}
 	
 	public void move(Direction direction) {
@@ -96,7 +124,7 @@ public class Player extends GameElement{
 		return coinsCount;
 	}
 	public boolean isCrashed() {
-		return player.resistance == 0;
+		return player.resistance <= 0;
 	}
 
 	public void pay(int amount) {
@@ -115,22 +143,6 @@ public class Player extends GameElement{
 		return false;
 	}
 
-	boolean canMove(Game game, Direction direction) {
-		boolean result = true;
-		if (direction.equals(Direction.DOWN) && getY() >= game.level.getWidth() - 1)
-			result = false;
-		else if (direction.equals(Direction.UP) && getY() <= 0)
-			result = false;
-		return result;
-	}
 
-	boolean processingMovement(Game game, boolean shouldDisplay, Direction direction) {
-		if (this.canMove(game, direction)) {
-			if (!(direction.equals(Direction.NONE))) {
-				move(direction);
-				shouldDisplay = true;				
-			}
-		}
-		return shouldDisplay;
-	}
+
 }
