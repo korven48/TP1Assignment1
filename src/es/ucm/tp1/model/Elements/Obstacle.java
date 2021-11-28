@@ -1,6 +1,7 @@
 package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.ColliderCallback;
 
 public class Obstacle extends GameElement{
@@ -27,7 +28,7 @@ public class Obstacle extends GameElement{
 	}
 	
 	@Override
-	public boolean receiveShot() {
+	public boolean receiveShot(ColliderCallback player) {
 		boolean result = false; 
 		if (resistance > 0) {
 			resistance--;
@@ -37,13 +38,14 @@ public class Obstacle extends GameElement{
 	}
 	
 	@Override
-	public boolean receiveExplosion() {
-		return receiveShot();
+	public boolean receiveExplosion(ColliderCallback player) {
+		return receiveShot(game.getPlayerCallback());
 	}
 	
 	@Override
 	public boolean receiveThunder() {
 		resistance = 0;
+//		GamePrinter.printMessage(" -> " + this.NAME + " hit");
 		return true;
 	}
 	

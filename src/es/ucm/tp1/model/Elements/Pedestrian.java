@@ -1,5 +1,6 @@
 package es.ucm.tp1.model.Elements;
 
+import es.ucm.tp1.model.ColliderCallback;
 import es.ucm.tp1.model.Game;
 
 public class Pedestrian extends Obstacle {
@@ -8,12 +9,6 @@ public class Pedestrian extends Obstacle {
 	private static final String CON_SYMBOL = "☺";
 	
 	private boolean goingUp;
-	
-	/*
-	 * You must not allow the player and a pedestrian to pass
-	 * through each other without colliding; as for the implementation of the Turbo command,
-	 * this will involve checking for collisions twice on every cycle. 
-	*/ 
 	
 	public Pedestrian(Game game, int x, int y) {
 		super(game, x, y, NAME); 
@@ -47,11 +42,9 @@ public class Pedestrian extends Obstacle {
 	}
 	
 	@Override
-	public boolean receiveShot() {
-		super.receiveShot();
-		// receiveShot(ColliderCallback Player)
-		// If the pedestrian is hit by a bullet or a grenade, the player loses all their coins but does not
-		// die and the game continues.
+	public boolean receiveShot(ColliderCallback player) {
+		super.receiveShot(player);
+		player.looseCoins();
 		return true;
 	}
 	

@@ -24,7 +24,6 @@ public class Controller {
 	}
 
 	public void printGame() {
-//		game.update();
 		System.out.println(printer);
 	}
 	
@@ -52,7 +51,8 @@ public class Controller {
 			command = Command.getCommand(parameters);
 			if (command != null) {
 				refreshDisplay = command.execute(game);
-				game.update();
+//				game.update(); Update should only be called when the cycle increments
+				game.removeDeadObjects();
 			} else {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}

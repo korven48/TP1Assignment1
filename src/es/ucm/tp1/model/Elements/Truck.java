@@ -7,9 +7,9 @@ public class Truck extends Obstacle {
 	private static final String CON_SYMBOL = "←"; // \u2190
 	
 	public Truck(Game game, int x, int y) {
-		// TODO Auto-generated constructor stub
 		super(game, x, y, NAME); 
-		this.resistance = 3;
+		// resistance not specified
+		this.resistance = 1;
 		this.symbol = CON_SYMBOL;
 	}
 	
