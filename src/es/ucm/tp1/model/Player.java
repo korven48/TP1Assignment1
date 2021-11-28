@@ -96,7 +96,7 @@ public class Player extends GameElement{
 		return coinsCount;
 	}
 	public boolean isCrashed() {
-		return player.resistance == 0;
+		return player.resistance <= 0;
 	}
 
 	public void pay(int amount) {
