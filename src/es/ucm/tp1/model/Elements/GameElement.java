@@ -120,7 +120,7 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	}
 	
 	@Override
-	public boolean moveRight() {
+	public boolean moveOneSquareRight() {
 		x += 1;
 		return true;
 	}

@@ -124,9 +124,9 @@ public class Game {
 		elements.clear();
 	}
 	
+	//How to move the logic to a diffrent class considering encapsulation?
 	public final void tryToAddObject(GameElement gameElement, double elementFrequency) {
 		GameElement element = null;
-		// TODO: We should only create one random, right?
 		Random rand = this.rand;
 		double createElement = rand.nextDouble();
 		if (createElement < elementFrequency) {
@@ -234,6 +234,12 @@ public class Game {
 	}
 
 	public String positionToString(int x, int y) {
+		return positionToStringLogic(x, y);
+	}
+
+
+	//Maybe moved to an other class? But be aware not to destroy encapsulation
+	protected String positionToStringLogic(int x, int y) {
 		String position = "";
 		GameElement elem = null;
 		if (x ==  level.getLength()) {
@@ -293,6 +299,9 @@ public class Game {
 		return column;
 	}
 	
+	
+	//@Simon you told us to move it to the Game
+	//Some elements like the car has to be moved 2xtwice because they have their own moving logic
 	public void moveElementsToRight () {
 		GameElement elem = null;
 		for (int x = 0; x < elements.size(); x++) {
@@ -301,7 +310,7 @@ public class Game {
 			int maxRang = this.getCameraPosition() + this.getVisibility() - 1;
 			if (cameraPos <= elem.getX() && maxRang >= elem.getX()) {
 				if (elements.getObjectInPosition(elem.getX() + 1, elem.getY()) == null) {
-					elem.moveRight();
+					elem.moveOneSquareRight();
 				}				
 			}
 		}	

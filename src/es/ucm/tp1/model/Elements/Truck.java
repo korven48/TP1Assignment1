@@ -28,9 +28,9 @@ public class Truck extends Obstacle {
 		x--;
 	}
 	
-	public boolean moveRight() {
+	public boolean moveOneSquareRight() {
 		//Because the car moves also 1 to the left we have 2 to the right
-		this.x += 3;
+		this.x += 2;
 		return true;
 	}
 	
