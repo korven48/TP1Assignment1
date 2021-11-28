@@ -292,4 +292,18 @@ public class Game {
 		int column = rand.nextInt(getVisibility()) + getCameraPosition();
 		return column;
 	}
+	
+	public void moveElementsToRight () {
+		GameElement elem = null;
+		for (int x = 0; x < elements.size(); x++) {
+			elem = elements.get(x);
+			int cameraPos = this.getCameraPosition();
+			int maxRang = this.getCameraPosition() + this.getVisibility() - 1;
+			if (cameraPos <= elem.getX() && maxRang >= elem.getX()) {
+				if (elements.getObjectInPosition(elem.getX() + 1, elem.getY()) == null) {
+					elem.moveRight();
+				}				
+			}
+		}	
+	}
 }
