@@ -27,7 +27,7 @@ final class WaveCommand extends Command implements Buyable{
 
 	@Override
 	public int cost() {
-		return COST;
+		return WaveCommand.COST;
 	}
 	
 	@Override

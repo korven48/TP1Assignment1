@@ -20,7 +20,7 @@ public final class WaveAction implements InstantAction {
 					if (game.getVisibility() + game.getCameraPosition() == x) {
 						if (game.getObjectInPosition(x + 1, y) == null) gameElement.moveRight();
 					} else {
-						if ((game.getObjectInPosition(x + 2, y) == null && (game.getObjectInPosition(x + 1, y) == null))) {
+						if ((game.getObjectInPosition(x + 2, y) == null)) { // && (game.getObjectInPosition(x + 1, y) == null))
 							gameElement.moveRight();
 						}
 					}
