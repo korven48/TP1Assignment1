@@ -17,8 +17,7 @@ public final class WaveAction implements InstantAction {
 			for (int y = 0; y <= game.getLevel().getWidth(); y++) {
 				Collider gameElement = game.getObjectInPosition(x, y);
 				if (gameElement != null) {
-					if (!(game.getObjectInPosition(x + 1, y) != null)
-							&& !(game.getObjectInPosition(x - 1, y) != null)) {
+					if ((game.getObjectInPosition(x + 1, y) == null) && (game.getObjectInPosition(x - 1, y) == null)) {
 						gameElement.moveRight();
 					}
 				}
