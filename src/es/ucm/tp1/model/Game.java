@@ -121,8 +121,7 @@ public class Game {
 	public void removeAll() {
 		elements.clear();
 	}
-	
-	//How to move the logic to a diffrent class considering encapsulation?
+
 	//This we will let in this part of the code because the decribtion does not tell diffrently 
 	//And it is the logic of the game when and when not a gameElement should be added
 	public final void tryToAddObject(GameElement gameElement, double elementFrequency) {
@@ -303,7 +302,7 @@ public class Game {
 	
 	
 	//@Simon you told us to move it to the Game in your eMail from the 29.11.
-	//Some elements like the car has to be moved 2xtwice because they have their own moving logic
+	//Some elements like the truck has to be moved 2xtwice because they have their own moving logic
 	//We are moving the first element not if it has a second behind of it but we move the n element behint if it has no element followed
 	public void invokeReceiveWaveOnElements () {
 		GameElement elem = null;

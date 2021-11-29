@@ -49,6 +49,7 @@ public final class Wall extends Obstacle {
 		
 	@Override
 	public void onEnter() {
+		super.onEnter();
 		Wall.counter++;
 	}
 
@@ -68,6 +69,7 @@ public final class Wall extends Obstacle {
 	}
 	
 	public static void reset() {
+		Obstacle.reset();
 		Wall.counter = 0;
 	}
 	
