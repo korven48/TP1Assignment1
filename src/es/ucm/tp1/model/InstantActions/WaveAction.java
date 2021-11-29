@@ -11,7 +11,7 @@ public final class WaveAction implements InstantAction {
 
 	@Override
 	public void execute(Game game) {
-		game.moveElementsToRight();
+		game.invokeReceiveWaveOnElements();
 		game.update();
 		game.removeDeadObjects();
 	}

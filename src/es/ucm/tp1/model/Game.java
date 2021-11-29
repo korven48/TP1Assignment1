@@ -58,9 +58,6 @@ public class Game {
 		// ---------------------------  Beginning - Addition to reset ---------------------------
 		this.seed = seed;
 		this.level = level;
-		//this is just setting the player to the middle without considering the previous postion!
-		//Problem!
-		//this.player.setX((int)(level.getWidth() / 2));
 		// ---------------------------  End - Addition to reset ---------------------------
 	}
 	
@@ -85,6 +82,7 @@ public class Game {
 	//In further iterations we could also throw an exception if it does not work
 	public boolean incrementCyle(Direction direction) {
 		boolean result = false;
+		//Later can be removed by throwing an exception which is handelt in the Command
 		if (direction != null) {
 			result = this.movePlayer(result, direction);
 		}
@@ -125,6 +123,8 @@ public class Game {
 	}
 	
 	//How to move the logic to a diffrent class considering encapsulation?
+	//This we will let in this part of the code because the decribtion does not tell diffrently 
+	//And it is the logic of the game when and when not a gameElement should be added
 	public final void tryToAddObject(GameElement gameElement, double elementFrequency) {
 		GameElement element = null;
 		Random rand = this.rand;
@@ -239,6 +239,8 @@ public class Game {
 
 
 	//Maybe moved to an other class? But be aware not to destroy encapsulation
+	//As you see we refactored it to out of positionToString but we did not have more time
+	//In the next iteration we could move this method to a better place 
 	protected String positionToStringLogic(int x, int y) {
 		String position = "";
 		GameElement elem = null;
@@ -300,9 +302,10 @@ public class Game {
 	}
 	
 	
-	//@Simon you told us to move it to the Game
+	//@Simon you told us to move it to the Game in your eMail from the 29.11.
 	//Some elements like the car has to be moved 2xtwice because they have their own moving logic
-	public void moveElementsToRight () {
+	//We are moving the first element not if it has a second behind of it but we move the n element behint if it has no element followed
+	public void invokeReceiveWaveOnElements () {
 		GameElement elem = null;
 		for (int x = 0; x < elements.size(); x++) {
 			elem = elements.get(x);
