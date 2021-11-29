@@ -310,7 +310,7 @@ public class Game {
 			int maxRang = this.getCameraPosition() + this.getVisibility() - 1;
 			if (cameraPos <= elem.getX() && maxRang >= elem.getX()) {
 				if (elements.getObjectInPosition(elem.getX() + 1, elem.getY()) == null) {
-					elem.moveOneSquareRight();
+					elem.receiveWave();
 				}				
 			}
 		}	

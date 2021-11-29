@@ -139,7 +139,7 @@ public class Player extends GameElement{
 	
 	//This is the only GameElement should not move to the right
 	@Override 
-	public boolean moveOneSquareRight() {
+	public boolean receiveWave() {
 		return false;
 	}
 
