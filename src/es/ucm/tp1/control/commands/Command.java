@@ -56,11 +56,7 @@ public abstract class Command {
 	public final static Command getCommand(final String[] commandWords) {
 		Command currentCommand = null;
 		for (Command com : Command.AVAILABLE_COMMANDS) {
-			try {
-				currentCommand = com.parse(commandWords);
-			} catch (CommandParseException ex) {
-				
-			}
+			currentCommand = com.parse(commandWords);
 			//Maybe remove in future versions
 			if (currentCommand != null) {
 				return currentCommand;
