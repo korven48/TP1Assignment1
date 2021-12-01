@@ -3,7 +3,7 @@ package es.ucm.tp1.control;
 import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.view.GamePrinter;
+import es.ucm.tp1.view.*;
 
 import es.ucm.tp1.control.commands.Command;
 
@@ -16,11 +16,13 @@ public class Controller {
 	private Game game;
 	private Scanner scanner;
 	private GamePrinter printer;
+	private GameSerializer serializer;
 
 	public Controller(Game game, Scanner scanner) {
 		this.game = game;
 		this.scanner = scanner;
 		this.printer = new GamePrinter(game);
+		this.serializer = new GameSerializer(game);
 	}
 
 	public void printGame() {

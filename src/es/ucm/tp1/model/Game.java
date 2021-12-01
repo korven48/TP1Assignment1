@@ -317,4 +317,13 @@ public class Game {
 			}
 		}	
 	}
+
+
+	public String getGeneralState() {
+		StringBuilder str = new StringBuilder();
+		
+		str.append("Level: " + level.ge + "\n");
+		
+		return str.toString();
+	}
 }
