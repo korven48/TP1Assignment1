@@ -3,6 +3,7 @@ package es.ucm.tp1.control;
 import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.CusExceptions.GameException;
 import es.ucm.tp1.view.GamePrinter;
 
 import es.ucm.tp1.control.commands.Command;
@@ -48,14 +49,27 @@ public class Controller {
 			String s = scanner.nextLine();
 			String [] parameters = s.toLowerCase().trim().split (" ");
 			System.out.println(DEBUG_MSG + s);
-			command = Command.getCommand(parameters);
-			if (command != null) {
-				refreshDisplay = command.execute(game);
-//				game.update(); Update should only be called when the cycle increments
-				game.removeDeadObjects();
-			} else {
-				System.out.println(UNKNOWN_COMMAND_MSG);
+			try {
+				command = Command.getCommand(parameters);
+				if (command != null) {
+					refreshDisplay = command.execute(game);
+//					game.update(); Update should only be called when the cycle increments
+					game.removeDeadObjects();
+				} else {
+					System.out.println(UNKNOWN_COMMAND_MSG);
+				}
+			} catch (GameException ex) {
+				System.out.println(ex);
 			}
+//			}
+//			command = Command.getCommand(parameters);
+//			if (command != null) {
+//				refreshDisplay = command.execute(game);
+////				game.update(); Update should only be called when the cycle increments
+//				game.removeDeadObjects();
+//			} else {
+//				System.out.println(UNKNOWN_COMMAND_MSG);
+//			}
 		}
 		if (refreshDisplay) printGame();
 		printEndMessage();
