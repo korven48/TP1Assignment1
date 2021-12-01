@@ -1,5 +1,7 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
+import es.ucm.tp1.control.commands.CusComExceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 
 public abstract class Command {
@@ -39,24 +41,26 @@ public abstract class Command {
 		return this.shortcut.equalsIgnoreCase(name) || this.name.equalsIgnoreCase(name);
 	}
 
-	protected Command parse(String[] words) {
+	protected Command parse(String[] words) throws CommandParseException {
 		if (matchCommandName(words[0]))
 			if (words.length != 1) {
-				System.out.format("[ERROR]: Command %s: %s%n%n", name,
-								INCORRECT_NUMBER_OF_ARGS_MSG);
-				return null;
+				throw new CommandParseException(String.format("[ERROR]: Command %s: %s", name, INCORRECT_NUMBER_OF_ARGS_MSG));
 			} else {
 				return this;
 			}
 		return null;
 	}
 	
-	public abstract boolean execute(Game game);
+	public abstract boolean execute(Game game) throws CommandExecuteException;
 	
 	public final static Command getCommand(final String[] commandWords) {
 		Command currentCommand = null;
 		for (Command com : Command.AVAILABLE_COMMANDS) {
-			currentCommand = com.parse(commandWords);
+			try {
+				currentCommand = com.parse(commandWords);
+			} catch (CommandParseException ex) {
+				
+			}
 			//Maybe remove in future versions
 			if (currentCommand != null) {
 				return currentCommand;

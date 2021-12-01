@@ -2,29 +2,28 @@ package es.ucm.tp1.control.commands.CusComExceptions;
 
 import es.ucm.tp1.model.CusExceptions.GameException;
 
-public class CommandExecuteException extends GameException {
-	public CommandExecuteException() {
+public class CommandParseException extends GameException {
+	public CommandParseException() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommandExecuteException(String message) {
+	public CommandParseException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommandExecuteException(Throwable cause) {
+	public CommandParseException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommandExecuteException(String message, Throwable cause) {
+	public CommandParseException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommandExecuteException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public CommandParseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
-
 }
