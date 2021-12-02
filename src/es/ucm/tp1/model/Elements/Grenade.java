@@ -24,6 +24,11 @@ public class Grenade extends GameElement {
 	public void update() {
 		cyclesLeft--;
 	}
+	
+	@Override
+	public String getSerialized() {
+		return super.getSerialized() + " " + this.cyclesLeft;
+	}
 
 	@Override
 	public void onDelete() {

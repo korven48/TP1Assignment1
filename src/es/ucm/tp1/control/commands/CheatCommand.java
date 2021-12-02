@@ -2,7 +2,6 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
-import es.ucm.tp1.model.Elements.GameElement;
 
 public class CheatCommand extends Command {
 	private static final String NAME = "cheat";

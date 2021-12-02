@@ -20,12 +20,14 @@ public class SaveCommand extends Command {
 	}
 	
 	@Override
+//	protected SaveCommand parse(String[] words) throws CommandParseException{
 	protected SaveCommand parse(String[] words) {
 		if (this.matchCommandName(words[0])) {
 			if (words.length == 2) {
 				filename = words[1];
 				return new SaveCommand(filename);
 			} else {
+//				throw new CommandParseException();
 				Command.printMessage(String.format("[ERROR]: Command %s: %s%n%n", SaveCommand.NAME,
 					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
@@ -36,6 +38,8 @@ public class SaveCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
+		// try to dump GameSerializer in <filename>.txt
+		System.out.println("Game successfully saved in file " + filename + ".txt");
 		return false;
 	}
 

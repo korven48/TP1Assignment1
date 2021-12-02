@@ -26,6 +26,11 @@ public final class Wall extends Obstacle {
 	public boolean isAdvanced() {
 		return true;
 	}
+	
+	@Override
+	public String getSerialized() {
+		return super.getSerialized() +  " " + this.resistance;
+	}
 			
 	@Override
 	public String toString() {

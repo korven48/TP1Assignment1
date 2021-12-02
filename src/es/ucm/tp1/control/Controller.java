@@ -29,6 +29,10 @@ public class Controller {
 		System.out.println(printer);
 	}
 	
+	public void printSerializer() {
+		System.out.println(serializer);		
+	}
+	
 	public static void printUnknown() {
 		System.out.println(UNKNOWN_COMMAND_MSG);
 	}
@@ -44,6 +48,9 @@ public class Controller {
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
 				printGame();
+				
+				// Debbuging only
+//				printSerializer();
 			}
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
@@ -59,6 +66,7 @@ public class Controller {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
 		}
+		game.close();
 		if (refreshDisplay) printGame();
 		printEndMessage();
   }

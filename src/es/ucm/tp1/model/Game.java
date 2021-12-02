@@ -2,10 +2,9 @@ package es.ucm.tp1.model;
 
 import java.util.Random;
 import es.ucm.tp1.control.Level;
-
+import es.ucm.tp1.control.Records;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
-import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.Elements.GameElementContainer;
 //import es.ucm.tp1.model.GameElementGenerator;
 
@@ -16,11 +15,13 @@ import es.ucm.tp1.model.Elements.Obstacle;
 public class Game {
 	Player player = null;
 	private GameElementContainer elements; 
+	private Records records;
 
 	private long ellapsedtime;
 	private int cycle;
 	private boolean victory;
 	private boolean exit;
+	private boolean recordSet;
 	
 	private static final String FINISH_LINE = "¦";
 	
@@ -36,6 +37,8 @@ public class Game {
 		this.cycle = 0; 
 		this.ellapsedtime = 0;
 		this.elements = new GameElementContainer();
+		this.records = new Records();
+		this.recordSet = false;
 		initRand(this.seed);
 		initObjects();
 		boolean reset = false;
@@ -177,7 +180,11 @@ public class Game {
 		return this.ellapsedtime != 0;
 	}
 	
-	public String getTime() {
+	public long getTime() {
+		return System.currentTimeMillis() - ellapsedtime;
+	}
+	
+	public String getFormatedTime() {
 		// time: The time in seconds with 2 decimals of precision
 		double seconds = 0;
 		if (this.ellapsedtime != 0) seconds = (System.currentTimeMillis() - ellapsedtime) / 1000.;
@@ -196,7 +203,7 @@ public class Game {
 		str.append(String.format("Total obstacles: " + Obstacle.counter + "%n"));
 		str.append(String.format("Total coins: " + Coin.counter + "%n"));
 		if (!isTest()) {
-			str.append(String.format("Ellapsed Time: " + getTime() + "%n"));
+			str.append(String.format("Ellapsed Time: " + getFormatedTime() + "%n"));
 		}
 		return str.toString().stripTrailing();
 	}
@@ -317,13 +324,35 @@ public class Game {
 			}
 		}	
 	}
-
+	
+	public String getRecords() {
+		return records.toString();
+	}
+	
+	public String getSerializedElems() {
+		StringBuilder str = new StringBuilder();
+		str.append("Game Objects: \n");
+		str.append(elements.getSerialized());
+		return str.toString();
+	}
 
 	public String getGeneralState() {
 		StringBuilder str = new StringBuilder();
 		
-		str.append("Level: " + level.ge + "\n");
+		str.append("Level: " + level.name() + "\n");
+		str.append("Cycles: " + getCycle() + "\n");
+		str.append("Coins: " + player.getCoins() + "\n");
+//		str.append("Ellapsed Time: " + getTime() + "\n");
+		str.append("Ellapsed Time: " + ellapsedtime + "\n");
 		
 		return str.toString();
+	}
+
+	public boolean isRecord() {
+		return isFinished() && this.recordSet;
+ 	}
+
+	public void close() {
+		this.recordSet = records.trySetNewRecord(level.name(), getTime());
 	}
 }

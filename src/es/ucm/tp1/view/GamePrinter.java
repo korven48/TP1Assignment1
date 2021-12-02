@@ -89,10 +89,13 @@ public class GamePrinter {
 		sb.append(GAME_OVER_MSG);
 		if (game.getVictory()) {
 			sb.append(WIN_MSG);
-			if (!game.isTest()) {
+			if (game.isRecord()) {
 				sb.append("\r\n");
 				sb.append("New record!: ");
-				sb.append(game.getTime());				
+				sb.append(game.getFormatedTime());	
+				
+				//Debug Only
+				System.out.println(game.getRecords());
 			}
 		} else if (game.getExit()){
 			sb.append(DO_EXIT_MSG);

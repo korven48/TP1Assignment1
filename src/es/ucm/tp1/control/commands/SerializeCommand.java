@@ -16,6 +16,7 @@ public class SerializeCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
+		// Should print the GameSerializer
 		return false;
 	}
 
