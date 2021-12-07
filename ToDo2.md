@@ -26,6 +26,7 @@
 
 ## Questions
 - Can we put an granade on a point if their is already an obstacle?
+- Why are we not passing the 
 
 
 ##Notes from/to Lukas

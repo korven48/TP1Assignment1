@@ -28,7 +28,7 @@ public class CheatCommand extends Command {
 		String element;
 		if (this.matchCommandName(words[0])) {
 			if (words.length != 2) {
-				throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+				throw new CommandParseException(String.format("Command %s: %s%n", CheatCommand.NAME,
 							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			} else {
 				element = words[1];

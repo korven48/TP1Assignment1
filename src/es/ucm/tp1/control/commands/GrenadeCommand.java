@@ -35,11 +35,11 @@ public class GrenadeCommand extends Command implements Buyable {
 					y = Integer.valueOf(words[2]);
 					return new GrenadeCommand(x, y);
 				} catch (NumberFormatException ex) {
-					throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+					throw new CommandParseException(String.format("Command %s: %s%n%n", GrenadeCommand.NAME,
 						 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
 				}
 			} else {
-				throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+				throw new CommandParseException(String.format("Command %s: %s%n%n", GrenadeCommand.NAME,
 					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
 		}

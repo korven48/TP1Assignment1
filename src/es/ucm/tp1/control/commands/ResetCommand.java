@@ -36,7 +36,7 @@ final class ResetCommand extends Command {
 		try {
 			if (matchCommandName(words[0])) {
 				if (words.length != 1 && words.length != 3) {
-					throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
+					throw new CommandParseException(String.format("Command %s: %s%n%n", ResetCommand.NAME,
 						 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 				} else if (words.length != 1) {
 					level = words[1];
@@ -47,7 +47,7 @@ final class ResetCommand extends Command {
 				}
 			}
 		} catch (NumberFormatException ex) {
-			throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
+			throw new CommandParseException(String.format("Command %s: %s%n%n", ResetCommand.NAME,
 				 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
 		} 
 		return null;	
