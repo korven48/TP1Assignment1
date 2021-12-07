@@ -1,7 +1,8 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.control.Level;
-import es.ucm.tp1.control.commands.CusComExceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 
 final class ResetCommand extends Command {
@@ -53,7 +54,7 @@ final class ResetCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;		
 		try {

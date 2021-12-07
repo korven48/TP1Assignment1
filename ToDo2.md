@@ -28,5 +28,8 @@
 
 
 ##Notes from/to Lukas
+- Implementing the execute Exceptions of the Commands
+- Note: the same has to be done for the InstantActions
+- change execute to void 
 
 ##Notes from/to Lucas

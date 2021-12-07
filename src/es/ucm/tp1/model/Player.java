@@ -1,5 +1,6 @@
 package es.ucm.tp1.model;
 
+import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.view.GamePrinter;
 
@@ -120,8 +121,8 @@ public class Player extends GameElement{
 		coinsCount += amount;
 	}
 	
-	public int getCoins () {
-		return coinsCount;
+	public void payAble (int amount) throws NotEnoughCoinsException {
+		if (!(amount <= this.coinsCount)) throw new NotEnoughCoinsException("Not enough coins!");
 	}
 	public boolean isCrashed() {
 		return player.resistance <= 0;
@@ -129,6 +130,10 @@ public class Player extends GameElement{
 
 	public void pay(int amount) {
 		this.coinsCount -= amount;
+	}
+	
+	public int getCoins() {
+		return this.coinsCount;
 	}
 
 	@Override

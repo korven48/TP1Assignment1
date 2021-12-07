@@ -1,11 +1,13 @@
 package es.ucm.tp1.control.commands;
 
-import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
-import es.ucm.tp1.control.commands.CusComExceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 
 public abstract class Command {
+	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
 	protected static final String INCORRECT_NUMBER_OF_ARGS_MSG = "Incorrect number of Arguments";
+	
 	protected static final Command[] AVAILABLE_COMMANDS = {
 			new HelpCommand(),
 			new InfoCommand(),
@@ -21,6 +23,7 @@ public abstract class Command {
 			new ClearCommand(),
 			new CheatCommand()
 	};
+	
 	
 	private final String name;
 	private final String shortcut;
@@ -53,7 +56,7 @@ public abstract class Command {
 	
 	public abstract boolean execute(Game game) throws CommandExecuteException;
 	
-	public final static Command getCommand(final String[] commandWords) {
+	public final static Command getCommand(final String[] commandWords) throws CommandParseException {
 		Command currentCommand = null;
 		for (Command com : Command.AVAILABLE_COMMANDS) {
 			currentCommand = com.parse(commandWords);
@@ -62,7 +65,7 @@ public abstract class Command {
 				return currentCommand;
 			}
 		}
-		return currentCommand;
+		throw new CommandParseException(UNKNOWN_COMMAND_MSG);
 	}
 	
 	protected static void printMessage(String msg) {

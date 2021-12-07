@@ -1,4 +1,4 @@
-package es.ucm.tp1.model.CusExceptions;
+package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
 public class NotEnoughCoinsException extends Exception {
 

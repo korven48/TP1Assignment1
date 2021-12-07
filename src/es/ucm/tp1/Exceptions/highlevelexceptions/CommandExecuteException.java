@@ -1,6 +1,4 @@
-package es.ucm.tp1.control.commands.CusComExceptions;
-
-import es.ucm.tp1.model.CusExceptions.GameException;
+package es.ucm.tp1.Exceptions.highlevelexceptions;
 
 //High level Exception
 public class CommandExecuteException extends GameException {

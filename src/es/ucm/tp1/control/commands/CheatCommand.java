@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
 import es.ucm.tp1.model.Elements.GameElement;
@@ -22,13 +23,12 @@ public class CheatCommand extends Command {
 	}
 
 	@Override
-	protected Command parse(String[] words) {
+	protected Command parse(String[] words) throws CommandParseException {
 		String element;
 		if (this.matchCommandName(words[0])) {
 			if (words.length != 2) {
-				Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+				throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
 							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
-				return null;
 			} else {
 				element = words[1];
 				return new CheatCommand(element);

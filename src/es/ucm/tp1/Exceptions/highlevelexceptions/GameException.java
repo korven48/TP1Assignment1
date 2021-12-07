@@ -1,4 +1,4 @@
-package es.ucm.tp1.model.CusExceptions;
+package es.ucm.tp1.Exceptions.highlevelexceptions;
 
 public class GameException extends Exception {
 

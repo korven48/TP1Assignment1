@@ -1,14 +1,14 @@
 package es.ucm.tp1.model;
 
 import java.util.Random;
+
+import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.control.Level;
 
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
 import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.Elements.GameElementContainer;
-//import es.ucm.tp1.model.GameElementGenerator;
-
 //We just imported that because we need to access the static fields
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
@@ -283,8 +283,8 @@ public class Game {
 		return player.getY();
 	}
 	
-	public int getAmountOfCoinsPlayer() {
-		return player.getCoins();
+	public void getAmountOfCoinsPlayer(int amount) throws NotEnoughCoinsException {
+		player.payAble(amount);
 	}
 	
 	public Level getLevel() {

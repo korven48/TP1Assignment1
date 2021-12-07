@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 
 final class ExitCommand extends Command {
@@ -14,7 +15,7 @@ final class ExitCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		//How to implement the best way transaction safty?
