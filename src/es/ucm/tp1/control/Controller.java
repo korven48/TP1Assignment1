@@ -43,16 +43,15 @@ public class Controller {
 			
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			
 			String [] parameters = s.toLowerCase().trim().split (" ");
 			System.out.println(DEBUG_MSG + s);
+			
 			try {
 				command = Command.getCommand(parameters);
 			    refreshDisplay = command.execute(game);
 				game.removeDeadObjects();
 			} catch (GameException ex) {
 				System.out.format("[ERROR]: %s%n%n", ex.getMessage());
-				refreshDisplay = false;
 			}
 		}
 		if (refreshDisplay) printGame();
