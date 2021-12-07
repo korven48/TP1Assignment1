@@ -68,10 +68,6 @@ public abstract class Command {
 		throw new CommandParseException(UNKNOWN_COMMAND_MSG);
 	}
 	
-	protected static void printMessage(String msg) {
-		System.out.println(msg);
-	}
-	
 	protected static final String getCommandDetailsAndHelpToString() {
 		StringBuilder sb = new StringBuilder();
 		String ac = "Available commands:%n";

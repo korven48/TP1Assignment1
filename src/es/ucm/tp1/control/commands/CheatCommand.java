@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
@@ -38,10 +39,10 @@ public class CheatCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		boolean generated = GameElementGenerator.generateCheatObject(game, element);
 		if (! generated) {
-			Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+			throw new CommandExecuteException(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
 					CheatCommand.NOT_AN_ADVANCED_GAME_ELEMENT));			
 		}
 		return generated;

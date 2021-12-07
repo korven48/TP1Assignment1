@@ -1,5 +1,6 @@
 package es.ucm.tp1.model;
 
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.view.GamePrinter;
@@ -33,7 +34,6 @@ public class Player extends GameElement{
 	public boolean doCollision() {
 		Collider gameElement = game.getObjectInPosition(x, y);
 		if (gameElement != null) {
-			//Maybe breaking enaspsulation
 			return gameElement.receiveCollision(this);
 		}
 		return false;
@@ -59,16 +59,15 @@ public class Player extends GameElement{
 		return result;
 	}
 	
-	boolean processingMovement(boolean shouldDisplay, Direction direction) {
+	void processingMovement(boolean shouldDisplay, Direction direction) throws InvalidPositionException {
 		if (this.canMove(direction)) {
 			if (!(direction.equals(Direction.NONE))) {
 				move(direction);
 				shouldDisplay = true;				
 			}
 		} else {
-			GamePrinter.printMessage("WARNING: Coudn't move the player in that direction");
+			throw new InvalidPositionException("WARNING: Coudn't move the player in that direction");
 		}
-		return shouldDisplay;
 	}
 	
 	public void move(Direction direction) {
@@ -124,6 +123,7 @@ public class Player extends GameElement{
 	public void payAble (int amount) throws NotEnoughCoinsException {
 		if (!(amount <= this.coinsCount)) throw new NotEnoughCoinsException("Not enough coins!");
 	}
+	
 	public boolean isCrashed() {
 		return player.resistance <= 0;
 	}

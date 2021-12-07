@@ -1,6 +1,7 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.model.Direction;
 import es.ucm.tp1.model.Game;
 
@@ -24,14 +25,13 @@ final class NoneCommand extends Command {
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
-		boolean result = false;
 		if (!game.isTimeOn()) game.startTime();
 		Direction direction = Direction.FORWARD;
 		try {
-			result = game.incrementCyle(direction);
-		} catch (Exception ex) {
-			System.out.println(ex);
+			game.incrementCyle(direction);
+			return true;
+		} catch (InvalidPositionException ex) {
+			throw new CommandExecuteException("", ex);
 		}		
-		return result;
 	}
 }

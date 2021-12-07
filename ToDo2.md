@@ -25,6 +25,7 @@
 
 
 ## Questions
+- Can we put an granade on a point if their is already an obstacle?
 
 
 ##Notes from/to Lukas
