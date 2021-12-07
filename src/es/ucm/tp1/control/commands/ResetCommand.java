@@ -1,6 +1,7 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.control.Level;
+import es.ucm.tp1.control.commands.CusComExceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 
 final class ResetCommand extends Command {
@@ -27,25 +28,28 @@ final class ResetCommand extends Command {
 	}
 	
 	@Override
-	protected Command parse(String[] words) {
+	protected Command parse(String[] words) throws CommandParseException{
 		//Able to store 
 		String seed;
 		String level;
-		if (matchCommandName(words[0])) {
-			if (words.length != 1 && words.length != 3) {
-				System.out.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
-							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG);
-				return null;
-			} else if (words.length != 1) {
-				level = words[1];
-				seed = words[2];
-				return new ResetCommand(Integer.parseInt(seed), Level.parse(level));
-			} else if (words.length != 3) {
-				return new ResetCommand(ResetCommand.DEFAULT_SEED, ResetCommand.DEFAULT_LEVEL);
+		try {
+			if (matchCommandName(words[0])) {
+				if (words.length != 1 && words.length != 3) {
+					throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
+						 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
+				} else if (words.length != 1) {
+					level = words[1];
+					seed = words[2];
+					return new ResetCommand(Integer.parseInt(seed), Level.parse(level));
+				} else if (words.length != 3) {
+					return new ResetCommand(ResetCommand.DEFAULT_SEED, ResetCommand.DEFAULT_LEVEL);
+				}
 			}
-		}
-		return null;
-		
+		} catch (NumberFormatException ex) {
+			throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", ResetCommand.NAME,
+				 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
+		} 
+		return null;	
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package es.ucm.tp1.control.commands.CusComExceptions;
 
 import es.ucm.tp1.model.CusExceptions.GameException;
 
+//High level Exception
 public class CommandExecuteException extends GameException {
 	public CommandExecuteException() {
 		// TODO Auto-generated constructor stub

@@ -1,5 +1,7 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
+import es.ucm.tp1.control.commands.CusComExceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
 import es.ucm.tp1.model.InstantActions.ShootAction;
@@ -25,14 +27,19 @@ public class GrenadeCommand extends Command implements Buyable {
 	}
 	
 	@Override
-	protected GrenadeCommand parse(String[] words) {
+	protected GrenadeCommand parse(String[] words) throws CommandParseException {
 		if (this.matchCommandName(words[0])) {
 			if (words.length == 3) {
-				x = Integer.valueOf(words[1]);
-				y = Integer.valueOf(words[2]);
-				return new GrenadeCommand(x, y);
+				try {
+					x = Integer.valueOf(words[1]);
+					y = Integer.valueOf(words[2]);
+					return new GrenadeCommand(x, y);
+				} catch (NumberFormatException ex) {
+					throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+						 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
+				}
 			} else {
-				Command.printMessage(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+				throw new CommandParseException(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
 					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
 		}
