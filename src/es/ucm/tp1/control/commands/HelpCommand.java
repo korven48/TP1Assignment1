@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 
 final class HelpCommand extends Command {
@@ -17,14 +18,14 @@ final class HelpCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		try {
 			System.out.println(Command.getCommandDetailsAndHelpToString());
 			result = false;
 		} catch (Exception ex) {
-			System.out.println(ex);
+			throw new CommandExecuteException();
 		} 
 		return result;			
 	}
