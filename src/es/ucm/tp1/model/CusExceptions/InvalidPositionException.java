@@ -1,8 +1,6 @@
 package es.ucm.tp1.model.CusExceptions;
 
-import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
-
-public class InvalidPositionException extends CommandExecuteException {
+public class InvalidPositionException extends Exception {
 
 	public InvalidPositionException() {
 		// TODO Auto-generated constructor stub

@@ -1,8 +1,6 @@
 package es.ucm.tp1.model.CusExceptions;
 
-import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
-
-public class InputOutputRecordException extends CommandExecuteException {
+public class InputOutputRecordException extends Exception {
 
 	public InputOutputRecordException() {
 		// TODO Auto-generated constructor stub

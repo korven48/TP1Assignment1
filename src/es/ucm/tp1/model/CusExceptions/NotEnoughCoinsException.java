@@ -1,8 +1,6 @@
 package es.ucm.tp1.model.CusExceptions;
 
-import es.ucm.tp1.control.commands.CusComExceptions.CommandExecuteException;
-
-public class NotEnoughCoinsException extends CommandExecuteException {
+public class NotEnoughCoinsException extends Exception {
 
 	public NotEnoughCoinsException() {
 		// TODO Auto-generated constructor stub
