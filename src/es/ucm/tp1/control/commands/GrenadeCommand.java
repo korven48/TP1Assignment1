@@ -1,8 +1,10 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
-import es.ucm.tp1.model.InstantActions.ShootAction;
 
 public class GrenadeCommand extends Command implements Buyable {
 	private static final String NAME = "granade";
@@ -25,14 +27,19 @@ public class GrenadeCommand extends Command implements Buyable {
 	}
 	
 	@Override
-	protected GrenadeCommand parse(String[] words) {
+	protected GrenadeCommand parse(String[] words) throws CommandParseException {
 		if (this.matchCommandName(words[0])) {
 			if (words.length == 3) {
-				x = Integer.valueOf(words[1]);
-				y = Integer.valueOf(words[2]);
-				return new GrenadeCommand(x, y);
+				try {
+					x = Integer.valueOf(words[1]);
+					y = Integer.valueOf(words[2]);
+					return new GrenadeCommand(x, y);
+				} catch (NumberFormatException ex) {
+					throw new CommandParseException(String.format("Command %s: %s%n%n", GrenadeCommand.NAME,
+						 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
+				}
 			} else {
-				Command.printMessage(String.format("[ERROR]: Command %s: %s%n%n", GrenadeCommand.NAME,
+				throw new CommandParseException(String.format("Command %s: %s%n%n", GrenadeCommand.NAME,
 					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
 		}
@@ -41,14 +48,17 @@ public class GrenadeCommand extends Command implements Buyable {
 
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// should create a granade in position (playerX + x, y), with x < visibility
 		boolean result = false;
-		if (game.getAmountOfCoinsPlayer() >= this.cost()){
-			this.buy(game);
-			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
-			result = true;
+		try {
+			game.getAmountOfCoinsPlayer(cost());
+		} catch (NotEnoughCoinsException ex) {
+			throw new CommandExecuteException("", ex);
 		}
+		this.buy(game);
+		GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
+		result = true;
 		return result;
 	}
 	

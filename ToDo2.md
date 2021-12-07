@@ -25,8 +25,13 @@
 
 
 ## Questions
+- Can we put an granade on a point if their is already an obstacle?
+- Why are we not passing the
 
 
 ##Notes from/to Lukas
+- Implementing the execute Exceptions of the Commands
+- Note: the same has to be done for the InstantActions
+- change execute to void 
 
 ##Notes from/to Lucas

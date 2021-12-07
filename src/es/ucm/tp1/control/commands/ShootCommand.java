@@ -1,5 +1,7 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.InstantActions.ShootAction;
 
@@ -16,13 +18,16 @@ final class ShootCommand extends Command implements Buyable {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		boolean result = false;
-		if (game.getAmountOfCoinsPlayer() >= this.cost()) {
-			this.buy(game);
-			game.doInstantAction(new ShootAction());
-			result = true;
+		try {
+			game.getAmountOfCoinsPlayer(cost());
+		} catch (NotEnoughCoinsException ex) {
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
+		this.buy(game);
+		game.doInstantAction(new ShootAction());
+		result = true;
 		return result;
 	}
 
