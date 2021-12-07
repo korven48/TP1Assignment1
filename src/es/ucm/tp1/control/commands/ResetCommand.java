@@ -47,8 +47,7 @@ final class ResetCommand extends Command {
 				}
 			}
 		} catch (NumberFormatException ex) {
-			throw new CommandParseException(String.format("Command %s: %s%n%n", ResetCommand.NAME,
-				 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG), ex);
+			throw new CommandParseException(ex.getMessage(), ex);
 		} 
 		return null;	
 	}

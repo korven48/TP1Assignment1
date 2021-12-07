@@ -24,7 +24,7 @@ final class MoveDownCommand extends Command {
 			game.incrementCyle(direction);
 			return true;
 		} catch (InvalidPositionException ex) {
-			throw new CommandExecuteException("", ex);
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}	
 	}
 }

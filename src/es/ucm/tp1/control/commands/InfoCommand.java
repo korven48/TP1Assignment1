@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 
 final class InfoCommand extends Command {
@@ -27,7 +28,7 @@ final class InfoCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		//How to parallize this task?
@@ -35,7 +36,7 @@ final class InfoCommand extends Command {
 			System.out.println(InfoCommand.INFO);
 			result = false;
 		} catch (Exception ex) {
-			System.out.println(ex);
+			throw new CommandExecuteException(ex.getMessage());
 			//maybe here an reset to the last state of the game?
 		}
 		return result;

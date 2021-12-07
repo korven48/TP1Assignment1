@@ -23,7 +23,7 @@ final class ShootCommand extends Command implements Buyable {
 		try {
 			game.getAmountOfCoinsPlayer(cost());
 		} catch (NotEnoughCoinsException ex) {
-			throw new CommandExecuteException("", ex);
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
 		this.buy(game);
 		game.doInstantAction(new ShootAction());

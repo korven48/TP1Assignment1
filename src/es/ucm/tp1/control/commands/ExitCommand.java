@@ -18,12 +18,11 @@ final class ExitCommand extends Command {
 	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;
-		//How to implement the best way transaction safty?
 		try {
 			game.setExit(true);
 			result = false;
 		} catch (Exception ex) {
-			System.out.println(ex);
+			throw new CommandExecuteException(ex.getMessage());
 		}
 		return result;
 	}

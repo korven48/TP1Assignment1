@@ -13,13 +13,11 @@ final class HelpCommand extends Command {
 	//"Cheat <AO-name>: Removes all elements of last visible column and adds advanced object AO"
 			
 	public HelpCommand() {
-		// TODO Auto-generated constructor stub
 		super(NAME, DETAILS, SHORTCUT, HELP.toString());
 	}
 	
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
-		// TODO Auto-generated method stub
 		boolean result = false;
 		try {
 			System.out.println(Command.getCommandDetailsAndHelpToString());

@@ -22,7 +22,7 @@ final class TestModeCommand extends Command {
 			game.setTest(true);
 			result = true;
 		} catch (Exception ex) {
-			System.out.println(ex);
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
 		return result;
 	}
