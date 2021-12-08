@@ -336,7 +336,7 @@ public class Game {
 		return str.toString();
 	}
 
-	public String getGeneralState() {
+	public String getGeneralState() { 
 		StringBuilder str = new StringBuilder();
 		
 		str.append("Level: " + level.name() + "\n");
