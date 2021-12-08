@@ -1,5 +1,10 @@
 package es.ucm.tp1.control.commands;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import es.ucm.tp1.model.Game;
 
 public class DumpCommand extends Command {
@@ -35,7 +40,20 @@ public class DumpCommand extends Command {
 	
 	@Override
 	public boolean execute(Game game) {
-		// TODO Auto-generated method stub
+		// Dumps a file into the console
+		try (
+			FileReader file = new FileReader(filename + ".txt");
+			BufferedReader bfile = new BufferedReader(file);){
+			
+			String line = bfile.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = bfile.readLine();
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

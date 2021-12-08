@@ -1,6 +1,11 @@
 package es.ucm.tp1.control.commands;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.view.GameSerializer;
 
 public class SaveCommand extends Command {
 	private static final String NAME = "save";
@@ -38,8 +43,18 @@ public class SaveCommand extends Command {
 	@Override
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
-		// try to dump GameSerializer in <filename>.txt
-		System.out.println("Game successfully saved in file " + filename + ".txt");
+		// Try to dump GameSerializer in <filename>.txt
+		try ( 
+			FileWriter file      = new FileWriter(filename + ".txt");
+			BufferedWriter bfile = new BufferedWriter(file)
+			){
+			GameSerializer serializer = new GameSerializer(game);
+//			bfile.write(game.getSerializedElems());
+			bfile.write(serializer.toString());
+			System.out.println("Game successfully saved in file " + filename + ".txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
