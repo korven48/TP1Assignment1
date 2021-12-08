@@ -55,7 +55,7 @@ public class Controller {
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			String [] parameters = s.toLowerCase().trim().split (" ");
+			String [] parameters = s.toLowerCase().trim().split(" ");
 			System.out.println(DEBUG_MSG + s);
 			command = Command.getCommand(parameters);
 			if (command != null) {

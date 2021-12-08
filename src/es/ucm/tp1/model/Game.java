@@ -354,5 +354,8 @@ public class Game {
 
 	public void close() {
 		this.recordSet = records.trySetNewRecord(level.name(), getTime());
+		if (recordSet) {
+			records.save();
+		}
 	}
 }
