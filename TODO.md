@@ -14,27 +14,15 @@
 * Lukas: 1.1 (done) + 1.3 (done - how shall it be generated) 
 * Lucas: 1.2 (done) + 1.4 (done)
 	
-####
-* Questions (Task 1.1):
-* How do we want to generate the wall
-* how shall it revice a demage and give coins back when it is destroyed?
-* we have to talk about this: game.getObjectInPosition(0, 0)
-* have to talk about positionToString in Game
-* How to imporve the working with the symboles in the diffrent classes?
-* In Game are is printing implemented
-* In Player check: //Maybe breaking enaspsulation
-* Executing "w" throws an nullpointer exception
-* Sometimes the truck just fanish
-* Why is sometime the truck just passing the player?
-* The update method should occur only when the game cycle is updated?
-* Should we introduce a postion interface? Because the solution for wave is really dirty
-* We should check the printing of info
+####Questions
+- Can we use HaspMap?
+- How can/shall we modify the grenade?
+- How to read the builshit @theBeginning?
+- Why do we use safe just one time?
+- Add the default values!
+
 
 ### Non-prio tasks
-* <b> We have to take about the visibility of the different classes </b>
-* Reset method in the Game has to be modified
-* Should the get() method in gameElementContainer deleted?
-* Grenade explotion takes time to update
 
 ## Test failing
 * <b>Easy_s666_0:</b>
@@ -47,23 +35,6 @@
 - ...
 * <b>hard_s100_4</b>
 - ...
-
-
-## Questions
-* For what is the Name in e.g. Turbo
-* For what is the interface buyable
-* Where shall we implement the paying logic?
-* 1.5 shall we also move the player?
-* Thinking how we should implement the buy method the best
-* Explain me the the GameElementGenerator!
-* In thunder you have a print line which should not be!
-* Their are some magic numbers in the code but why?
-* How to handle the thunder and the detaction of place
-* Why have you added public Obstacle create(int x, int y, Game game) --> What is the diffrence to the constructor?
-* We should introduce a static final for all the symboles... we would reduce the need of RAM
-* Why do you have a couple of constructors in the SuperCoin?
-* Why do you have public static final GameElement[] AVAILABLE_GAMEELEMENTS = { ?
-
 
 ##Notes to Lukas (myself)
 * Implement hasAdvancedObjects()

@@ -34,20 +34,28 @@ public class Game {
 	Random rand;
 	
 	public Game(Long seed, Level level, boolean isTestMode) throws GameException {
+		initSetFields(seed, level, isTestMode, false, false);
+		initRand(this.seed);
+		initObjects();
+		boolean reset = false;
+		setUniquePlayer(reset);
+
+	}
+
+
+	private void initSetFields(Long seed, Level level, boolean isTestMode, boolean victory, boolean exit) throws GameException {
 		this.seed = seed;
 		this.level = level;
 		this.isTestMode = isTestMode;
 		this.cycle = 0; 
 		this.ellapsedtime = 0;
 		this.elements = new GameElementContainer();
-		this.records = new Records();
 		this.recordSet = false;
-		initRand(this.seed);
-		initObjects();
-		boolean reset = false;
-		setUniquePlayer(reset);
-		victory = false;
-		exit = false;
+		this.victory = false;
+		this.exit = false;
+		
+		//Throws exception
+		this.records = new Records();
 	}
 	
 	

@@ -43,7 +43,6 @@ public class Controller {
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
 				printGame();
-				
 				// Debbuging only
 //				printSerializer();
 			}

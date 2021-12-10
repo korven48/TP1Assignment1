@@ -15,8 +15,10 @@ import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
 
 public class Records {
 	
-	private static final String FILENAME = "record"; // .txt
+	private static final String FILE_NAME = "record"; 
+	private static final String FILE_EXTENTION = ".txt";
 	private Map<String, Long> records;
+	private static final String defaultValues = "";
 	
 	public Records () throws GameException {
 		// Inializes the record of each available level to the maximum value
@@ -43,18 +45,17 @@ public class Records {
 	}
 	
 	public void save() {
-		try ( FileWriter file      = new FileWriter(FILENAME + ".txt");
-			  BufferedWriter bfile = new BufferedWriter(file)
-				){
-			bfile.write(this.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
+		try ( FileWriter file      = new FileWriter(Records.FILE_NAME + Records.FILE_EXTENTION);
+			  BufferedWriter bfile = new BufferedWriter(file)) {
+				bfile.write(this.toString());
+		} catch (IOException ex) {
+				ex.printStackTrace();
 		}
 	}
 	
 	
 	public void load() throws InputOutputRecordException {
-		try ( FileReader file = new FileReader(FILENAME + ".txt");
+		try ( FileReader file = new FileReader(FILE_NAME + ".txt");
 			  BufferedReader bfile = new BufferedReader(file);){
 			
 			String levelName, line = bfile.readLine();

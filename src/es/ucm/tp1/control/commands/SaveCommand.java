@@ -16,6 +16,8 @@ public class SaveCommand extends Command {
 	private static final String SHORTCUT = "s";
 	private static final String HELP = "Save the state of the game to a file.";
 	
+	private static final String FILE_EXTENTION = ".txt";
+	
 	private String filename;
 	
 	public SaveCommand(String filename) {
@@ -53,7 +55,7 @@ public class SaveCommand extends Command {
 	}
 
 	private void writeMethod(Game game) throws InputOutputRecordException {
-		try (FileWriter file      = new FileWriter(filename + ".txt");
+		try (FileWriter file      = new FileWriter(filename + SaveCommand.FILE_EXTENTION);
 			BufferedWriter bfile = new BufferedWriter(file)) {
 			GameSerializer serializer = new GameSerializer(game);
 //			bfile.write(game.getSerializedElems());
