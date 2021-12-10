@@ -26,6 +26,7 @@
 
 ## Questions
 - Can we put an granade on a point if their is already an obstacle?
+- We have to do a check for the grende placement because the grande can not be out of the line 
 - SerializeCommand is completed?
 - 
 

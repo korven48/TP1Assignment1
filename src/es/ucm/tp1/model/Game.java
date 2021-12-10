@@ -2,6 +2,7 @@ package es.ucm.tp1.model;
 
 import java.util.Random;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
@@ -32,7 +33,7 @@ public class Game {
 	boolean isTestMode;
 	Random rand;
 	
-	public Game(Long seed, Level level, boolean isTestMode) {
+	public Game(Long seed, Level level, boolean isTestMode) throws GameException {
 		this.seed = seed;
 		this.level = level;
 		this.isTestMode = isTestMode;

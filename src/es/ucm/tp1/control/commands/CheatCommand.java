@@ -2,7 +2,7 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
-import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElement;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElementException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
 
@@ -42,7 +42,7 @@ public class CheatCommand extends Command {
 		boolean generated = false;
 		try {
 			GameElementGenerator.generateCheatObject(game, element);
-		} catch (GenerateNewGameElement ex) {
+		} catch (GenerateNewGameElementException ex) {
 			throw new CommandExecuteException(String.format("Command %s: %s%n", CheatCommand.NAME, ex.getMessage()).trim(), ex);	
 		}			
 		return generated;

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.model.Game;
 
 public class DumpCommand extends Command {
@@ -43,9 +44,17 @@ public class DumpCommand extends Command {
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException {
 		// Dumps a file into the console
-		try (
-			FileReader file = new FileReader(filename + ".txt");
-			BufferedReader bfile = new BufferedReader(file);){
+		try {
+			readFile();
+		} catch (InputOutputRecordException ex) {
+			throw new CommandExecuteException(ex.getMessage(), ex);
+		}
+		return false;
+	}
+
+	private void readFile() throws InputOutputRecordException {
+		try (FileReader file = new FileReader(filename + ".txt");
+			BufferedReader bfile = new BufferedReader(file);) {
 			
 			String line = bfile.readLine();
 			while (line != null) {
@@ -54,10 +63,8 @@ public class DumpCommand extends Command {
 			}
 			
 		} catch (IOException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
-			//ex.printStackTrace();
+			throw new InputOutputRecordException(ex.getMessage(), ex);
 		}
-		return false;
 	}
 
 }

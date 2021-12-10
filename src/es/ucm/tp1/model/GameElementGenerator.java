@@ -1,6 +1,6 @@
 package es.ucm.tp1.model;
 
-import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElement;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElementException;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.GameElement;
@@ -34,15 +34,15 @@ public final class GameElementGenerator {
 			game.tryToAddObject(new Obstacle(game, x, game.getRandomLane()), level.obstacleFrequency());
 			game.tryToAddObject(new Coin(x, game.getRandomLane(), game), level.coinFrequency());
 		
-		if (level .hasAdvancedObjects()) {
-			game.tryToAddObject(new Wall(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
-			game.tryToAddObject(new Turbo(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
-			if (!SuperCoin.hasSuperCoin()) {
-				game.tryToAddObject(new SuperCoin(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
-			} 
-			game.tryToAddObject(new Truck(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
-			game.tryToAddObject(new Pedestrian(game, x, 0), level.advancedObjectsFrequency());
-		    }
+			if (level .hasAdvancedObjects()) {
+				game.tryToAddObject(new Wall(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+				game.tryToAddObject(new Turbo(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+				if (!SuperCoin.hasSuperCoin()) {
+					game.tryToAddObject(new SuperCoin(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+				} 
+				game.tryToAddObject(new Truck(game, x, game.getRandomLane()), level.advancedObjectsFrequency());
+				game.tryToAddObject(new Pedestrian(game, x, 0), level.advancedObjectsFrequency());
+			}
 		}
 	}
 	
@@ -68,14 +68,14 @@ public final class GameElementGenerator {
 		return gameElement;
 	}
 	
-	public static void generateCheatObject(Game game, String name) throws GenerateNewGameElement {
+	public static void generateCheatObject(Game game, String name) throws GenerateNewGameElementException {
 		GameElement currentElement = GameElementGenerator.getGameElement(name);
 		if (currentElement != null && currentElement.isAdvanced()) {
 			int lane = game.getRandomLane();
 			int column = game.getCameraPosition() + game.getVisibility() - 1; // + position of player 
 			game.addObject(currentElement.create(game, column, lane));			
 		} else {
-			throw new GenerateNewGameElement(GameElementGenerator.NOT_AN_ADVANCED_GAME_ELEMENT);
+			throw new GenerateNewGameElementException(GameElementGenerator.NOT_AN_ADVANCED_GAME_ELEMENT);
 		}
 	}
 
