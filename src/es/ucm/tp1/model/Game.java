@@ -15,7 +15,7 @@ import es.ucm.tp1.model.Elements.GameElementContainer;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
 
-public class Game {
+public class Game implements IGame {
 	Player player = null;
 	private GameElementContainer elements; 
 	private Records records;
@@ -42,7 +42,6 @@ public class Game {
 
 	}
 
-
 	private void initSetFields(Long seed, Level level, boolean isTestMode, boolean victory, boolean exit) throws GameException {
 		this.seed = seed;
 		this.level = level;
@@ -55,7 +54,7 @@ public class Game {
 		this.exit = false;
 		
 		//Throws exception
-		this.records = new Records();
+		this.records = new Records(this);
 	}
 	
 	
@@ -76,7 +75,7 @@ public class Game {
 	}
 	
 	// ---------------------------  Beginning of Setters and Getters ---------------------------
-	
+	@Override
 	public void setExit(boolean exit) {
 		this.exit = exit;
 	}

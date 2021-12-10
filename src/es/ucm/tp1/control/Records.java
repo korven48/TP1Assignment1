@@ -12,16 +12,19 @@ import java.util.Map;
 import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
+import es.ucm.tp1.model.IGame;
 
 public class Records {
 	
 	private static final String FILE_NAME = "record"; 
 	private static final String FILE_EXTENTION = ".txt";
-	private Map<String, Long> records;
 	private static final String defaultValues = "";
+	private Map<String, Long> records;
+	private IGame game = null;
 	
-	public Records () throws GameException {
+	public Records (IGame game) throws GameException {
 		// Inializes the record of each available level to the maximum value
+		this.game = game;
 		records = new HashMap<String, Long>();
 		for (Level level: Level.values()) {
 			records.put(level.name(), Long.MAX_VALUE);
@@ -78,6 +81,7 @@ public class Records {
 		} catch (NumberFormatException ex) {
 			throw new InputOutputRecordException("Numerical failure occurred", ex);
 		} catch (IOException ex) {
+			game.setExit(true);
 			throw new InputOutputRecordException("Another IO error occurred", ex);
 		}
 	}
