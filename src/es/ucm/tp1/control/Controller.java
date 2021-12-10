@@ -3,7 +3,7 @@ package es.ucm.tp1.control;
 import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.view.GamePrinter;
+import es.ucm.tp1.view.*;
 
 import es.ucm.tp1.control.commands.Command;
 
@@ -16,15 +16,21 @@ public class Controller {
 	private Game game;
 	private Scanner scanner;
 	private GamePrinter printer;
+	private GameSerializer serializer;
 
 	public Controller(Game game, Scanner scanner) {
 		this.game = game;
 		this.scanner = scanner;
 		this.printer = new GamePrinter(game);
+		this.serializer = new GameSerializer(game);
 	}
 
 	public void printGame() {
 		System.out.println(printer);
+	}
+	
+	public void printSerializer() {
+		System.out.println(serializer);		
 	}
 	
 	public static void printUnknown() {
@@ -42,11 +48,14 @@ public class Controller {
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
 				printGame();
+				
+				// Debbuging only
+//				printSerializer();
 			}
 			refreshDisplay = false;
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			String [] parameters = s.toLowerCase().trim().split (" ");
+			String [] parameters = s.toLowerCase().trim().split(" ");
 			System.out.println(DEBUG_MSG + s);
 			command = Command.getCommand(parameters);
 			if (command != null) {
@@ -57,6 +66,7 @@ public class Controller {
 				System.out.println(UNKNOWN_COMMAND_MSG);
 			}
 		}
+		game.close();
 		if (refreshDisplay) printGame();
 		printEndMessage();
   }

@@ -3,10 +3,11 @@ package es.ucm.tp1.model.Elements;
 import java.util.List;
 
 import es.ucm.tp1.model.Collider;
+import es.ucm.tp1.model.Serializable;
 
 import java.util.ArrayList;
 
-public final class GameElementContainer {
+public final class GameElementContainer implements Serializable{
 	protected final static int CAPACITY = 100;
 	private List<GameElement> gameElements;
 	
@@ -39,6 +40,16 @@ public final class GameElementContainer {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getSerialized() {
+		StringBuilder str = new StringBuilder();
+		GameElement elem;
+		for (int i = 0; i < this.size(); i++){
+			elem = this.get(i);
+			str.append(elem.getSerialized() + "\n");
+		}
+		return str.toString();
 	}
 	
 	public void remove(int x, int y) {

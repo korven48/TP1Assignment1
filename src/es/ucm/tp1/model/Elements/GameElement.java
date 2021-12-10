@@ -2,11 +2,13 @@ package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.Collider;
 import es.ucm.tp1.model.ColliderCallback;
+import es.ucm.tp1.model.Serializable;
 import es.ucm.tp1.model.Game;
 
-public abstract class GameElement implements Collider, ColliderCallback {
+public abstract class GameElement implements Collider, ColliderCallback, Serializable {
 	protected int x;
 	protected int y;
+
 	protected Game game;
 	protected String symbol;
 	private final String NAME;
@@ -27,6 +29,12 @@ public abstract class GameElement implements Collider, ColliderCallback {
 	@Override
 	public void looseCoins() {
 
+	}
+	
+	@Override
+	public String getSerialized() {
+		// Example: > (0, 2)
+		return (this + " (" + this.getX() + ", " + this.getY() + ")");
 	}
 
 	public GameElement(String name) {

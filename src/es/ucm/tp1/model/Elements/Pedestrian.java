@@ -21,6 +21,11 @@ public class Pedestrian extends Obstacle {
 	}
 	
 	@Override
+	public String getSerialized() {
+		return super.getSerialized() + " " + (this.goingUp ? "up":"down");
+	}
+	
+	@Override
 	public boolean isAdvanced() {
 		return true;
 	}

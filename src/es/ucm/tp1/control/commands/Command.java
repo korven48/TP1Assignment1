@@ -16,6 +16,10 @@ public abstract class Command {
 			new ShootCommand(),
 			new GrenadeCommand(),
 			new WaveCommand(),
+			new SerializeCommand(),
+			new SaveCommand(),
+			new DumpCommand(),
+			new ShowRecordCommand(),
 			new ClearCommand(),
 			new CheatCommand()
 	};
