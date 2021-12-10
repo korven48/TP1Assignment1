@@ -1,6 +1,7 @@
 package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.view.GameSerializer;
 
 public class SerializeCommand extends Command {
 	private static final String NAME = "serialize";
@@ -17,7 +18,8 @@ public class SerializeCommand extends Command {
 	public boolean execute(Game game) {
 		// TODO Auto-generated method stub
 		// Should print the GameSerializer
+		GameSerializer serializer = new GameSerializer(game);
+		System.out.println(serializer);
 		return false;
 	}
-
 }
