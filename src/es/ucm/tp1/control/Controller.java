@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.*;
-
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.control.commands.Command;
 
 public class Controller {
 
 	private static final String PROMPT = "Command > ";
-	private static final String UNKNOWN_COMMAND_MSG = "[ERROR]: Unknown command";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
+	private static final String UNKNOWN_COMMAND_MSG = "Unknown Command: ";
 
 	private Game game;
 	private Scanner scanner;
@@ -53,17 +54,18 @@ public class Controller {
 //				printSerializer();
 			}
 			refreshDisplay = false;
+			
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
 			String [] parameters = s.toLowerCase().trim().split(" ");
 			System.out.println(DEBUG_MSG + s);
-			command = Command.getCommand(parameters);
-			if (command != null) {
-				refreshDisplay = command.execute(game);
-//				game.update(); Update should only be called when the cycle increments
+			
+			try {
+				command = Command.getCommand(parameters);
+			    refreshDisplay = command.execute(game);
 				game.removeDeadObjects();
-			} else {
-				System.out.println(UNKNOWN_COMMAND_MSG);
+			} catch (GameException ex) {
+				System.out.format("[ERROR]: %s%n%n", ex.getMessage());
 			}
 		}
 		game.close();

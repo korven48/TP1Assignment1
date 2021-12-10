@@ -45,7 +45,6 @@ public class Obstacle extends GameElement{
 	@Override
 	public boolean receiveThunder() {
 		resistance = 0;
-//		GamePrinter.printMessage(" -> " + this.NAME + " hit");
 		return true;
 	}
 	

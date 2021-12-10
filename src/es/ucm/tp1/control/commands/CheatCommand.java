@@ -1,5 +1,8 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElement;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
 
@@ -8,7 +11,6 @@ public class CheatCommand extends Command {
 	private static final String DETAILS = "Cheat <AO-name>";
 	private static final String SHORTCUT = "c";
 	private static final String HELP = "Removes all elements of last visible column and adds advanced object AO";
-	private static final String NOT_AN_ADVANCED_GAME_ELEMENT = "Not an advanced game element";
 	private String element;
 	
 	public CheatCommand(String element) {
@@ -21,13 +23,12 @@ public class CheatCommand extends Command {
 	}
 
 	@Override
-	protected Command parse(String[] words) {
+	protected Command parse(String[] words) throws CommandParseException {
 		String element;
 		if (this.matchCommandName(words[0])) {
 			if (words.length != 2) {
-				Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
+				throw new CommandParseException(String.format("Command %s: %s%n", CheatCommand.NAME,
 							 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
-				return null;
 			} else {
 				element = words[1];
 				return new CheatCommand(element);
@@ -37,12 +38,13 @@ public class CheatCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
-		boolean generated = GameElementGenerator.generateCheatObject(game, element);
-		if (! generated) {
-			Command.printMessage(String.format("[ERROR]: Command %s: %s%n", CheatCommand.NAME,
-					CheatCommand.NOT_AN_ADVANCED_GAME_ELEMENT));			
-		}
+	public boolean execute(Game game) throws CommandExecuteException {
+		boolean generated = false;
+		try {
+			GameElementGenerator.generateCheatObject(game, element);
+		} catch (GenerateNewGameElement ex) {
+			throw new CommandExecuteException(String.format("Command %s: %s%n", CheatCommand.NAME, ex.getMessage()).trim(), ex);	
+		}			
 		return generated;
 	}
 

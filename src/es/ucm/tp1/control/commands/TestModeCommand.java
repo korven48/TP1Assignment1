@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 
 final class TestModeCommand extends Command {
@@ -14,14 +15,14 @@ final class TestModeCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// TODO Auto-generated method stub
 		boolean result = false;
 		try {
 			game.setTest(true);
 			result = true;
 		} catch (Exception ex) {
-			System.out.println(ex);
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
 		return result;
 	}

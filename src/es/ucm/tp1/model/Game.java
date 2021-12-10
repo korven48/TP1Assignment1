@@ -1,13 +1,14 @@
 package es.ucm.tp1.model;
 
 import java.util.Random;
+
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.control.Records;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
 import es.ucm.tp1.model.Elements.GameElementContainer;
-//import es.ucm.tp1.model.GameElementGenerator;
-
 //We just imported that because we need to access the static fields
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
@@ -83,15 +84,16 @@ public class Game {
 	}
 	
 	//In further iterations we could also throw an exception if it does not work
-	public boolean incrementCyle(Direction direction) {
-		boolean result = false;
+	public void incrementCyle(Direction direction) throws InvalidPositionException {
 		//Later can be removed by throwing an exception which is handelt in the Command
-		if (direction != null) {
-			result = this.movePlayer(result, direction);
+		boolean result = false;
+		if (direction == null) {
+			throw new InvalidPositionException("WARNING: Coudn't move the player in that direction");
+		} else {
+			this.movePlayer(result, direction);
 		}
 		update();
 		this.cycle++;
-		return result; 
 	}
 	
 	public int getCycle() {
@@ -233,10 +235,9 @@ public class Game {
 		return player;
 	}
 		
-	boolean movePlayer(boolean shouldDisplay, Direction direction) {
-		shouldDisplay = player.processingMovement(shouldDisplay, direction);
+	void movePlayer(boolean shouldDisplay, Direction direction) throws InvalidPositionException {
+		player.processingMovement(shouldDisplay, direction);
 		player.doCollision();
-		return shouldDisplay;
 	}
 
 	public String positionToString(int x, int y) {
@@ -283,15 +284,15 @@ public class Game {
 	}
 	
 	public void doInstantAction(InstantAction action) {
-		action.execute(this);		
+		action.execute(this);	
 	}
 	
 	public int getPlayerLane() {
 		return player.getY();
 	}
 	
-	public int getAmountOfCoinsPlayer() {
-		return player.getCoins();
+	public void getAmountOfCoinsPlayer(int amount) throws NotEnoughCoinsException {
+		player.payAble(amount);
 	}
 	
 	public Level getLevel() {

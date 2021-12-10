@@ -1,5 +1,6 @@
 package es.ucm.tp1.model;
 
+import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElement;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.GameElement;
@@ -13,6 +14,7 @@ import es.ucm.tp1.model.Elements.Wall;
 import es.ucm.tp1.model.InstantActions.*;
 
 public final class GameElementGenerator {
+	private static final String NOT_AN_ADVANCED_GAME_ELEMENT = "Not an advanced game element";
 	public static final GameElement[] AVAILABLE_GAMEELEMENTS = {
 			// Should contain all the GameElements
 			new Coin(),
@@ -66,16 +68,15 @@ public final class GameElementGenerator {
 		return gameElement;
 	}
 	
-	public static boolean generateCheatObject(Game game, String name) {
-		boolean generated = false;
+	public static void generateCheatObject(Game game, String name) throws GenerateNewGameElement {
 		GameElement currentElement = GameElementGenerator.getGameElement(name);
 		if (currentElement != null && currentElement.isAdvanced()) {
 			int lane = game.getRandomLane();
 			int column = game.getCameraPosition() + game.getVisibility() - 1; // + position of player 
 			game.addObject(currentElement.create(game, column, lane));			
-			generated = true;
+		} else {
+			throw new GenerateNewGameElement(GameElementGenerator.NOT_AN_ADVANCED_GAME_ELEMENT);
 		}
-		return generated;
 	}
 
 	public static void reset(Level level) {
