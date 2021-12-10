@@ -343,7 +343,6 @@ public class Game {
 		str.append("Level: " + level.name() + "\n");
 		str.append("Cycles: " + getCycle() + "\n");
 		str.append("Coins: " + player.getCoins() + "\n");
-//		str.append("Ellapsed Time: " + getTime() + "\n");
 		str.append("Ellapsed Time: " + ellapsedtime + "\n");
 		
 		return str.toString();

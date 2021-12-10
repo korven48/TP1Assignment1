@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.*;
-import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.control.commands.Command;
 
@@ -12,7 +11,6 @@ public class Controller {
 
 	private static final String PROMPT = "Command > ";
 	private static final String DEBUG_MSG = "[DEBUG] Executing: ";
-	private static final String UNKNOWN_COMMAND_MSG = "Unknown Command: ";
 
 	private Game game;
 	private Scanner scanner;
@@ -34,10 +32,6 @@ public class Controller {
 		System.out.println(serializer);		
 	}
 	
-	public static void printUnknown() {
-		System.out.println(UNKNOWN_COMMAND_MSG);
-	}
-
 	public void printEndMessage() {
 		System.out.println(printer.endMessage());
 	}

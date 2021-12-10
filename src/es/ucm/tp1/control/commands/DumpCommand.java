@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.model.Game;
 
 public class DumpCommand extends Command {
@@ -25,13 +27,13 @@ public class DumpCommand extends Command {
 	}
 	
 	@Override
-	protected DumpCommand parse(String[] words) {
+	protected DumpCommand parse(String[] words) throws CommandParseException {
 		if (this.matchCommandName(words[0])) {
 			if (words.length == 2) {
 				filename = words[1];
 				return new DumpCommand(filename);
 			} else {
-				Command.printMessage(String.format("[ERROR]: Command %s: %s%n%n", DumpCommand.NAME,
+				throw new CommandParseException(String.format("Command %s: %s%n%n", DumpCommand.NAME,
 					 	   Command.INCORRECT_NUMBER_OF_ARGS_MSG));
 			}
 		}
@@ -39,7 +41,7 @@ public class DumpCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// Dumps a file into the console
 		try (
 			FileReader file = new FileReader(filename + ".txt");
@@ -51,8 +53,9 @@ public class DumpCommand extends Command {
 				line = bfile.readLine();
 			}
 			
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ex) {
+			throw new CommandExecuteException(ex.getMessage(), ex);
+			//ex.printStackTrace();
 		}
 		return false;
 	}
