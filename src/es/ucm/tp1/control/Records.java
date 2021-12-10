@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
+
 public class Records {
 	
 	private static final String FILENAME = "record"; // .txt
@@ -22,14 +24,13 @@ public class Records {
 		load();
 	}
 	
-	public boolean trySetNewRecord(String levelName, long time) {
+	public void trySetNewRecord(String levelName, long time) throws RecordsException {
 		// If the time is lower than previous record for the level, the record is updated
-		boolean isRecord = false;
 		if (time < records.get(levelName)) {
 			records.replace(levelName, time);	
-			isRecord = true;
+		} else {
+			throw new RecordsException();
 		}
-		return isRecord;
 	}
 	
 	public void save() {

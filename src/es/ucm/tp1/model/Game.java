@@ -4,6 +4,7 @@ import java.util.Random;
 
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.control.Records;
 import es.ucm.tp1.model.Elements.GameElement;
@@ -343,7 +344,6 @@ public class Game {
 		str.append("Level: " + level.name() + "\n");
 		str.append("Cycles: " + getCycle() + "\n");
 		str.append("Coins: " + player.getCoins() + "\n");
-//		str.append("Ellapsed Time: " + getTime() + "\n");
 		str.append("Ellapsed Time: " + ellapsedtime + "\n");
 		
 		return str.toString();
@@ -354,9 +354,11 @@ public class Game {
  	}
 
 	public void close() {
-		this.recordSet = records.trySetNewRecord(level.name(), getTime());
-		if (recordSet) {
-			records.save();
-		}
+		try {
+			records.trySetNewRecord(level.name(), getTime());
+			if (recordSet) {
+				records.save();
+			}
+		} catch (RecordsException ex) {}
 	}
 }

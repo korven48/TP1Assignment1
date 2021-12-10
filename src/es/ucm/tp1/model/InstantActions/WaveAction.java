@@ -1,7 +1,6 @@
 package es.ucm.tp1.model.InstantActions;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.model.Collider;
 
 public final class WaveAction implements InstantAction {
 	

@@ -1,5 +1,6 @@
 package es.ucm.tp1.Exceptions.highlevelexceptions;
 
+@SuppressWarnings("serial")
 public class GameException extends Exception {
 
 	public GameException() {

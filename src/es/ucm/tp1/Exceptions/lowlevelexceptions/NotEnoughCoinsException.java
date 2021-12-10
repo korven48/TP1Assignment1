@@ -1,5 +1,6 @@
 package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
+@SuppressWarnings("serial")
 public class NotEnoughCoinsException extends Exception {
 
 	public NotEnoughCoinsException() {

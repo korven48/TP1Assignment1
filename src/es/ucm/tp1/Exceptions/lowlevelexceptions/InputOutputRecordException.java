@@ -1,5 +1,6 @@
 package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
+@SuppressWarnings("serial")
 public class InputOutputRecordException extends Exception {
 
 	public InputOutputRecordException() {

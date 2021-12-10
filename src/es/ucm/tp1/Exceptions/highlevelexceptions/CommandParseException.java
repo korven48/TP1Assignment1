@@ -1,6 +1,7 @@
 package es.ucm.tp1.Exceptions.highlevelexceptions;
 
 //High level Exception
+@SuppressWarnings("serial")
 public class CommandParseException extends GameException {
 	public CommandParseException() {
 		// TODO Auto-generated constructor stub

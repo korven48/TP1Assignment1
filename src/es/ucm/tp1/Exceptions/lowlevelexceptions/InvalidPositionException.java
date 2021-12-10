@@ -1,5 +1,6 @@
 package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
+@SuppressWarnings("serial")
 public class InvalidPositionException extends Exception {
 
 	public InvalidPositionException() {
