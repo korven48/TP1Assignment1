@@ -7,7 +7,7 @@ import es.ucm.tp1.model.Serializable;
 
 import java.util.ArrayList;
 
-public final class GameElementContainer implements Serializable{
+public final class GameElementContainer implements Serializable {
 	protected final static int CAPACITY = 100;
 	private List<GameElement> gameElements;
 	
@@ -42,6 +42,7 @@ public final class GameElementContainer implements Serializable{
 		return false;
 	}
 	
+	@Override
 	public String getSerialized() {
 		StringBuilder str = new StringBuilder();
 		GameElement elem;

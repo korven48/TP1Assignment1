@@ -7,6 +7,7 @@ import java.io.IOException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.StandardInputOutputException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GameSerializer;
 
@@ -48,22 +49,21 @@ public class SaveCommand extends Command {
 		// Try to dump GameSerializer in <filename>.txt
 		try {
 			writeMethod(game);
-		} catch (InputOutputRecordException ex) {
+		} catch (StandardInputOutputException ex) {
 			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
 		return false;
 	}
 
-	private void writeMethod(Game game) throws InputOutputRecordException {
-		try (FileWriter file      = new FileWriter(filename + SaveCommand.FILE_EXTENTION);
+	private void writeMethod(Game game) throws StandardInputOutputException {
+		try (FileWriter file     = new FileWriter(filename + SaveCommand.FILE_EXTENTION);
 			BufferedWriter bfile = new BufferedWriter(file)) {
 			GameSerializer serializer = new GameSerializer(game);
 //			bfile.write(game.getSerializedElems());
 			bfile.write(serializer.toString());
 			System.out.println("Game successfully saved in file " + filename + ".txt");
 		} catch (IOException ex) {
-			throw new InputOutputRecordException(ex.getMessage(), ex);
+			throw new StandardInputOutputException(ex.getMessage(), ex);
 		}
 	}
-
 }

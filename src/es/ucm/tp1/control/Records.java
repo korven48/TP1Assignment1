@@ -41,7 +41,7 @@ public class Records {
 	public void trySetNewRecord(String levelName, long time) throws RecordsException {
 		// If the time is lower than previous record for the level, the record is updated
 		if (time < records.get(levelName)) {
-			records.replace(levelName, time);	
+			records.replace(levelName, time);
 		} else {
 			throw new RecordsException("The new time is no record!");
 		}

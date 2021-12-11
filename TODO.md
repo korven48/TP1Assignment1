@@ -11,16 +11,14 @@
 		//How to solve the printing from the Playercan not move
 
 #### Free for review
-* Lukas: 1.1 (done) + 1.3 (done - how shall it be generated) 
-* Lucas: 1.2 (done) + 1.4 (done)
+
 	
 ####Questions
 - Can we use HaspMap?
 - How can/shall we modify the grenade?
 - How to read the builshit @theBeginning?
 - Why do we use safe just one time?
-- Add the default values!
-
+- ShowRecordCommand
 
 ### Non-prio tasks
 

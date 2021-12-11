@@ -15,22 +15,22 @@ public class Controller {
 	private Game game;
 	private Scanner scanner;
 	private GamePrinter printer;
-	private GameSerializer serializer;
+	// private GameSerializer serializer;
 
 	public Controller(Game game, Scanner scanner) {
 		this.game = game;
 		this.scanner = scanner;
 		this.printer = new GamePrinter(game);
-		this.serializer = new GameSerializer(game);
+		// this.serializer = new GameSerializer(game);
 	}
 
 	public void printGame() {
 		System.out.println(printer);
 	}
 	
-	public void printSerializer() {
-		System.out.println(serializer);		
-	}
+	// public void printSerializer() {
+	// 	System.out.println(serializer);		
+	// }
 	
 	public void printEndMessage() {
 		System.out.println(printer.endMessage());
@@ -43,8 +43,6 @@ public class Controller {
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
 				printGame();
-				// Debbuging only
-//				printSerializer();
 			}
 			refreshDisplay = false;
 			

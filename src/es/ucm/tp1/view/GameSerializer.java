@@ -15,7 +15,7 @@ public class GameSerializer {
 		StringBuilder str = new StringBuilder();
 		
 		str.append(game.getGeneralState());
-		str.append(game.getSerializedElems());
+		str.append(game.getSerialized());
 		
 		return str.toString();
 	}

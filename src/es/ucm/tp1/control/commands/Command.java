@@ -51,7 +51,7 @@ public abstract class Command {
 	protected Command parse(String[] words) throws CommandParseException {
 		if (matchCommandName(words[0]))
 			if (words.length != 1) {
-				throw new CommandParseException(String.format("[ERROR]: Command %s: %s", name, INCORRECT_NUMBER_OF_ARGS_MSG));
+				throw new CommandParseException(String.format("Command %s: %s", name, INCORRECT_NUMBER_OF_ARGS_MSG));
 			} else {
 				return this;
 			}

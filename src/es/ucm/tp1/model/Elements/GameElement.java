@@ -133,5 +133,5 @@ public abstract class GameElement implements Collider, ColliderCallback, Seriali
 		return true;
 	}
 
-	public abstract GameElement create(Game game, int x, int y);
+	public abstract GameElement create(Game game, int x, int y) throws Exception;
 }

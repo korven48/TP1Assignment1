@@ -15,7 +15,7 @@ import es.ucm.tp1.model.Elements.GameElementContainer;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
 
-public class Game implements IGame {
+public class Game implements IGame, Serializable {
 	Player player = null;
 	private GameElementContainer elements; 
 	private Records records;
@@ -339,20 +339,21 @@ public class Game implements IGame {
 		return records.toString();
 	}
 	
-	public String getSerializedElems() {
+	@Override
+	public String getSerialized() {
 		StringBuilder str = new StringBuilder();
-		str.append("Game Objects: \n");
+		str.append("Game Objects: " + String.format("%n"));
 		str.append(elements.getSerialized());
 		return str.toString();
 	}
-
-	public String getGeneralState() { 
+	
+	public String getGeneralState() {
 		StringBuilder str = new StringBuilder();
 		
-		str.append("Level: " + level.name() + "\n");
-		str.append("Cycles: " + getCycle() + "\n");
-		str.append("Coins: " + player.getCoins() + "\n");
-		str.append("Ellapsed Time: " + ellapsedtime + "\n");
+		str.append("Level: " + level.name() + String.format("%n"));
+		str.append("Cycles: " + getCycle() + String.format("%n"));
+		str.append("Coins: " + player.getCoins() + String.format("%n"));
+		str.append("Ellapsed Time: " + ellapsedtime + String.format("%n"));
 		
 		return str.toString();
 	}

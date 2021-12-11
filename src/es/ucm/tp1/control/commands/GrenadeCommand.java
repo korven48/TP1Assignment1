@@ -2,6 +2,7 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.model.GameElementGenerator;
@@ -57,7 +58,11 @@ public class GrenadeCommand extends Command implements Buyable {
 			throw new CommandExecuteException("", ex);
 		}
 		this.buy(game);
-		GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
+		try {
+			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
+		} catch (InvalidPositionException ex) {
+			throw new CommandExecuteException(ex.getMessage(), ex);
+		}
 		result = true;
 		return result;
 	}

@@ -16,7 +16,6 @@ public class SerializeCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		// TODO Auto-generated method stub
 		// Should print the GameSerializer
 		GameSerializer serializer = new GameSerializer(game);
 		System.out.println(serializer);

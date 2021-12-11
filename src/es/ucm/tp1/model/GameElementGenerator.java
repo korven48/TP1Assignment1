@@ -1,6 +1,7 @@
 package es.ucm.tp1.model;
 
 import es.ucm.tp1.Exceptions.lowlevelexceptions.GenerateNewGameElementException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.GameElement;
@@ -53,7 +54,7 @@ public final class GameElementGenerator {
 		}
 	}
 	
-	public static void generateGranade(Game game, int x, int y) {
+	public static void generateGranade(Game game, int x, int y) throws InvalidPositionException {
 		game.addObject(new Grenade(game, x, y));
 	}
 
@@ -73,7 +74,11 @@ public final class GameElementGenerator {
 		if (currentElement != null && currentElement.isAdvanced()) {
 			int lane = game.getRandomLane();
 			int column = game.getCameraPosition() + game.getVisibility() - 1; // + position of player 
-			game.addObject(currentElement.create(game, column, lane));			
+			try {
+				game.addObject(currentElement.create(game, column, lane));	
+			} catch (Exception ex) {
+				throw new GenerateNewGameElementException(ex.getMessage(), ex);
+			}
 		} else {
 			throw new GenerateNewGameElementException(GameElementGenerator.NOT_AN_ADVANCED_GAME_ELEMENT);
 		}

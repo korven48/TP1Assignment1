@@ -1,7 +1,9 @@
 package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.InstantActions.ExplodeAction;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.Serializable;
 
 public class Grenade extends GameElement {
 
@@ -10,8 +12,13 @@ public class Grenade extends GameElement {
 	
 	private int cyclesLeft;
 
-	public Grenade(Game game, int x, int y) {
+	public Grenade(Game game, int x, int y) throws InvalidPositionException {
 		super(game, x, y, NAME);
+		// Checks if the grenade is in the visibility range and inside of the road
+		if (!(x >= game.getCameraPosition() && x < game.getCameraPosition() + game.getVisibility() &&
+		    y >= 0 && y < game.getRoadWidth())) {
+			throw new InvalidPositionException("Invalid Position");
+		}
 		cyclesLeft = TOTALCYCLES;
 		symbol = "ð";
 	}
@@ -51,7 +58,7 @@ public class Grenade extends GameElement {
 	}
 
 	@Override
-	public GameElement create(Game game, int x, int y) {
+	public GameElement create(Game game, int x, int y) throws InvalidPositionException {
 		return new Grenade(game, x, y);
 	}
 
