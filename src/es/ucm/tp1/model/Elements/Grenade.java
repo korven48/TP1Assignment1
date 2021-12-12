@@ -15,12 +15,16 @@ public class Grenade extends GameElement {
 	public Grenade(Game game, int x, int y) throws InvalidPositionException {
 		super(game, x, y, NAME);
 		// Checks if the grenade is in the visibility range and inside of the road
-		if (!(x >= game.getCameraPosition() && x < game.getCameraPosition() + game.getVisibility() &&
-		    y >= 0 && y < game.getRoadWidth())) {
+		if (isPositionValid(game, x, y)) {
 			throw new InvalidPositionException("Invalid Position");
 		}
 		cyclesLeft = TOTALCYCLES;
 		symbol = "ð";
+	}
+
+	private boolean isPositionValid(Game game, int x, int y) {
+		return !(x >= game.getCameraPosition() && x < game.getCameraPosition() + game.getVisibility() &&
+		    y >= 0 && y < game.getRoadWidth());
 	}
 	
 	public Grenade() {

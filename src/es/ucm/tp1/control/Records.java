@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
 import es.ucm.tp1.model.IGame;
@@ -18,23 +17,22 @@ public class Records {
 	
 	private static final String FILE_NAME = "record"; 
 	private static final String FILE_EXTENTION = ".txt";
-	private static final String defaultValues = "";
 	private Map<String, Long> records;
 	private IGame game = null;
+	private boolean isRecord = false;
 	
-	public Records (IGame game) throws GameException {
+	//For error Messages
+	private static final String ERROR_FILE_NOT_FOUND = "File not found, created new record-file";
+	private static final String ERROR_NUMERICAL = "Numerical failure occurred";
+	private static final String ERROR_Other = "Another IO error occurred";
+	
+	
+	public Records (IGame game) {
 		// Inializes the record of each available level to the maximum value
 		this.game = game;
 		records = new HashMap<String, Long>();
 		for (Level level: Level.values()) {
 			records.put(level.name(), Long.MAX_VALUE);
-		}
-		try {
-			load();
-		} catch (InputOutputRecordException ex) {
-			throw new GameException(ex.getMessage(), ex);
-		} finally {
-			//Create the file --> Creating a new record.
 		}
 	}
 	
@@ -42,17 +40,22 @@ public class Records {
 		// If the time is lower than previous record for the level, the record is updated
 		if (time < records.get(levelName)) {
 			records.replace(levelName, time);
+			this.isRecord = true;
 		} else {
 			throw new RecordsException("The new time is no record!");
 		}
 	}
 	
-	public void save() {
+	public boolean getIsRecord() {
+		return this.isRecord;
+	}
+	
+	public void save() throws InputOutputRecordException {
 		try ( FileWriter file      = new FileWriter(Records.FILE_NAME + Records.FILE_EXTENTION);
 			  BufferedWriter bfile = new BufferedWriter(file)) {
 				bfile.write(this.toString());
 		} catch (IOException ex) {
-				ex.printStackTrace();
+				throw new InputOutputRecordException(ex.getMessage(), ex);
 		}
 	}
 	
@@ -77,12 +80,14 @@ public class Records {
 				line = bfile.readLine();
 			}
 		} catch (FileNotFoundException ex) {
-			throw new InputOutputRecordException("Permissons failure occurred", ex);
+			this.save();
+			throw new InputOutputRecordException(Records.ERROR_FILE_NOT_FOUND, ex);
 		} catch (NumberFormatException ex) {
-			throw new InputOutputRecordException("Numerical failure occurred", ex);
+			this.save();
+			throw new InputOutputRecordException(Records.ERROR_NUMERICAL, ex);
 		} catch (IOException ex) {
 			game.setExit(true);
-			throw new InputOutputRecordException("Another IO error occurred", ex);
+			throw new InputOutputRecordException(Records.ERROR_Other, ex);
 		}
 	}
 	
@@ -95,5 +100,16 @@ public class Records {
 			str.append(String.format("%n"));
 		}
 		return str.toString();
+	}
+	
+	private long getLevelRecords(String levelName) {
+		long value = this.records.get(levelName);
+		return value;
+	}
+	
+	public String getLevelRecords(Level level) {
+		double seconds = this.getLevelRecords(level.name()) / 1000 ;
+		String time = "Hello Player, the record for " + level.name() + " is: " + String.format("%.2f", seconds) + "s" + String.format("%n");
+		return time;
 	}
 }

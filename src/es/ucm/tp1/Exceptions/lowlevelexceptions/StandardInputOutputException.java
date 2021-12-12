@@ -1,5 +1,6 @@
 package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
+@SuppressWarnings("serial")
 public class StandardInputOutputException extends Exception {
 
 	public StandardInputOutputException() {

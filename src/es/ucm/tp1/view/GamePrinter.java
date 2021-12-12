@@ -1,5 +1,6 @@
 package es.ucm.tp1.view;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.utils.StringUtils;
 
@@ -90,12 +91,13 @@ public class GamePrinter {
 		if (game.getVictory()) {
 			sb.append(WIN_MSG);
 			if (game.isRecord()) {
-				sb.append("\r\n");
+				game.isRecord();
+				sb.append(String.format("%n"));
 				sb.append("New record!: ");
 				sb.append(game.getFormatedTime());	
 				
 				//Debug Only
-				System.out.println(game.getRecords());
+				//System.out.println(game.getRecords());
 			}
 		} else if (game.getExit()){
 			sb.append(DO_EXIT_MSG);

@@ -2,6 +2,7 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Game;
 
@@ -59,8 +60,8 @@ final class ResetCommand extends Command {
 		try {
 			game.reset(this.seed, this.level);
 			result = true;
-		} catch (Exception ex) {
-			System.out.println(ex);
+		} catch (InputOutputRecordException ex) {
+			throw new CommandExecuteException(ex.getMessage(), ex);
 		}
 		return result;
 	}

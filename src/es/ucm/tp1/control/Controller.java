@@ -39,6 +39,11 @@ public class Controller {
 	public void run() {
 		boolean refreshDisplay = true;
 		Command command = null; 
+		try {
+			game.loadRecord();
+		} catch (GameException ex) {
+			System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+		}
 		
 		while (!game.isFinished()) {
 			if (refreshDisplay) {
@@ -59,7 +64,12 @@ public class Controller {
 				System.out.format("[ERROR]: %s%n%n", ex.getMessage());
 			}
 		}
-		game.close();
+		try {
+			game.close();
+		} catch (GameException ex) {
+			System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+		}
+		
 		if (refreshDisplay) printGame();
 		printEndMessage();
   }

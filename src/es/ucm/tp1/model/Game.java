@@ -3,6 +3,7 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
@@ -19,12 +20,12 @@ public class Game implements IGame, Serializable {
 	Player player = null;
 	private GameElementContainer elements; 
 	private Records records;
+	private boolean isOldRecordShown = false;
 
 	private long ellapsedtime;
 	private int cycle;
 	private boolean victory;
-	private boolean exit;
-	private boolean recordSet;
+	private boolean exit; 
 	
 	private static final String FINISH_LINE = "¦";
 	
@@ -33,7 +34,7 @@ public class Game implements IGame, Serializable {
 	boolean isTestMode;
 	Random rand;
 	
-	public Game(Long seed, Level level, boolean isTestMode) throws GameException {
+	public Game(Long seed, Level level, boolean isTestMode) {
 		initSetFields(seed, level, isTestMode, false, false);
 		initRand(this.seed);
 		initObjects();
@@ -41,19 +42,26 @@ public class Game implements IGame, Serializable {
 		setUniquePlayer(reset);
 
 	}
+	
+	public void loadRecord() throws GameException {
+		try {
+			this.records.load();
+		} catch (InputOutputRecordException ex) {
+			throw new GameException(ex.getMessage(), ex);
+		} finally {
+			//Create the file --> Creating a new record.
+		}
+	}
 
-	private void initSetFields(Long seed, Level level, boolean isTestMode, boolean victory, boolean exit) throws GameException {
+	private void initSetFields(Long seed, Level level, boolean isTestMode, boolean victory, boolean exit) {
 		this.seed = seed;
 		this.level = level;
 		this.isTestMode = isTestMode;
 		this.cycle = 0; 
 		this.ellapsedtime = 0;
 		this.elements = new GameElementContainer();
-		this.recordSet = false;
 		this.victory = false;
 		this.exit = false;
-		
-		//Throws exception
 		this.records = new Records(this);
 	}
 	
@@ -63,11 +71,12 @@ public class Game implements IGame, Serializable {
 		this.player = Player.getPlayer(reset, startingline, this);
 	}
 	
-	public void reset(long seed, Level level) {
+	public void reset(long seed, Level level) throws InputOutputRecordException {
 		boolean reset = true;
 		setUniquePlayer(reset);
 		initObjects();
 		victory = false;
+		this.records.load();
 		// ---------------------------  Beginning - Addition to reset ---------------------------
 		this.seed = seed;
 		this.level = level;
@@ -204,10 +213,20 @@ public class Game implements IGame, Serializable {
 	}
 	// ---------------------------  Ends - Time methods ---------------------------
 	
+	private String getCurrentRecordEntry() {
+		if (!this.isOldRecordShown) {
+			this.isOldRecordShown = true;
+			return this.records.getLevelRecords(level);
+		}
+		return "";
+	}
+	
 	public String getGameStatus() {
 		StringBuilder str = new StringBuilder(); 
 		int distanceToFinish = level.getLength() - player.getX();
 		
+		String oldRecord = this.getCurrentRecordEntry();
+		if (oldRecord != "") str.append(oldRecord);
 		str.append(String.format("Distance: " + distanceToFinish + "%n"));
 		str.append(String.format("Coins: " + player.getCoins() + "%n"));
 		str.append(String.format("Cicle: " + this.cycle + "%n"));
@@ -216,7 +235,7 @@ public class Game implements IGame, Serializable {
 		if (!isTest()) {
 			str.append(String.format("Ellapsed Time: " + getFormatedTime() + "%n"));
 		}
-		return str.toString().stripTrailing();
+		return str.toString().trim();
 	}
 
 	public boolean isFinished() {
@@ -357,17 +376,24 @@ public class Game implements IGame, Serializable {
 		
 		return str.toString();
 	}
-
+	
 	public boolean isRecord() {
-		return isFinished() && this.recordSet;
- 	}
+		return this.records.getIsRecord();
+	}
 
-	public void close() {
+	public void close() throws GameException {
 		try {
-			records.trySetNewRecord(level.name(), getTime());
-			if (recordSet) {
-				records.save();
+			if (isFinished()) {
+				records.trySetNewRecord(level.name(), getTime());
+				
+				try {
+					records.save();	
+				} catch (InputOutputRecordException ex){
+					throw new GameException(ex.getMessage(), ex);
+				}
 			}
-		} catch (RecordsException ex) {}
+		} catch (RecordsException ex) {
+			throw new GameException(ex.getMessage(), ex);
+		}
 	}
 }
