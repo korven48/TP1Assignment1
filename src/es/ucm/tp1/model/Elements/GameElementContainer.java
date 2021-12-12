@@ -2,6 +2,7 @@ package es.ucm.tp1.model.Elements;
 
 import java.util.List;
 
+import es.ucm.tp1.control.Level;
 import es.ucm.tp1.model.Collider;
 import es.ucm.tp1.model.Serializable;
 
@@ -141,5 +142,28 @@ public final class GameElementContainer implements Serializable {
 
 	public void clear() {
 		gameElements.clear();		
+	}
+	
+	public String positionToStringLogic(int x, int y, Level level, IGameElement player, String FINISH_LINE) {
+		String position = "";
+		GameElement elem = null;
+		if (x ==  level.getLength()) {
+			position = FINISH_LINE;
+		} 
+		if(player.isInPos(x, y)) {
+			position = player.toString();
+		} else {
+			GameElement elem2;
+			for (int i = 0; i < this.gameElements.size(); i++) {
+				elem2 = gameElements.get(i);
+				if (elem2.isInPos(x, y)) {
+					elem = elem2;
+				}
+			}
+			if (elem != null) {
+				position = elem.toString();
+			} 
+		}
+		return position;
 	}
 }

@@ -12,6 +12,7 @@ import es.ucm.tp1.control.Records;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
 import es.ucm.tp1.model.Elements.GameElementContainer;
+import es.ucm.tp1.model.Elements.IGameElement;
 //We just imported that because we need to access the static fields
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
@@ -28,6 +29,7 @@ public class Game implements IGame, Serializable {
 	private boolean exit; 
 	
 	private static final String FINISH_LINE = "¦";
+	private static final String ERROR_MSG_NOT_MOVEABLE = "WARNING: Coudn't move the player in that direction";
 	
 	Long seed;
 	Level level;
@@ -106,7 +108,7 @@ public class Game implements IGame, Serializable {
 		//Later can be removed by throwing an exception which is handelt in the Command
 		boolean result = false;
 		if (direction == null) {
-			throw new InvalidPositionException("WARNING: Coudn't move the player in that direction");
+			throw new InvalidPositionException(Game.ERROR_MSG_NOT_MOVEABLE);
 		} else {
 			this.movePlayer(result, direction);
 		}
@@ -269,35 +271,13 @@ public class Game implements IGame, Serializable {
 	}
 
 	public String positionToString(int x, int y) {
-		return positionToStringLogic(x, y);
+		return this.elements.positionToStringLogic(x, y, level, (IGameElement) this.player, Game.FINISH_LINE);
 	}
 
 
 	//Maybe moved to an other class? But be aware not to destroy encapsulation
 	//As you see we refactored it to out of positionToString but we did not have more time
 	//In the next iteration we could move this method to a better place 
-	protected String positionToStringLogic(int x, int y) {
-		String position = "";
-		GameElement elem = null;
-		if (x ==  level.getLength()) {
-			position = FINISH_LINE;
-		} 
-		if(player.isInPos(x, y)) {
-			position = player.toString();
-		} else {
-			GameElement elem2;
-			for (int i = 0; i < elements.size(); i++) {
-				elem2 = elements.get(i);
-				if (elem2.isInPos(x, y)) {
-					elem = elem2;
-				}
-			}
-			if (elem != null) {
-				position = elem.toString();
-			} 
-		}
-		return position;
-	}
 		
 	public void removeDeadObjects() {
 		elements.removeDead();
