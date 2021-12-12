@@ -4,6 +4,7 @@
 ####
 - 5 refactoring
 - 6 refactoring
+- Magic Texts to Constances
 
 #### Free for review
 	
