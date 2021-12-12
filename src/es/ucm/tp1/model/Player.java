@@ -65,7 +65,9 @@ public class Player extends GameElement{
 				move(direction);
 				shouldDisplay = true;				
 			}
+			this.doCollision();
 		} else {
+			this.doCollision();
 			throw new InvalidPositionException("WARNING: Coudn't move the player in that direction");
 		}
 	}
@@ -108,6 +110,7 @@ public class Player extends GameElement{
 		if (isCrashed()) {
 			symbol = CRASHED_PLAYER;
 		}
+		this.doCollision();
 	}
 
 	@Override

@@ -267,7 +267,6 @@ public class Game implements IGame, Serializable {
 		
 	void movePlayer(boolean shouldDisplay, Direction direction) throws InvalidPositionException {
 		player.processingMovement(shouldDisplay, direction);
-		player.doCollision();
 	}
 
 	public String positionToString(int x, int y) {
@@ -287,7 +286,6 @@ public class Game implements IGame, Serializable {
 		elements.update();
 		GameElementGenerator.generateRuntimeObjects(this);
 		removeDeadObjects();
-		player.doCollision();
 		player.update();
 	}
 	
