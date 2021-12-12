@@ -53,7 +53,7 @@ public class Controller {
 			
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			String [] parameters = s.toLowerCase().trim().split(" ");
+			String [] parameters = s.toLowerCase().trim().split("\\s+");
 			System.out.println(DEBUG_MSG + s);
 			
 			try {
