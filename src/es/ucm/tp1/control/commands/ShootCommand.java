@@ -35,9 +35,4 @@ final class ShootCommand extends Command implements Buyable {
 	public int cost() {
 		return COST;
 	}
-	
-	@Override
-	public void buy(Game game) {
-		game.playerPays(cost());
-	}
 }
