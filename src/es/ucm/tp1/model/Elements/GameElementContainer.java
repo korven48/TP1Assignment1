@@ -144,7 +144,7 @@ public final class GameElementContainer implements Serializable {
 		gameElements.clear();		
 	}
 	
-	public String positionToStringLogic(int x, int y, Level level, IGameElement player, String FINISH_LINE) {
+	public String positionToStringLogic(int x, int y, Level level, IPosElement player, String FINISH_LINE) {
 		String position = "";
 		GameElement elem = null;
 		if (x ==  level.getLength()) {

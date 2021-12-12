@@ -2,13 +2,12 @@
 ## Implementation
 ### Prio tasks
 ####
-
+- 5 refactoring
+- 6 refactoring
 
 #### Free for review
-
 	
 ####Questions
-
 
 ### Non-prio tasks
 

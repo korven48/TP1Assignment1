@@ -5,7 +5,7 @@ import es.ucm.tp1.model.ColliderCallback;
 import es.ucm.tp1.model.Serializable;
 import es.ucm.tp1.model.Game;
 
-public abstract class GameElement implements IGameElement, Collider, ColliderCallback, Serializable {
+public abstract class GameElement implements IPosElement, Collider, ColliderCallback, Serializable {
 	protected int x;
 	protected int y;
 

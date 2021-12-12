@@ -12,7 +12,7 @@ import es.ucm.tp1.control.Records;
 import es.ucm.tp1.model.Elements.GameElement;
 import es.ucm.tp1.model.InstantActions.InstantAction;
 import es.ucm.tp1.model.Elements.GameElementContainer;
-import es.ucm.tp1.model.Elements.IGameElement;
+import es.ucm.tp1.model.Elements.IPosElement;
 //We just imported that because we need to access the static fields
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
@@ -270,7 +270,7 @@ public class Game implements IGame, Serializable {
 	}
 
 	public String positionToString(int x, int y) {
-		return this.elements.positionToStringLogic(x, y, level, (IGameElement) this.player, Game.FINISH_LINE);
+		return this.elements.positionToStringLogic(x, y, level, (IPosElement) this.player, Game.FINISH_LINE);
 	}
 
 
