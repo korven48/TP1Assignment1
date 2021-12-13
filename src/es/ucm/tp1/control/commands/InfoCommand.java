@@ -36,8 +36,7 @@ final class InfoCommand extends Command {
 			System.out.println(InfoCommand.INFO);
 			result = false;
 		} catch (Exception ex) {
-			throw new CommandExecuteException(ex.getMessage());
-			//maybe here an reset to the last state of the game?
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return result;
 	}

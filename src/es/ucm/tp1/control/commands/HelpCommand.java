@@ -23,7 +23,7 @@ final class HelpCommand extends Command {
 			System.out.println(Command.getCommandDetailsAndHelpToString());
 			result = false;
 		} catch (Exception ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return result;			
 	}

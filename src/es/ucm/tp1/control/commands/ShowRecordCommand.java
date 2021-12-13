@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 
 public class ShowRecordCommand extends Command {
@@ -13,9 +14,13 @@ public class ShowRecordCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
-		System.out.println(game.getRecords());
-		return false;
+	public boolean execute(Game game) throws CommandExecuteException {
+		try {
+			System.out.println(game.getRecords());
+			return false;
+		} catch (Exception ex) {
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
+		}
 	}
 
 }
