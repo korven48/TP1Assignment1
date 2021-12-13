@@ -62,12 +62,19 @@ public class Controller {
 				game.removeDeadObjects();
 			} catch (GameException ex) {
 				System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+				//For Debug
+				//System.out.format("[ERROR]: %s%n%n", ex.getCause().getMessage());
+				//ex.printStackTrace();
 			}
 		}
+		
 		try {
 			game.close();
 		} catch (GameException ex) {
 			System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+			//For Debug
+			//System.out.format("[ERROR]: %s%n%n", ex.getCause().getMessage());
+			//ex.printStackTrace();
 		}
 		
 		if (refreshDisplay) printGame();

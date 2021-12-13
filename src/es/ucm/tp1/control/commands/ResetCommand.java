@@ -48,7 +48,7 @@ final class ResetCommand extends Command {
 				}
 			}
 		} catch (NumberFormatException ex) {
-			throw new CommandParseException(ex.getMessage(), ex);
+			throw new CommandParseException(Command.ERROR_EXECUTE, ex);
 		} 
 		return null;	
 	}

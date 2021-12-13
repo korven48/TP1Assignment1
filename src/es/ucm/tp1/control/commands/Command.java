@@ -8,6 +8,7 @@ public abstract class Command {
 	private static final String UNKNOWN_COMMAND_MSG = "Unknown command";
 	protected static final String INCORRECT_NUMBER_OF_ARGS_MSG = "Incorrect number of Arguments";
 	protected static final String ERROR_EXECUTE = "An EXECUTE ERROR OCCURED";
+	protected static final String ERROR_PARSE = "An PARSE ERROR OCCURED";
 	
 	protected static final Command[] AVAILABLE_COMMANDS = {
 			new HelpCommand(),

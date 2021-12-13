@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandParseException;
-import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.StandardInputOutputException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GameSerializer;

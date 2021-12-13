@@ -1,7 +1,6 @@
 package es.ucm.tp1.model.Elements;
 
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.view.GamePrinter;
 import es.ucm.tp1.model.ColliderCallback;
 
 public class Obstacle extends GameElement{
