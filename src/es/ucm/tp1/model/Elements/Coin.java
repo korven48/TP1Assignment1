@@ -5,11 +5,11 @@ import es.ucm.tp1.model.ColliderCallback;
 
 public class Coin extends GameElement {
 	private static final String NAME = "coin";
-	private boolean collected = false; 
-	private static final int addedCoins = 1;
-	public static int counter;
-	
 	private static final String CON_SYMBOL = "¢";
+	private static final int addedCoins = 1;
+	
+	private boolean collected = false; 
+	public static int counter;
 	
 	public Coin(int x, int y, Game game) {
 		super(game, x, y, NAME);

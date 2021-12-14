@@ -53,7 +53,7 @@ public class Controller {
 			
 			System.out.println(Controller.PROMPT);
 			String s = scanner.nextLine();
-			String [] parameters = s.toLowerCase().trim().split(" ");
+			String [] parameters = s.toLowerCase().trim().split("\\s+");
 			System.out.println(DEBUG_MSG + s);
 			
 			try {
@@ -62,12 +62,19 @@ public class Controller {
 				game.removeDeadObjects();
 			} catch (GameException ex) {
 				System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+				//For Debug
+				//System.out.format("[ERROR]: %s%n%n", ex.getCause().getMessage());
+				//ex.printStackTrace();
 			}
 		}
+		
 		try {
 			game.close();
 		} catch (GameException ex) {
 			System.out.format("[ERROR]: %s%n%n", ex.getMessage());
+			//For Debug
+			//System.out.format("[ERROR]: %s%n%n", ex.getCause().getMessage());
+			//ex.printStackTrace();
 		}
 		
 		if (refreshDisplay) printGame();

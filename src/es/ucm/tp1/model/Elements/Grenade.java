@@ -3,7 +3,6 @@ package es.ucm.tp1.model.Elements;
 import es.ucm.tp1.model.InstantActions.ExplodeAction;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.model.Game;
-import es.ucm.tp1.model.Serializable;
 
 public class Grenade extends GameElement {
 

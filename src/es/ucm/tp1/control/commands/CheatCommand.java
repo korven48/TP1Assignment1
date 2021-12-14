@@ -43,7 +43,7 @@ public class CheatCommand extends Command {
 		try {
 			GameElementGenerator.generateCheatObject(game, element);
 		} catch (GenerateNewGameElementException ex) {
-			throw new CommandExecuteException(String.format("Command %s: %s%n", CheatCommand.NAME, ex.getMessage()).trim(), ex);	
+			throw new CommandExecuteException(String.format("Command %s: %s%n", CheatCommand.NAME, Command.ERROR_EXECUTE).trim(), ex);	
 		}			
 		return generated;
 	}

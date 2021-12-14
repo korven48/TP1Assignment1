@@ -3,7 +3,6 @@ package es.ucm.tp1.model;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
 import es.ucm.tp1.model.Elements.GameElement;
-import es.ucm.tp1.view.GamePrinter;
 
 public class Player extends GameElement{
 	private static final String NAME = "player";
@@ -65,7 +64,9 @@ public class Player extends GameElement{
 				move(direction);
 				shouldDisplay = true;				
 			}
+			this.doCollision();
 		} else {
+			this.doCollision();
 			throw new InvalidPositionException("WARNING: Coudn't move the player in that direction");
 		}
 	}
@@ -108,6 +109,7 @@ public class Player extends GameElement{
 		if (isCrashed()) {
 			symbol = CRASHED_PLAYER;
 		}
+		this.doCollision();
 	}
 
 	@Override

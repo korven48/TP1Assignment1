@@ -2,13 +2,13 @@
 ## Implementation
 ### Prio tasks
 ####
-
+- 5 refactoring
+- 6 refactoring
+- Magic Texts to Constances
 
 #### Free for review
-
 	
 ####Questions
-
 
 ### Non-prio tasks
 

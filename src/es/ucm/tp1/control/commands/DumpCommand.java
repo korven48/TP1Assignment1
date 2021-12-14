@@ -1,7 +1,6 @@
 package es.ucm.tp1.control.commands;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -47,7 +46,7 @@ public class DumpCommand extends Command {
 		try {
 			readFile();
 		} catch (InputOutputRecordException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return false;
 	}

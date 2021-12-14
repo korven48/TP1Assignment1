@@ -1,5 +1,6 @@
 package es.ucm.tp1.control.commands;
 
+import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.view.GameSerializer;
 
@@ -15,10 +16,14 @@ public class SerializeCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		// Should print the GameSerializer
-		GameSerializer serializer = new GameSerializer(game);
-		System.out.println(serializer);
-		return false;
+		try {
+			GameSerializer serializer = new GameSerializer(game);
+			System.out.println(serializer);
+			return false;
+		} catch (Exception ex) {
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
+		}
 	}
 }

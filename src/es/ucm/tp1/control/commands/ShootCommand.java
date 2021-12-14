@@ -23,7 +23,7 @@ final class ShootCommand extends Command implements Buyable {
 		try {
 			game.getAmountOfCoinsPlayer(cost());
 		} catch (NotEnoughCoinsException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		this.buy(game);
 		game.doInstantAction(new ShootAction());
@@ -34,10 +34,5 @@ final class ShootCommand extends Command implements Buyable {
 	@Override
 	public int cost() {
 		return COST;
-	}
-	
-	@Override
-	public void buy(Game game) {
-		game.playerPays(cost());
 	}
 }

@@ -5,7 +5,7 @@ import es.ucm.tp1.model.ColliderCallback;
 import es.ucm.tp1.model.Serializable;
 import es.ucm.tp1.model.Game;
 
-public abstract class GameElement implements Collider, ColliderCallback, Serializable {
+public abstract class GameElement implements IPosElement, Collider, ColliderCallback, Serializable {
 	protected int x;
 	protected int y;
 
@@ -76,6 +76,7 @@ public abstract class GameElement implements Collider, ColliderCallback, Seriali
 		return false;
 	}
  
+	@Override
 	public boolean isInPos(int x, int y) {
 		boolean out = false;
 		if (this.getX() == x && this.getY() == y) {
@@ -114,10 +115,12 @@ public abstract class GameElement implements Collider, ColliderCallback, Seriali
 		//return symbol;
 	//}
 
+	@Override
 	public int getX() {
 		return x;
 	}
 	
+	@Override
 	public int getY() {
 		return y;
 	}

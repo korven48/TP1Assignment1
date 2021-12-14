@@ -1,6 +1,5 @@
 package es.ucm.tp1.view;
 
-import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
 import es.ucm.tp1.model.Game;
 import es.ucm.tp1.utils.StringUtils;
 

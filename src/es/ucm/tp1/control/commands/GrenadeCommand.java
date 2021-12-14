@@ -61,7 +61,7 @@ public class GrenadeCommand extends Command implements Buyable {
 		try {
 			GameElementGenerator.generateGranade(game, x + game.getCameraPosition(), y);
 		} catch (InvalidPositionException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		result = true;
 		return result;
@@ -70,10 +70,5 @@ public class GrenadeCommand extends Command implements Buyable {
 	@Override
 	public int cost() {
 		return COST;
-	}
-	
-	@Override
-	public void buy(Game game) {
-		game.playerPays(cost());
 	}
 }

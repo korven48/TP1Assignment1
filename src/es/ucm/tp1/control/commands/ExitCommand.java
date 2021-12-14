@@ -22,7 +22,7 @@ final class ExitCommand extends Command {
 			game.setExit(true);
 			result = false;
 		} catch (Exception ex) {
-			throw new CommandExecuteException(ex.getMessage());
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return result;
 	}
