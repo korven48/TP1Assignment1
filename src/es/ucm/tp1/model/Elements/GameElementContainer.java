@@ -88,7 +88,7 @@ public final class GameElementContainer implements Serializable {
 	}
 	
 	//Thats not a list its an array from the type IPosElement. Due to this fact everything is fine
-	//If you have questions ask in class
+	//If you have questions ask in class. 
 	public IPosElement[] getAllPosElements() {
 		IPosElement[] gameElements = new IPosElement[this.size()];
 		for(int i = 0; i < this.size(); i++) gameElements[i] = (IPosElement) this.get(i);		
