@@ -8,6 +8,7 @@ public class Grenade extends GameElement {
 
 	private static final String NAME = "granade";
 	private static final int TOTALCYCLES = 3;
+	public static final String INFO = "[GRENADE] Explodes in 3 cycles, harming everyone around%n";
 	
 	private int cyclesLeft;
 

@@ -13,7 +13,7 @@ import es.ucm.tp1.view.GameSerializer;
 public class SaveCommand extends Command {
 	private static final String NAME = "save";
 	private static final String DETAILS = "sa[v]e <filename>";
-	private static final String SHORTCUT = "s";
+	private static final String SHORTCUT = "v";
 	private static final String HELP = "Save the state of the game to a file.";
 	
 	private static final String FILE_EXTENTION = ".txt";

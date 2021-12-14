@@ -8,6 +8,7 @@ public class Player extends GameElement{
 	private static final String NAME = "player";
 	private static final String ALIVE_PLAYER = ">";
 	private static final String CRASHED_PLAYER = "@";
+	public static final String INFO = "[Car] the racing car%n";
 	
 	private static Player player = null;
 //	private final static int speed = 1;
