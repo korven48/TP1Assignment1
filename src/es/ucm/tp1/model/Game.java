@@ -133,6 +133,10 @@ public class Game implements IGame, Serializable {
 	public int getVisibility() {
 		return level.getVisibility();
 	}
+	
+	protected void addObject(GameElement gameElement) {
+		elements.add(gameElement);
+	}
 
 	public boolean getVictory() {
 		return victory;
