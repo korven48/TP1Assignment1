@@ -3,6 +3,8 @@ package es.ucm.tp1.model;
 import java.util.Random;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.GameException;
+import es.ucm.tp1.Exceptions.highlevelexceptions.HighRecordException;
+import es.ucm.tp1.Exceptions.lowlevelexceptions.CreationError;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InvalidPositionException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.NotEnoughCoinsException;
@@ -30,6 +32,7 @@ public class Game implements IGame, Serializable {
 	
 	private static final String FINISH_LINE = "¦";
 	private static final String ERROR_MSG_NOT_MOVEABLE = "WARNING: Coudn't move the player in that direction";
+	private static final String ERROR_RECORD = "Something went wrong to record this round";
 	
 	Long seed;
 	Level level;
@@ -150,30 +153,9 @@ public class Game implements IGame, Serializable {
 	//This we will let in this part of the code because the decribtion does not tell diffrently 
 	//And it is the logic of the game when and when not a gameElement should be added
 	public final void tryToAddObject(GameElement gameElement, double elementFrequency) {
-		GameElement element = null;
-		Random rand = this.rand;
-		double createElement = rand.nextDouble();
-		if (createElement < elementFrequency) {
-			if (elements != null) {
-				for (int i = 0; i < elements.size(); i++) {
-					element = elements.get(i);
-					if (element.isInPos(gameElement.getX(), gameElement.getY())) {
-						return;
-					}
-				}
-			}
-			addObject(gameElement);
-			gameElement.onEnter();
-		}
-	}
-	
-	public void addObject(GameElement gameElement) {
-		int x = gameElement.getX();
-		int y = gameElement.getY();
-		if (elements.isObjectInPos(x, y)) {
-			elements.remove(x, y);
-		}
-		elements.add(gameElement);
+		try {
+			this.elements.processAddingObject(gameElement, elementFrequency, this.rand);
+		} catch (CreationError ex) {}
 	}
 	
 	public final int getRandomLane() {
@@ -272,11 +254,6 @@ public class Game implements IGame, Serializable {
 	public String positionToString(int x, int y) {
 		return this.elements.positionToStringLogic(x, y, level, (IPosElement) this.player, Game.FINISH_LINE);
 	}
-
-
-	//Maybe moved to an other class? But be aware not to destroy encapsulation
-	//As you see we refactored it to out of positionToString but we did not have more time
-	//In the next iteration we could move this method to a better place 
 		
 	public void removeDeadObjects() {
 		elements.removeDead();
@@ -314,24 +291,10 @@ public class Game implements IGame, Serializable {
 		return column;
 	}
 	
-	
-	//@Simon you told us to move it to the Game in your eMail from the 29.11.
-	//Some elements like the truck has to be moved 2xtwice because they have their own moving logic
-	//We are moving the first element not if it has a second behind of it but we move the n element behint if it has no element followed
-	public void invokeReceiveWaveOnElements () {
-		GameElement elem = null;
-		for (int x = 0; x < elements.size(); x++) {
-			elem = elements.get(x);
-			int cameraPos = this.getCameraPosition();
-			int maxRang = this.getCameraPosition() + this.getVisibility() - 1;
-			if (cameraPos <= elem.getX() && maxRang >= elem.getX()) {
-				if (elements.getObjectInPosition(elem.getX() + 1, elem.getY()) == null) {
-					elem.receiveWave();
-				}				
-			}
-		}	
+	public IPosElement[] getAllPos() {
+		return elements.getAllPosElements();
 	}
-	
+		
 	public String getRecords() {
 		return records.toString();
 	}
@@ -359,19 +322,18 @@ public class Game implements IGame, Serializable {
 		return this.records.getIsRecord();
 	}
 
-	public void close() throws GameException {
+	public void close() throws HighRecordException {
 		try {
 			if (isFinished()) {
 				records.trySetNewRecord(level.name(), getTime());
-				
 				try {
 					records.save();	
 				} catch (InputOutputRecordException ex){
-					throw new GameException(ex.getMessage(), ex);
+					throw new HighRecordException(Game.ERROR_RECORD, ex);
 				}
 			}
 		} catch (RecordsException ex) {
-			throw new GameException(ex.getMessage(), ex);
+			throw new HighRecordException(Game.ERROR_RECORD, ex);
 		}
 	}
 }
