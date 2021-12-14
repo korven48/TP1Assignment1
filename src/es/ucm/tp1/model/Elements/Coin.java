@@ -7,6 +7,7 @@ public class Coin extends GameElement {
 	private static final String NAME = "coin";
 	private static final String CON_SYMBOL = "¢";
 	private static final int addedCoins = 1;
+	public static final String INFO = "[Coin] gives 1 coin to the player%n";
 	
 	private boolean collected = false; 
 	public static int counter;

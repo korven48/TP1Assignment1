@@ -61,7 +61,7 @@ public class Records {
 	
 	
 	public void load() throws InputOutputRecordException {
-		try ( FileReader file = new FileReader(FILE_NAME + ".txt");
+		try ( FileReader file = new FileReader(FILE_NAME + FILE_EXTENTION);
 			  BufferedReader bfile = new BufferedReader(file);){
 			
 			String levelName, line = bfile.readLine();

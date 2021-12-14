@@ -8,6 +8,7 @@ import es.ucm.tp1.model.ColliderCallback;
 public class SuperCoin extends GameElement {
 	private static final String NAME = "super";
 	private static final int addedCoins = 1000;
+	public static final String INFO = "[SUPERCOIN] gives 1000 coins%n";
 	private boolean collected = false;
 	
 	private static final String SUPER_CON_SYMBOL = "$";

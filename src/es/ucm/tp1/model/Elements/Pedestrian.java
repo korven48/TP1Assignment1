@@ -7,6 +7,7 @@ public class Pedestrian extends Obstacle {
 
 	private static final String NAME = "pedestrian";
 	private static final String CON_SYMBOL = "☺";
+	public static final String INFO = "[PEDESTRIAN] person crossing the road up and down%n";
 	
 	private boolean goingUp;
 	

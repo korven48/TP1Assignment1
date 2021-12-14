@@ -10,6 +10,7 @@ public final class Wall extends Obstacle {
 	private static final String TWO_WALL = "▒";
 	private static final String ONE_WALL = "░";
 	private static final int AMOUNT_COIN_GAINABLE = 5;
+	public static final String INGO = "[WALL] hard obstacle%n";
 	
 	private static final String NAME = "wall";
 	

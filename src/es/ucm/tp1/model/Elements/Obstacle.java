@@ -7,6 +7,7 @@ public class Obstacle extends GameElement{
 	private static final String NAME = "obstacle";
 	protected int resistance;
 	public static int counter;
+	public static final String INFO = "[Obstacle] hits car%n";
 	
 	private static final String CON_SYMBOL = "░";
 

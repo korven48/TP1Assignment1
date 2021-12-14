@@ -2,6 +2,15 @@ package es.ucm.tp1.control.commands;
 
 import es.ucm.tp1.Exceptions.highlevelexceptions.CommandExecuteException;
 import es.ucm.tp1.model.Game;
+import es.ucm.tp1.model.Player;
+import es.ucm.tp1.model.Elements.Coin;
+import es.ucm.tp1.model.Elements.Grenade;
+import es.ucm.tp1.model.Elements.Obstacle;
+import es.ucm.tp1.model.Elements.Pedestrian;
+import es.ucm.tp1.model.Elements.SuperCoin;
+import es.ucm.tp1.model.Elements.Truck;
+import es.ucm.tp1.model.Elements.Wall;
+import es.ucm.tp1.model.InstantActions.ThunderAction;
 
 final class InfoCommand extends Command {
 	private static final String NAME = "info";
@@ -11,15 +20,15 @@ final class InfoCommand extends Command {
 	
 	private static final String INFO = String.format(
 			  "Available objects:%n"
-			+ "[Car] the racing car%n"
-			+ "[Coin] gives 1 coin to the player%n"
-			+ "[Obstacle] hits car%n"
-			+ "[GRENADE] Explodes in 3 cycles, harming everyone around%n"
-			+ "[WALL] hard obstacle%n"
-			+ "[TURBO] pushes the car: 3 columns%n"
-			+ "[SUPERCOIN] gives 1000 coins%n"
-			+ "[TRUCK] moves towards the player%n"
-			+ "[PEDESTRIAN] person crossing the road up and down%n"
+			+ Player.INFO
+			+ Coin.INFO
+			+ Obstacle.INFO
+			+ Grenade.INFO
+			+ Wall.INFO
+			+ ThunderAction.INFO
+			+ SuperCoin.INFO
+			+ Truck.INFO
+			+ Pedestrian.INFO
 			+ "%n"); 
 	
 	public InfoCommand() {
