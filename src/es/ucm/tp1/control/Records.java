@@ -56,7 +56,7 @@ public class Records {
 			  BufferedWriter bfile = new BufferedWriter(file)) {
 				bfile.write(this.toString());
 		} catch (IOException ex) {
-				throw new InputOutputRecordException(, ex);
+				throw new InputOutputRecordException(Records.ERROR_WHILE_SAVING, ex);
 		}
 	}
 	
