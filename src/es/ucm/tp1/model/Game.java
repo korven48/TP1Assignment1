@@ -54,7 +54,7 @@ public class Game implements IGame, Serializable {
 		try {
 			this.records.load();
 		} catch (InputOutputRecordException ex) {
-			throw new GameException(ex.getMessage(), ex);
+			throw new GameException(Game.ERROR_INTERNAL, ex);
 		} finally {
 			//Create the file --> Creating a new record.
 		}
