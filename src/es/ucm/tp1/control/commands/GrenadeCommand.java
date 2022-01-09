@@ -55,7 +55,7 @@ public class GrenadeCommand extends Command implements Buyable {
 		try {
 			game.getAmountOfCoinsPlayer(cost());
 		} catch (NotEnoughCoinsException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		this.buy(game);
 		try {

@@ -62,7 +62,7 @@ public class DumpCommand extends Command {
 			}
 			
 		} catch (IOException ex) {
-			throw new InputOutputRecordException(ex.getMessage(), ex);
+			throw new InputOutputRecordException("Read File went wronge", ex);
 		}
 	}
 

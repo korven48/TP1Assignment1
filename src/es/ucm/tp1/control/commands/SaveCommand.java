@@ -49,7 +49,7 @@ public class SaveCommand extends Command {
 		try {
 			writeMethod(game);
 		} catch (StandardInputOutputException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return false;
 	}
@@ -62,7 +62,7 @@ public class SaveCommand extends Command {
 			bfile.write(serializer.toString());
 			System.out.println("Game successfully saved in file " + filename + ".txt");
 		} catch (IOException ex) {
-			throw new StandardInputOutputException(ex.getMessage(), ex);
+			throw new StandardInputOutputException("Writing the file went wronge", ex);
 		}
 	}
 }

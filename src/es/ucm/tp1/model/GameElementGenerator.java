@@ -16,6 +16,7 @@ import es.ucm.tp1.model.InstantActions.*;
 
 public final class GameElementGenerator {
 	private static final String NOT_AN_ADVANCED_GAME_ELEMENT = "Not an advanced game element";
+	private static final String ERROR_IS_FULL = "The Container is full";
 	public static final GameElement[] AVAILABLE_GAMEELEMENTS = {
 			// Should contain all the GameElements
 			new Coin(),
@@ -77,7 +78,7 @@ public final class GameElementGenerator {
 			try {
 				game.addObject(currentElement.create(game, column, lane));	
 			} catch (Exception ex) {
-				throw new GenerateNewGameElementException(ex.getMessage(), ex);
+				throw new GenerateNewGameElementException(GameElementGenerator.ERROR_IS_FULL, ex);
 			}
 		} else {
 			throw new GenerateNewGameElementException(GameElementGenerator.NOT_AN_ADVANCED_GAME_ELEMENT);

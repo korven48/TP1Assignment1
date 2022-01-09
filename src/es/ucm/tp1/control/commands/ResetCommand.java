@@ -61,7 +61,7 @@ final class ResetCommand extends Command {
 			game.reset(this.seed, this.level);
 			result = true;
 		} catch (InputOutputRecordException ex) {
-			throw new CommandExecuteException(ex.getMessage(), ex);
+			throw new CommandExecuteException(Command.ERROR_EXECUTE, ex);
 		}
 		return result;
 	}

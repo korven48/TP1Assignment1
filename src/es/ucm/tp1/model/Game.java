@@ -33,6 +33,8 @@ public class Game implements IGame, Serializable {
 	private static final String FINISH_LINE = "¦";
 	private static final String ERROR_MSG_NOT_MOVEABLE = "WARNING: Coudn't move the player in that direction";
 	private static final String ERROR_RECORD = "Something went wrong to record this round";
+	private static final String ERROR_INTERNAL = "Internal Processing went wring in Game";
+	
 	
 	Long seed;
 	Level level;

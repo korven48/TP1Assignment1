@@ -23,6 +23,7 @@ public class Records {
 	
 	//For error Messages
 	private static final String ERROR_FILE_NOT_FOUND = "File not found, created new record-file";
+	private static final String ERROR_WHILE_SAVING = "And saving error occured";
 	private static final String ERROR_NUMERICAL = "Numerical failure occurred";
 	private static final String ERROR_Other = "Another IO error occurred";
 	
@@ -55,7 +56,7 @@ public class Records {
 			  BufferedWriter bfile = new BufferedWriter(file)) {
 				bfile.write(this.toString());
 		} catch (IOException ex) {
-				throw new InputOutputRecordException(ex.getMessage(), ex);
+				throw new InputOutputRecordException(, ex);
 		}
 	}
 	
