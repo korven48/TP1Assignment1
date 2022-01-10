@@ -19,7 +19,7 @@ import es.ucm.tp1.model.Elements.IPosElement;
 import es.ucm.tp1.model.Elements.Coin;
 import es.ucm.tp1.model.Elements.Obstacle;
 
-public class Game implements IGame, Serializable {
+public class Game implements Serializable {
 	Player player = null;
 	private GameElementContainer elements; 
 	private Records records;
@@ -91,7 +91,6 @@ public class Game implements IGame, Serializable {
 	}
 	
 	// ---------------------------  Beginning of Setters and Getters ---------------------------
-	@Override
 	public void setExit(boolean exit) {
 		this.exit = exit;
 	}

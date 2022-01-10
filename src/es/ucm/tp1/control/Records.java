@@ -11,14 +11,14 @@ import java.util.Map;
 
 import es.ucm.tp1.Exceptions.lowlevelexceptions.InputOutputRecordException;
 import es.ucm.tp1.Exceptions.lowlevelexceptions.RecordsException;
-import es.ucm.tp1.model.IGame;
+import es.ucm.tp1.model.Game;
 
 public class Records {
 	
 	private static final String FILE_NAME = "record"; 
 	private static final String FILE_EXTENTION = ".txt";
 	private Map<String, Long> records;
-	private IGame game = null;
+	private Game game = null;
 	private boolean isRecord = false;
 	
 	//For error Messages
@@ -28,7 +28,7 @@ public class Records {
 	private static final String ERROR_Other = "Another IO error occurred";
 	
 	
-	public Records (IGame game) {
+	public Records (Game game) {
 		// Inializes the record of each available level to the maximum value
 		this.game = game;
 		records = new HashMap<String, Long>();

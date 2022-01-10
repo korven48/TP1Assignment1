@@ -2,10 +2,9 @@ package es.ucm.tp1.Exceptions.lowlevelexceptions;
 
 @SuppressWarnings("serial")
 public class CreationError extends Exception {
-	private static final String ERROR_Creation = "Could not generat this Element";
 		
 	public CreationError() {
-		super(CreationError.ERROR_Creation);
+		super();
 	}
 	
 	public CreationError(String message) {

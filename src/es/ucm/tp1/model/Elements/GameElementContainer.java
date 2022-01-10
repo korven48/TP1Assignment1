@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public final class GameElementContainer implements Serializable {
 	protected static final int CAPACITY = 100;
 	private List<GameElement> gameElements;
+	private static final String ERROR_Creation = "Could not generat this Element";
 	
 	public GameElementContainer() {
 		this.gameElements = new ArrayList<>();
@@ -190,7 +191,7 @@ public final class GameElementContainer implements Serializable {
 				for (int i = 0; i < this.size(); i++) {
 					element = this.gameElements.get(i);
 					if (element.isInPos(gameElement.getX(), gameElement.getY())) {
-						throw new CreationError();
+						throw new CreationError(GameElementContainer.ERROR_Creation);
 					}
 				}
 			}
